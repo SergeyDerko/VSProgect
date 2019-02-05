@@ -49,9 +49,11 @@
   <ItemGroup>
     <Compile Include="Entity\Branch.cs" />
     <Compile Include="Entity\Business.cs" />
+    <Compile Include="Entity\CategoryBusness.cs" />
     <Compile Include="Entity\News.cs" />
     <Compile Include="Entity\Newsletter.cs" />
     <Compile Include="Entity\Partner.cs" />
+    <Compile Include="Entity\TypesBusinesses.cs" />
     <Compile Include="Entity\Useful.cs" />
     <Compile Include="Entity\UsefulRubrics.cs" />
     <Compile Include="Entity\Video.cs" />

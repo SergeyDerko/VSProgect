@@ -10,12 +10,19 @@ namespace VSCore.Entity
     {
         [Key]
         public int PartnerId { get; set; }
-
+      
         public string Logo { get; set; }
+        
         public string Name { get; set; }
+       
         public string NameEn { get; set; }
-
+        /// <summary>
+        /// HTML
+        /// </summary>
         public string Description { get; set; }
+        /// <summary>
+        /// HTML En
+        /// </summary>
         public string DescriptionEn { get; set; }
         public string Site { get; set; }
         public string Fb { get; set; }
