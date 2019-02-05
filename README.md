@@ -1,2 +1,0 @@
-# VSProgect
-site veterano-servise
