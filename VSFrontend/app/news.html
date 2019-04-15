@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ua">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VeteranoService - свій до свого по своє ;-)">
+    <title>VeteranoService</title>
+    <link rel="icon" href="assets/img/logo.png">
+    <!-- css-libs (slick, animate ...)-->
+    <link rel="stylesheet" type="text/css" href="assets/libs-css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/libs-css/animate.css">
+    <!-- jquery-->
+    <script src="assets/libs/jquery.js"></script>
+    <!-- own stylesheet-->
+    <link rel="stylesheet" type="text/css" href="assets/css/news.css">
+  </head>
+  <body>
+    <!-- HEADER-->
+    <!-- ↓↓↓ BEM-blocks: header (start) ↓↓↓-->
+    <div class="header"><a class="header__logo" href="index.html"><img class="header__logo-img" src="assets/img/logo.png" alt="logo.png"></a>
+      <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="assets/img/youtube.png" alt="youtube.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="assets/img/facebook.png" alt="facebook.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="assets/img/twitter.png" alt="twitter.png"></a></div>
+      <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
+      <div class="language-switcher" data-language="ua"><img class="language-switcher__img" src="assets/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="assets/img/uk.png" alt="en.png"><img class="language-switcher__img" src="assets/img/ru.png" alt="ru.png">
+        <div class="language-switcher__shutter-ua" href="#"></div>
+        <div class="language-switcher__shutter-en" href="#"></div>
+        <div class="language-switcher__shutter-ru" href="#"></div>
+      </div>
+      <script>$(document).ready(function(){
+
+  // $('.language-switcher__shutter').click(function(){
+  //   if ( $('.language-switcher').attr('data-language') == 'ua' ) {
+
+  //     $(this).css('left','0%');
+  //     $('.language-switcher').attr('data-language', 'en');
+  //   } else {
+  //     $(this).css('left','33.33%');
+  //     $('.language-switcher').attr('data-language', 'ua');
+  //   }
+
+  // });
+
+  $('.language-switcher__shutter-ua').click(function(){
+    $('.language-switcher__shutter-ua').css('height','.1px');
+    $('.language-switcher__shutter-en').css('height','100%');
+    $('.language-switcher').attr('data-language', 'ua');
+  });
+
+  $('.language-switcher__shutter-en').click(function(){
+  	$('.language-switcher__shutter-ua').css('height','100%');
+    $('.language-switcher__shutter-en').css('height','.1px');
+    $('.language-switcher').attr('data-language', 'en');
+  });
+
+});
+      </script>
+      <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
+      <div class="header__menu">
+        <button class="header__menu-btn"><span>МЕНЮ</span><img src="assets/img/gear-wheel.png" alt="gear-wheel.png"></button>
+        <ul class="header__menu-list">
+          <li><a class="header__menu-link" href="index.html">Головна</a></li>
+          <li><a class="header__menu-link" href="business.html">Бізнеси ветеранів</a></li>
+          <li><a class="header__menu-link" href="help_for_business.html">Допомога бізнесу</a></li>
+          <li><a class="header__menu-link" href="vacancy.html">Вакансії</a></li>
+          <li><a class="header__menu-link" href="useful.html">Корисно</a></li>
+          <li><a class="header__menu-link" href="partners.html">Партнери</a></li>
+          <li><a class="header__menu-link" href="about-us.html">Про нас</a></li>
+          <li><a class="header__menu-link" href="news.html">Новини</a></li>
+        </ul>
+      </div>
+    </div>
+    <script>$(document).ready(function(){
+
+  /* ↓↓↓ зміна розмірів логотипу при прокрутці ↓↓↓ */
+  if ( $('.header').outerWidth() > 480 ) {
+    if ( $('.header').offset().top >= 30 ) {
+      $('.header__logo-img').css({'height':'50px','margin-top':'-5px'});
+      $('.header').css({'background-color':'rgba(0,0,0,.75)'});
+    } else {
+      $('.header__logo-img').css({'height':'160px','margin-top':'0px'});
+      $('.header').css({'background-color':'transparent'});
+    }
+  } else {
+    $('.header__logo-img').css({'height':'50px','margin-top':'-5px'});
+    $('.header').css({'background-color':'rgba(0,0,0,.75)'});
+  }
+
+  $(document).scroll(function(){
+    if ( $('.header').outerWidth() > 480 ) {
+      if ( $('.header').offset().top >= 30 ) {
+        $('.header__logo-img').css({'height':'50px','margin-top':'-5px'});
+        $('.header').css({'background-color':'rgba(0,0,0,.75)'});
+      } else {
+        $('.header__logo-img').css({'height':'160px','margin-top':'0px'});
+        $('.header').css({'background-color':'transparent'});
+      }
+    } else {
+      $('.header__logo-img').css({'height':'50px','margin-top':'-5px'});
+      $('.header').css({'background-color':'rgba(0,0,0,.75)'});
+    }
+  }); /* ↑↑↑ /зміна розмірів логотипу при прокрутці ↑↑↑ */
+
+  /* ↓↓↓ логіка меню ↓↓↓ */
+  var isMenuClicable = true;
+  var isMemuOpen     = false;
+  var arrOfMenuItems = $('.header__menu-link');
+  var delay          = 0;
+  var delayStep      = 70;
+  var freezeTime     = arrOfMenuItems.length * delayStep;
+
+
+  $('.header__menu-btn').click(function(){
+
+    // якщо меню зараз не анімується (не відкивається і не закривається)
+    if (isMenuClicable) {
+
+      // блокування повторних кліків на час анімації
+      isMenuClicable = false;
+      setTimeout(function(){
+        isMenuClicable = true
+      },freezeTime);
+
+      // відкриття/закриття
+      if (isMemuOpen) {
+        closeMenu()
+      } else {
+        $('.header__menu-list').css('display','block');
+
+        delay = 0;
+        // навішування анімації через цикл - для цього потрібна додаткова анонімна ф-я
+        for (var i=0; i<arrOfMenuItems.length; i++) {
+          (function(j){
+            setTimeout(function(){
+              $(arrOfMenuItems[j]).css({'right':'0%'});
+            }, delay);
+            delay = delay + delayStep;
+          })(i);
+        }
+        isMemuOpen = true;
+      }
+    }
+  });
+  /* ↑↑↑ /логіка меню ↑↑↑ */
+
+  $(document).click(function(event){
+    if ( isMemuOpen && isMenuClicable && event.target.className != 'header__menu-btn' ) {
+      closeMenu()
+    }
+  });
+
+  function closeMenu() {
+    // закрити меню
+    delay = 0;
+    // навішування анімації через цикл - для цього потрібна додаткова анонімна ф-я
+    for (var i=0; i<arrOfMenuItems.length; i++) {
+      (function(j){
+        setTimeout(function(){
+          $(arrOfMenuItems[j]).css({'right':'calc( -100% - 15px )'});
+        }, delay);
+        delay = delay + delayStep;
+      })(i);
+    }
+    setTimeout(function(){
+      $('.header__menu-list').css('display','none');
+    },delay);
+    isMemuOpen = false;
+  }
+});
+    </script>
+    <!-- ↑↑↑ BEM-blocks: header (end) ↑↑↑-->
+    <!-- /HEADER-->
+    <!-- MAIN SECTION-->
+    <main class="main">
+      <!-- SECTION 1-->
+      <section class="main-section">
+        <h1 class="main-section__header">НОВИНИ</h1>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo1.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint in ipsa non nesciunt tempora, et nihil laborum quaerat optio soluta adipisci praesentium modi. Repellendus possimus distinctio laboriosam blanditiis adipisci odio, tempora voluptatum dolore impedit est voluptatibus ducimus dolor harum iusto odit quia eos minima labore, sapiente fuga expedita fugiat, optio sed! Esse adipisci, vel omnis vero porro quisquam inventore, alias, ab temporibus eaque hic dignissimos est consectetur. Minima sed nihil vel distinctio ducimus doloribus molestias accusamus delectus magnam adipisci recusandae asperiores cupiditate natus facere similique corrupti, eligendi provident facilis sint odio nesciunt quibusdam. Id numquam animi dignissimos laudantium, deserunt quis ut excepturi dicta, nobis voluptas, nisi a ex vel praesentium illum cumque repellat sint enim exercitationem itaque quae! Ut animi soluta, corrupti molestias impedit quas, illo expedita provident voluptas nostrum harum nisi vero eum voluptates nihil commodi, omnis laudantium! Ipsa nisi, laborum harum similique inventore, libero temporibus iure totam id, asperiores commodi obcaecati dolores. Non earum corporis placeat quod similique quam, quia officiis quo voluptate. Debitis dolorum amet provident voluptas libero laudantium inventore nihil voluptatem officiis veniam magni, molestias iste, qui ea in, ipsam. Libero excepturi natus ad culpa placeat earum ex repellat temporibus harum veniam consectetur dignissimos totam, magnam quisquam iure aspernatur repellendus voluptatibus quaerat. Nisi reiciendis molestiae facilis voluptas quam modi expedita perspiciatis assumenda veniam ad optio tenetur illo iusto inventore temporibus, harum aliquam placeat doloremque! Asperiores laborum corporis architecto, adipisci culpa tempore quod voluptates earum repellat nesciunt sunt officia tenetur eos rerum amet, consequatur obcaecati perspiciatis omnis hic quaerat impedit vitae. Similique et nam minima vero magni quod fugit. Eveniet iste blanditiis expedita laborum harum fugit deserunt modi eum id quaerat aut ipsa nisi deleniti, consequatur provident dolorem, dolorum distinctio maiores, labore consequuntur assumenda atque accusamus libero. Corporis accusantium culpa earum magni nisi quas ex dicta quibusdam.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo2.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo3.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint in ipsa non nesciunt tempora, et nihil laborum quaerat optio soluta adipisci praesentium modi. Repellendus possimus distinctio laboriosam blanditiis adipisci odio, tempora voluptatum dolore impedit est voluptatibus ducimus dolor harum iusto odit quia eos minima labore, sapiente fuga expedita fugiat, optio sed! Esse adipisci, vel omnis vero porro quisquam inventore, alias, ab temporibus eaque hic dignissimos est consectetur. Minima sed nihil vel distinctio ducimus doloribus molestias accusamus delectus magnam adipisci recusandae asperiores cupiditate natus facere similique corrupti, eligendi provident facilis sint odio nesciunt quibusdam. Id numquam animi dignissimos laudantium, deserunt quis ut excepturi dicta, nobis voluptas, nisi a ex vel praesentium illum cumque repellat sint enim exercitationem itaque quae! Ut animi soluta, corrupti molestias impedit quas, illo expedita provident voluptas nostrum harum nisi vero eum voluptates nihil commodi, omnis laudantium! Ipsa nisi, laborum harum similique inventore, libero temporibus iure totam id, asperiores commodi obcaecati dolores. Non earum corporis placeat quod similique quam, quia officiis quo voluptate. Debitis dolorum amet provident voluptas libero laudantium inventore nihil voluptatem officiis veniam magni, molestias iste, qui ea in, ipsam. Libero excepturi natus ad culpa placeat earum ex repellat temporibus harum veniam consectetur dignissimos totam, magnam quisquam iure aspernatur repellendus voluptatibus quaerat. Nisi reiciendis molestiae facilis voluptas quam modi expedita perspiciatis assumenda veniam ad optio tenetur illo iusto inventore temporibus, harum aliquam placeat doloremque! Asperiores laborum corporis architecto, adipisci culpa tempore quod voluptates earum repellat nesciunt sunt officia tenetur eos rerum amet, consequatur obcaecati perspiciatis omnis hic quaerat impedit vitae. Similique et nam minima vero magni quod fugit. Eveniet iste blanditiis expedita laborum harum fugit deserunt modi eum id quaerat aut ipsa nisi deleniti, consequatur provident dolorem, dolorum distinctio maiores, labore consequuntur assumenda atque accusamus libero. Corporis accusantium culpa earum magni nisi quas ex dicta quibusdam.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo4.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint in ipsa non nesciunt tempora, et nihil laborum quaerat optio soluta adipisci praesentium modi. Repellendus possimus distinctio laboriosam blanditiis adipisci odio, tempora voluptatum dolore impedit est voluptatibus ducimus dolor harum iusto odit quia eos minima labore, sapiente fuga expedita fugiat, optio sed! Esse adipisci, vel omnis vero porro quisquam inventore, alias, ab temporibus eaque hic dignissimos est consectetur. Minima sed nihil vel distinctio ducimus doloribus molestias accusamus delectus magnam adipisci recusandae asperiores cupiditate natus facere similique corrupti, eligendi provident facilis sint odio nesciunt quibusdam. Id numquam animi dignissimos laudantium, deserunt quis ut excepturi dicta, nobis voluptas, nisi a ex vel praesentium illum cumque repellat sint enim exercitationem itaque quae! Ut animi soluta, corrupti molestias impedit quas, illo expedita provident voluptas nostrum harum nisi vero eum voluptates nihil commodi, omnis laudantium! Ipsa nisi, laborum harum similique inventore, libero temporibus iure totam id, asperiores commodi obcaecati dolores. Non earum corporis placeat quod similique quam, quia officiis quo voluptate. Debitis dolorum amet provident voluptas libero laudantium inventore nihil voluptatem officiis veniam magni, molestias iste, qui ea in, ipsam. Libero excepturi natus ad culpa placeat earum ex repellat temporibus harum veniam consectetur dignissimos totam, magnam quisquam iure aspernatur repellendus voluptatibus quaerat. Nisi reiciendis molestiae facilis voluptas quam modi expedita perspiciatis assumenda veniam ad optio tenetur illo iusto inventore temporibus, harum aliquam placeat doloremque! Asperiores laborum corporis architecto, adipisci culpa tempore quod voluptates earum repellat nesciunt sunt officia tenetur eos rerum amet, consequatur obcaecati perspiciatis omnis hic quaerat impedit vitae. Similique et nam minima vero magni quod fugit. Eveniet iste blanditiis expedita laborum harum fugit deserunt modi eum id quaerat aut ipsa nisi deleniti, consequatur provident dolorem, dolorum distinctio maiores, labore consequuntur assumenda atque accusamus libero. Corporis accusantium culpa earum magni nisi quas ex dicta quibusdam.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo1.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint in ipsa non nesciunt tempora, et nihil laborum quaerat optio soluta adipisci praesentium modi. Repellendus possimus distinctio laboriosam blanditiis adipisci odio, tempora voluptatum dolore impedit est voluptatibus ducimus dolor harum iusto odit quia eos minima labore, sapiente fuga expedita fugiat, optio sed! Esse adipisci, vel omnis vero porro quisquam inventore, alias, ab temporibus eaque hic dignissimos est consectetur. Minima sed nihil vel distinctio ducimus doloribus molestias accusamus delectus magnam adipisci recusandae asperiores cupiditate natus facere similique corrupti, eligendi provident facilis sint odio nesciunt quibusdam. Id numquam animi dignissimos laudantium, deserunt quis ut excepturi dicta, nobis voluptas, nisi a ex vel praesentium illum cumque repellat sint enim exercitationem itaque quae! Ut animi soluta, corrupti molestias impedit quas, illo expedita provident voluptas nostrum harum nisi vero eum voluptates nihil commodi, omnis laudantium! Ipsa nisi, laborum harum similique inventore, libero temporibus iure totam id, asperiores commodi obcaecati dolores. Non earum corporis placeat quod similique quam, quia officiis quo voluptate. Debitis dolorum amet provident voluptas libero laudantium inventore nihil voluptatem officiis veniam magni, molestias iste, qui ea in, ipsam. Libero excepturi natus ad culpa placeat earum ex repellat temporibus harum veniam consectetur dignissimos totam, magnam quisquam iure aspernatur repellendus voluptatibus quaerat. Nisi reiciendis molestiae facilis voluptas quam modi expedita perspiciatis assumenda veniam ad optio tenetur illo iusto inventore temporibus, harum aliquam placeat doloremque! Asperiores laborum corporis architecto, adipisci culpa tempore quod voluptates earum repellat nesciunt sunt officia tenetur eos rerum amet, consequatur obcaecati perspiciatis omnis hic quaerat impedit vitae. Similique et nam minima vero magni quod fugit. Eveniet iste blanditiis expedita laborum harum fugit deserunt modi eum id quaerat aut ipsa nisi deleniti, consequatur provident dolorem, dolorum distinctio maiores, labore consequuntur assumenda atque accusamus libero. Corporis accusantium culpa earum magni nisi quas ex dicta quibusdam.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <div class="infoblock">
+          <h3 class="infoblock__header">header harum iusto odit quia eos minima</h3>
+          <div class="infoblock__img-holder">
+            <div class="infoblock__img-date">2019.02.25</div><img class="infoblock__img-marker" src="assets/img/marker-news.png" alt="">
+            <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="assets/img/photo2.jpg" alt=""></div>
+          </div>
+          <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint in ipsa non nesciunt tempora, et nihil laborum quaerat optio soluta adipisci praesentium modi. Repellendus possimus distinctio laboriosam blanditiis adipisci odio, tempora voluptatum dolore impedit est voluptatibus ducimus dolor harum iusto odit quia eos minima labore, sapiente fuga expedita fugiat, optio sed! Esse adipisci, vel omnis vero porro quisquam inventore, alias, ab temporibus eaque hic dignissimos est consectetur. Minima sed nihil vel distinctio ducimus doloribus molestias accusamus delectus magnam adipisci recusandae asperiores cupiditate natus facere similique corrupti, eligendi provident facilis sint odio nesciunt quibusdam. Id numquam animi dignissimos laudantium, deserunt quis ut excepturi dicta, nobis voluptas, nisi a ex vel praesentium illum cumque repellat sint enim exercitationem itaque quae! Ut animi soluta, corrupti molestias impedit quas, illo expedita provident voluptas nostrum harum nisi vero eum voluptates nihil commodi, omnis laudantium! Ipsa nisi, laborum harum similique inventore, libero temporibus iure totam id, asperiores commodi obcaecati dolores. Non earum corporis placeat quod similique quam, quia officiis quo voluptate. Debitis dolorum amet provident voluptas libero laudantium inventore nihil voluptatem officiis veniam magni, molestias iste, qui ea in, ipsam. Libero excepturi natus ad culpa placeat earum ex repellat temporibus harum veniam consectetur dignissimos totam, magnam quisquam iure aspernatur repellendus voluptatibus quaerat. Nisi reiciendis molestiae facilis voluptas quam modi expedita perspiciatis assumenda veniam ad optio tenetur illo iusto inventore temporibus, harum aliquam placeat doloremque! Asperiores laborum corporis architecto, adipisci culpa tempore quod voluptates earum repellat nesciunt sunt officia tenetur eos rerum amet, consequatur obcaecati perspiciatis omnis hic quaerat impedit vitae. Similique et nam minima vero magni quod fugit. Eveniet iste blanditiis expedita laborum harum fugit deserunt modi eum id quaerat aut ipsa nisi deleniti, consequatur provident dolorem, dolorum distinctio maiores, labore consequuntur assumenda atque accusamus libero. Corporis accusantium culpa earum magni nisi quas ex dicta quibusdam.</p>
+            </div>
+            <div class="infoblock__link"><span>
+                посилання:
+                </span><a href="#">перейти</a></div>
+          </div>
+        </div>
+        <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
+        <div class="banners-holder"><a class="place" href="form.html"><img src="assets/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="assets/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
+        <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
+      </section>
+      <!-- /SECTION 1-->
+      <!-- SECTION 3-->
+      <section class="popups-section">
+        <!-- ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓-->
+        <div class="small-popup" id="popup-no-russian-language-suppurt">
+          <button class="small-popup__close-button" id="popup-no-russian-language-suppurt__close-button"><img class="small-popup__close-cross" src="assets/img/cross.png" alt="cross.png"></button>
+          <h5 class="small-popup__header">Помилка 404...</h5>
+          <div class="small-popup__body">
+            <p>Вибачте, але патріотичний сервіс не підтримує мову окупантів.</p>
+            <p>Ми добре пам'ятаємо, як орки лізли на нашу землю під гаслами "защіти рускагаварящіх". На цій, ще не закінченій війні, уже загинуло більше 10 тисяч наших побратимів і просто цивільних людей...</p>
+          </div>
+          <div class="small-popup__buttons-area">
+            <button class="small-popup__button">Зрозуміло</button>
+          </div>
+          <div class="small-popup__background"><img class="small-popup__background-image" src="assets/img/ornament.jpg" alt="ornament.jpg"></div>
+        </div>
+        <script>$(document).ready(function(){
+
+  var bodyWidth;
+
+  $('.language-switcher__shutter-ru').click(function(){
+
+    // змінюємо зовнішній вигляд мовної панелі
+  	$('.language-switcher__shutter-ua').css({'width':'50%', 'left':'0%'});
+    $('.language-switcher__shutter-en').css({'width':'50%', 'left':'50%'});
+    $('.language-switcher__shutter-ru').css({'display':'none'});
+
+    // змінюємо положення московського прапора
+    var imageTop  = $('img.language-switcher__img[src="assets/img/ru.png"]').offset().top;
+    var imageLeft = $('img.language-switcher__img[src="assets/img/ru.png"]').offset().left;
+    bodyWidth     = $('body').outerWidth();
+
+    $('img.language-switcher__img[src="assets/img/ru.png"]').remove();
+    $('body').append('<img class="language-switcher__img" src="assets/img/ru.png">');
+    $('img.language-switcher__img[src="assets/img/ru.png"]').css({'position'   : 'absolute',
+    	                                                            'zIndex'     : 8889,
+    	                                                            'top'        : imageTop - 3,
+    	                                                            'left'       : imageLeft - 88,
+    	                                                            'cursor'     : 'pointer'
+    	                                                          });
+    setTimeout(function(){
+    // переміщуємо московський прапор на центр екрана зверху
+    $('img.language-switcher__img[src="assets/img/ru.png"]').css({'transition' : 'left .5s',
+                                                                  'left'       : bodyWidth/2})
+                                                            // по кліку - приховуємо прапор та показуємо повідомлення
+                                                            .bind('click mouseenter', function(){
+                                                                      $(this).css({'transition' : 'top .5s',
+                                                                                   'top'        : '-100%'});
+                                                                      // поява підкладки
+                                                                      $('.popups-section').css('display','block');
+
+                                                                      setTimeout(function(){
+                                                                        // поява спливаючого вікна
+                                                                        $('#popup-no-russian-language-suppurt').css('top','20px');
+                                                                        // відмальовування потрібної кількості орнаментів
+                                                                        var popupHeight     = $('#popup-no-russian-language-suppurt').outerHeight(),
+                                                                            ornamentHeight  = $('.small-popup__background-image').outerHeight(),
+                                                                            ornamentsAmount = Math.ceil(popupHeight / ornamentHeight);
+                                                                        for (var i=0; i<ornamentsAmount-1; i++) {
+                                                                          $('#popup-no-russian-language-suppurt .small-popup__background').append('<img class="small-popup__background-image" src="assets/img/ornament.jpg", alt="ornament.jpg">');
+                                                                        }
+
+                                                                      },50);
+                                                             });
+    },100);
+  });
+
+  // навішування обробників на кнопки закриття
+  $('#popup-no-russian-language-suppurt__close-button, #popup-no-russian-language-suppurt button.small-popup__button').click( function() { closeNoRussianLanguageSuppurtPopup() } );
+
+  function closeNoRussianLanguageSuppurtPopup () {
+    $('#popup-no-russian-language-suppurt').remove();
+    $('.popups-section').css('display','none');
+  }
+
+});
+        </script>
+        <!-- ↑↑↑ BEM-blocks: popup-no-russian-language-suppurt (end) ↑↑↑-->
+      </section>
+      <!-- /SECTION 3-->
+      <!-- ↓↓↓ BEM-blocks: pagination (start) ↓↓↓-->
+      <div class="pagination"><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">1</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><img class="pagination__pade-arrow" src="assets/img/arrow-backward.png" alt="arrow-backward.png"></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">4</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">5</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">6</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">7</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">8</span></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><img class="pagination__pade-arrow" src="assets/img/arrow-forward.png" alt="arrow-forward.png"></a><a class="pagination__link" href="#" target="_blank"><img class="pagination__img" src="assets/img/gear-wheel.png" alt="gear-wheel.png"><span class="pagination__pade-number">33</span></a></div>
+      <!-- ↑↑↑ BEM-blocks: pagination (end) ↑↑↑-->
+    </main>
+    <!-- /MAIN SECTION-->
+    <!-- FOOTER-->
+    <!-- /FOOTER-->
+    <!-- scripts-->
+    <script src="assets/js/read-more-btn.js"></script>
+    <!-- own js-->
+  </body>
+</html>

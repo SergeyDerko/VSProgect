@@ -1,0 +1,42 @@
+// ↓↓↓ BEM-blocks: popup-business (start) ↓↓↓
+
+.popup-business
+  img(src="assets/img/close.png", alt="close").popup-business__close
+
+  h3.popup-business__header назва бізнесу
+
+  .popup-business__social
+    a.popup-business__social-link(href='#' target='_blank')
+      img.popup-business__social-img(src='assets/img/youtube.png' alt='youtube.png')
+    a.popup-business__social-link(href='#' target='_blank')
+      img.popup-business__social-img(src='assets/img/facebook.png' alt='facebook.png')
+    a.popup-business__social-link(href='#' target='_blank')
+      img.popup-business__social-img(src='assets/img/twitter.png' alt='twitter.png')
+    a.popup-business__social-link(href='#' target='_blank')
+      img.popup-business__social-img(src='assets/img/instagram.png' alt='instagram.png')
+
+  .popup-business__description-wrapper
+    .popup-business__img-wrapper
+      img(src="assets/img/gear-wheel.png", alt="gear-wheel.png").popup-business__small-img
+      img(src="assets/img/photo1.jpg", alt="").popup-business__big-img
+    .popup-business__text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita ex optio ipsa, laudantium possimus ducimus officiis accusamus recusandae eum, atque id doloremque blanditiis nihil exercitationem consequatur, provident modi rem quae voluptatibus, ipsum voluptates incidunt labore distinctio dignissimos. Maiores, eveniet minus beatae ea perferendis! Quas necessitatibus soluta doloribus magnam, distinctio sequi dolorum deserunt eveniet maiores beatae a earum assumenda ad ut quam recusandae perferendis, autem officia nostrum corporis iste id illo! Doloremque distinctio asperiores at, quidem tempore voluptate dolores, optio reiciendis voluptates in veniam vel accusamus modi ducimus debitis amet nihil a nam harum placeat ab ea molestias perspiciatis vero. Temporibus natus magnam numquam, temporibus repellendus ratione excepturi quaerat sit, nesciunt, dolorum?
+
+  .popup-business__contacts
+    .popup-business__item місто:
+    .popup-business__item Київ
+    .popup-business__item адреса:
+    .popup-business__item вул. Вбитого Сепаратиста, 13
+    .popup-business__item тел.:
+    a(href="tel:+380971234567").popup-business__item_link +380 97 123 45 67
+    .popup-business__item сайт:
+    a(href="someSite.com").popup-business__item_link someSite.com
+    .popup-business__item ми на мапі:
+    button.popup-business__item_btn: img(src="assets/img/marker-map.png", alt="place-marker.png")
+  .popup-business__gmaps
+
+//- style
+//-   include popup-business.css
+script
+  include ../minjs/popup-business/popup-business.js
+
+// ↑↑↑ BEM-blocks: popup-business (end) ↑↑↑

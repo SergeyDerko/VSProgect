@@ -1,0 +1,54 @@
+// @import "variables";
+@import "fonts";
+@import "style_general";
+@import "infoblock";
+
+// @import "index/index_320+";
+// @import "index/index_576+";
+// @import "index/index_768+";
+// @import "index/index_992+";
+// @import "index/index_1200+";
+
+//BEM-blocks
+@import "../BEM-blocks/language-switcher/language-switcher.scss";
+@import "../BEM-blocks/header/header.scss";
+@import "../BEM-blocks/pagination/pagination.scss";
+@import "../BEM-blocks/small-popup/small-popup.scss";
+
+.filters-wrapper {
+  border          : 1px solid lightgrey;
+  border-radius   : 6px;
+  padding         : 15px;
+  display         : flex;
+  justify-content : center;
+  flex-wrap       : wrap;
+  margin-bottom   : 30px;
+  align-items     : strech;
+}
+.filter {
+  border          : 1px solid white;
+  border-radius   : 4px;
+  text-align      : center;
+  width           : 120px;
+  padding         : 6px;
+  box-shadow      : 0 0 10px grey, 0 0 0px grey inset;
+  cursor          : pointer;
+  transition      : box-shadow .3s, border-color .3s;
+  &:hover {
+    box-shadow    : 0 0 0px grey, 0 0 10px grey inset;
+    border-color  : lightskyblue;
+  }
+  &__img {
+    height        : 50px;
+  }
+  &__header {
+    font-family   : specItal;
+    font-size     : 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .filters-wrapper {
+    justify-content : space-between;
+  }
+}

@@ -1,0 +1,150 @@
+doctype html
+html(lang='ua')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description' content="VeteranoService - свій до свого по своє ;-)")
+
+    title VeteranoService
+    link(rel='icon', href='assets/img/logo.png')
+
+    // css-libs (slick, animate ...)
+    link(rel='stylesheet', type='text/css', href='assets/libs-css/reset.css')
+    link(rel='stylesheet', type='text/css', href='assets/libs-css/animate.css')
+
+    // jquery
+    script(src='assets/libs/jquery.js')
+
+    // own stylesheet
+    link(rel='stylesheet', type='text/css', href='assets/css/form.css')
+
+  body
+    // HEADER
+    include assets/BEM-blocks/header/header.pug
+    // /HEADER
+
+    // MAIN SECTION
+    main.main
+      // SECTION 1
+      section.main-section
+        h1.main-section__header Розміщення на сайті Veterano Service
+
+        .infoblock
+          form.coworking-form
+            p.coworking-form__info.coworking-form__info_green Важливо! Інформація, яку Ви надасте, буде опублікована з виправленням граматичних помилок, але її наявність і якість залежить від Вас. Допоможіть нам краще Вас рекламувати. Поставтеся до написання інформації про себе та про свій бізнес відповідально. Також для кращої комунікації та поінформованості про роботу проекту просимо підписатися на наші сторінки в FB:
+              |
+              |
+              a.coworking-form__link(href='https://www.facebook.com/veteranoservice/?ref=bookmarks' target='_blank' title='https://www.facebook.com/veteranoservice/?ref=bookmarks') посилання
+              |
+              | та Twitter:
+              |
+              |
+              a.coworking-form__link(href='https://twitter.com/ServiceVeterano' target='_blank' title='https://twitter.com/ServiceVeterano') посилання
+            p.coworking-form__info.coworking-form__info_yellow Поля, позначені зірочкою *, обов'язкові до заповнення.
+
+            .coworking-form__colump-wrapper
+
+              label(for='email') Електронна адреса *
+              input.coworking-form__input#email(type='text' placeholder='введіть пошту')
+              .coworking-form__info.coworking-form__info_red#email-error-info Введіть коректну електронну адресу!
+
+              label(for='companyName') Назва компанії, бренд *
+              input.coworking-form__input#companyName(type='text' placeholder='введіть назву компанії')
+              .coworking-form__info.coworking-form__info_red#companyName-error-info Введіть назву компанії або бренд!
+
+              label(for='ownerName') Ім'я та прізвище власника/власників *
+              input.coworking-form__input#ownerName(type='text' placeholder="введіть ім'я та прізвище")
+              .coworking-form__info.coworking-form__info_red#ownerName-error-info Введіть ім'я та празвище
+
+              label(for='logo') Логотип компанії/сервісу/послуги у форматі .jpg, розмір 206рх*206рх. Якщо лого немає, додайте фото продукції. *
+              input#logo(type='file')
+              .coworking-form__info.coworking-form__info_red#logo-error-info Вкажіть шлях до файлу
+
+              label(for='ownerFoto') Фото власника/власників, бажано у військовій формі.
+              input#ownerFoto(type='file')
+              .coworking-form__info.coworking-form__info_red#ownerFoto-error-info Вкажіть шлях до файлу
+
+              label(for='ownerBiography') Інформація про власника-ветерана(-нів) (у складі якого бату воювали - якщо можна публікувати). *
+              input.coworking-form__input#ownerBiography(type='text')
+              .coworking-form__info.coworking-form__info_red#ownerBiography-error-info Надайте інформацію про власника бізнесу
+
+              label(for='businessHistory') Історія виникнення бізнесу (звідки ідея?). 4 речення. Дивіться приклади історій на сайті
+                |
+                |
+                a.coworking-form__link(href='http://veterano-service.com/jewelry.html' target='_blank' title='http://veterano-service.com/jewelry.html') посилання
+                |
+                | Важливо! *
+              textarea.coworking-form__textarea#businessHistory
+              .coworking-form__info.coworking-form__info_red#businessHistory-error-info Напишіть історію виникнення біхнесу
+
+              label(for='businessCore') Суть бізнесу/послуги. 6 речень. Дивіться приклади на сайті
+                |
+                |
+                a.coworking-form__link(href='http://veterano-service.com/jewelry.html' target='_blank' title='http://veterano-service.com/jewelry.html') посилання
+                |
+                | Важливо! *
+              textarea.coworking-form__textarea#businessCore(type='text')
+              .coworking-form__info.coworking-form__info_red#businessCore-error-info Опишіть суть Вашого бізнесу
+
+              label(for='city') Місто: *
+              input.coworking-form__input#city(type='text' placeholder='введіть назву міста')
+              .coworking-form__info.coworking-form__info_red#city-error-info Вкажіть місто розташування бізнесу
+
+              label(for='adress') Адреса (адреса розміщення бізнесу):
+              input.coworking-form__input#adress(type='text' placeholder='введіть адресу розміщення бізнесу')
+
+              label(for='contactPhone') Контактний номер: *
+              input.coworking-form__input#contactPhone(type='text' placeholder='введіть контактний номер')
+              .coworking-form__info.coworking-form__info_red#contactPhone-error-info Введіть контактний номер
+
+              label(for='linkToSite') Посилання на сайт (якщо сайт є):
+              input.coworking-form__input#linkToSite(type='text' placeholder='введіть посилання на сайт')
+
+              label(for='linkToOwnerSocialNetworkingWebsite') Посилання на сторінку в соцмережі власника/власників: *
+              input.coworking-form__input#linkToOwnerSocialNetworkingWebsite
+              .coworking-form__info.coworking-form__info_red#linkToOwnerSocialNetworkingWebsite-error-info(type='text' placeholder='введіть посилання на сторінку в соцмережі')
+
+              label(for='linkToBusinessSocialNetworkingWebsite' placeholder='введіть посилання на сторінку в соцмережі') Посилання на сторінку бізнесу в соціальній мережі:
+              input.coworking-form__input#linkToBusinessSocialNetworkingWebsite(type='text' placeholder='введіть посилання на сторінку в соцмережі')
+
+              label(for='infoPhone') Ім’я та телефон контактної особи з питань надання інформації для проекту «ВЕТЕРАНО СЕРВІС»
+              input.coworking-form__input#infoPhone(type='text' placeholder='введіть контакти для ВЕТЕРАНО СЕРВІСА')
+
+              label#loveToUkraine-label(style='display: flex; align-items: center')
+                input#loveToUkraine(type='checkbox' style='margin-right: 10px')
+                span Я люблю неньку Україну і не веду бізнесу з окупантами і сєпарами
+              .coworking-form__info.coworking-form__info_red#loveToUkraine-error-info Пройдіть перевірку на сєпара!
+
+            p.coworking-form__info.coworking-form__info_green.coworking-form__info_thanksgiving#thanksgiving Дякуємо, що заповнили нашу форму для приєднання до платформи Veterano Service. Далі наші співробітники напишуть текст до публікації, та пришлють Вам на затвердження. В порядку черги Ваш бізнес буде розміщено на сайті. Текст для публікації вам буде відправлено нашою колегою Тетяною Даневич. Додавайтесь в друзі, щоб не пропустити повідомлення :-))
+              |
+              |
+              a.coworking-form__link(href='https://www.facebook.com/profile.php?id=100002106068286' target='_blank' title='https://www.facebook.com/profile.php?id=100002106068286') посилання
+              |
+              br
+              | Копії ваших відповідей буде надіслано на вказану електронну адресу.
+
+            button.coworking-form__btn#submitBtn(type='button') Надіслати
+
+        include assets/BEM-blocks/banners-holder/banners-holder.pug
+
+      // /SECTION 1
+
+      // SECTION 3
+      section.popups-section
+        //- include assets/BEM-blocks/popup-compliment/popup-compliment.pug
+        include assets/BEM-blocks/popup-no-russian-language-suppurt/popup-no-russian-language-suppurt.pug
+      // /SECTION 3
+
+      include assets/BEM-blocks/pagination/pagination.pug
+
+    // /MAIN SECTION
+
+    // FOOTER
+    //- include assets/BEM-blocks/footer/footer.pug
+    // /FOOTER
+
+    //- script(src='assets/libs/fontawesome-all.js')
+
+    // own js
+    script(src='assets/js/form.js')
+    script(src='assets/js/read-more-btn.js')

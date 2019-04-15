@@ -1,0 +1,1 @@
+$(".infoblock__read-more").click(function(){var t=$(this).parent(".infoblock__text").css("height");$(this).parent(".infoblock__text").css("height","auto");var e=$(this).parent(".infoblock__text").outerHeight()+30;$(this).parent(".infoblock__text").css("height",t),$(this).parent(".infoblock__text").css({height:e})});

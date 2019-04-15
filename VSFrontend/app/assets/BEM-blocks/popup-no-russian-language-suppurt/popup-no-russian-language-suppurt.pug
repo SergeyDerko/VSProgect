@@ -1,0 +1,23 @@
+// ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓
+//- .compliment
+.small-popup#popup-no-russian-language-suppurt
+  button.small-popup__close-button#popup-no-russian-language-suppurt__close-button
+    img.small-popup__close-cross(src="assets/img/cross.png", alt="cross.png")
+
+  h5.small-popup__header Помилка 404...
+
+  .small-popup__body
+    p Вибачте, але патріотичний сервіс не підтримує мову окупантів.
+    p Ми добре пам'ятаємо, як орки лізли на нашу землю під гаслами "защіти рускагаварящіх". На цій, ще не закінченій війні, уже загинуло більше 10 тисяч наших побратимів і просто цивільних людей...
+
+  .small-popup__buttons-area
+    button.small-popup__button Зрозуміло
+    //- button.small-popup__button(onclick='closeNoRussianLanguageSupportPopup()') Да пашлі ви все
+
+  .small-popup__background
+    img.small-popup__background-image(src="assets/img/ornament.jpg", alt="ornament.jpg")
+//- style
+//-   include popup-no-russian-language-suppurt.css
+script
+  include ../minjs/popup-no-russian-language-suppurt/popup-no-russian-language-suppurt.js
+// ↑↑↑ BEM-blocks: popup-no-russian-language-suppurt (end) ↑↑↑

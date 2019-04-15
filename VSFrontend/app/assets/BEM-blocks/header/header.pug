@@ -1,0 +1,38 @@
+// ↓↓↓ BEM-blocks: header (start) ↓↓↓
+.header
+  a.header__logo(href='index.html')
+    img.header__logo-img(src="assets/img/logo.png", alt="logo.png")
+  .header__social-btns-area
+    a.header__social-btn(href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target='_blank')
+      img.header__social-img(src="assets/img/youtube.png", alt="youtube.png")
+    a.header__social-btn(href="#")
+      img.header__social-img(src="assets/img/facebook.png", alt="facebook.png")
+    a.header__social-btn(href="#")
+      img.header__social-img(src="assets/img/twitter.png", alt="twitter.png")
+  include ../language-switcher/language-switcher.pug
+  .header__menu
+    button.header__menu-btn
+      span МЕНЮ
+      img(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+    ul.header__menu-list
+      li
+        a.header__menu-link(href='index.html') Головна
+      li
+        a.header__menu-link(href='business.html') Бізнеси ветеранів
+      li
+        a.header__menu-link(href='help_for_business.html') Допомога бізнесу
+      li
+        a.header__menu-link(href='vacancy.html') Вакансії
+      li
+        a.header__menu-link(href='useful.html') Корисно
+      li
+        a.header__menu-link(href='partners.html') Партнери
+      li
+        a.header__menu-link(href='about-us.html') Про нас
+      li
+        a.header__menu-link(href='news.html') Новини
+//- style
+//-   include header.css
+script
+  include ../minjs/header/header.js
+// ↑↑↑ BEM-blocks: header (end) ↑↑↑

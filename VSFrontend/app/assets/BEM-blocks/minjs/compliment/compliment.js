@@ -1,0 +1,1 @@
+$(document).ready(function(){}),$(document).mouseleave(function(e){e=e||window.event,(e=jQuery.event.fix(e)).clientY<=0&&(console.log(e.clientY),$(".popups-section").css("display","block"),setTimeout(function(){$(".small-popup").css("top","20px")},10))});

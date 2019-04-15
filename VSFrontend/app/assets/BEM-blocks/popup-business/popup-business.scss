@@ -1,0 +1,125 @@
+.popup-business {
+  max-width               : 1200px;
+  min-width               : 290px;
+  width                   : 90%;
+  max-height              : 90vh;
+  border                  : 1px solid lightgrey;
+  border-radius           : 12px;
+  background-color        : white;
+  position                : absolute;
+  top                     : 50%;
+  left                    : 50%;
+  transform               : translate(-50%,-50%);
+  padding                 : 15px;
+  background-image        : url('assets/img/texture.jpg');
+  box-shadow              : 0 0 15px white, 0 0 15px grey inset;
+  overflow-y              : auto;
+  display                 : none;
+  &__close {
+    width                 : 20px;
+    height                : 20px;
+    position              : absolute;
+    top                   : 6px;
+    right                 : 6px;
+    cursor                : pointer;
+  }
+  &__header {
+    text-align            : center;
+    font                  : 3rem specItal;
+    text-transform        : uppercase;
+  }
+  &__social {
+    padding               : 6px 0;
+    display               : flex;
+    justify-content       : center;
+    align-items           : center;
+  }
+  &__social-link {
+    margin-right          : 10px;
+    width                 : 24px;
+    height                : 24px;
+  }
+  &__social-img {
+    width                 : 24px;
+    height                : 24px;
+    user-select           : none;
+  }
+  &__description-wrapper {
+    display               : grid;
+    grid-template-columns : 1fr;
+    grid-gap              : 15px;
+  }
+  &__img-wrapper {
+    width                 : 260px;
+    position              : relative;
+    margin: 0 auto;
+    margin-bottom         : 30px;
+  }
+  &__small-img {
+    width                 : 60px;
+    height                : 60px;
+    position              : absolute;
+    z-index               : 2;
+    top                   : 0;
+    left                  : 0;
+  }
+  &__big-img {
+    position              : relative;
+    top                   : 30px;
+    left                  : 30px;
+    z-index               : 1;
+    max-width             : calc(100% - 30px);
+    height                : auto;
+  }
+  &__text {
+    font                  : 1.6rem spec;
+    line-height           : 1em;
+  }
+  &__contacts {
+    font                  : 1.6rem spec;
+    line-height           : 1em;
+    display               : grid;
+    grid-template-columns : auto 1fr;
+    grid-column-gap       : 15px;
+    align-items           : center;
+    margin-bottom         : 15px;
+  }
+  &__item {
+    &_link {
+      color               : dodgerblue;
+      justify-self        : start;
+      &:hover {
+        color             : navy;
+      }
+    }
+    &_btn {
+      justify-self        : start;
+      background-color    : transparent;
+      border              : 1px solid transparent;
+      cursor              : pointer;
+      img {
+        width             : 20px;
+      }
+    }
+    &__gmaps {
+      height              : 0px;
+      margin-bottom       : 15px;
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .popup-business {
+     &__description-wrapper {
+      grid-template-columns : 260px auto;
+    }
+    &__text {
+      font                  : 2rem spec;
+      line-height           : 1.2em;
+      text-align            : justify;
+    }
+    &__contacts {
+      font                  : 2rem spec;
+      line-height           : 1.2em;
+    }
+  }
+}

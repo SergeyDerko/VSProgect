@@ -1,0 +1,16 @@
+// @import "variables";
+@import "fonts";
+@import "style_general";
+@import "infoblock";
+
+// @import "index/index_320+";
+// @import "index/index_576+";
+// @import "index/index_768+";
+// @import "index/index_992+";
+// @import "index/index_1200+";
+
+//BEM-blocks
+@import "../BEM-blocks/language-switcher/language-switcher.scss";
+@import "../BEM-blocks/header/header.scss";
+@import "../BEM-blocks/pagination/pagination.scss";
+@import "../BEM-blocks/small-popup/small-popup.scss";

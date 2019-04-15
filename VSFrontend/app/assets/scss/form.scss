@@ -1,0 +1,103 @@
+// @import "variables";
+@import "fonts";
+@import "style_general";
+@import "infoblock";
+
+// @import "infoblock";
+// @import "index/index_320+";
+// @import "index/index_576+";
+// @import "index/index_768+";
+// @import "index/index_992+";
+// @import "index/index_1200+";
+
+.coworking-form {
+  font-size               : 2rem;
+  max-width               : 600px;
+  margin                  : 0 auto;
+  &__colump-wrapper {
+    display               : grid;
+    grid-template-columns : repeat(1, 1fr);
+    grid-gap              : 10px;
+  }
+  &__link {
+    color                 : dodgerblue;
+    text-decoration       : underline;
+    &:hover {
+      color               : dodgerblue;
+      text-decoration     : underline;
+    }
+  }
+  &__input {
+    border                : 1px solid lightgrey;
+    height                : 30px;
+    line-height           : 28px;
+    padding               : 0 6px;
+    font                  : 2rem spec;
+    &::placeholder {
+      font                : 2rem spec;
+      color               : silver;
+      opacity             : 1;
+    }
+  }
+  &__textarea {
+    min-width             : 100%;
+    max-width             : 600px;
+    min-height            : 100px;
+    font                  : 2rem spec;
+    padding               : 0 6px;
+  }
+  &__info {
+    background-color      : white;
+    border                : 0px solid transparent;
+    border-left           : 6px solid transparent;
+    padding               : 6px 10px;
+    margin                : -5px 0 10px 0;
+    text-align            : justify;
+    font-size             : 2rem;
+    transition            : height .3s;
+    &_red {
+      border-left-color   : red;
+      background-color    : rgba(255,0,0,.2);
+      padding             : 0px 10px;
+      height              : 0px;
+      line-height         : 28px;
+      overflow            : hidden;
+    }
+    &_yellow {
+      border-left-color   : yellow;
+      background-color    : rgba(255, 255, 0, .2);
+    }
+    &_green {
+      border-left-color   : green;
+      background-color    : rgba(35, 204, 69, .2);
+    }
+    &_thanksgiving {
+      margin-top          : 10px;
+      height              : 0px;
+      overflow            : hidden;
+      padding             : 0px 10px;
+    }
+  }
+  &__btn {
+    margin                : 10px auto;
+    display               : block;
+    width                 : 150px;
+    height                : 40px;
+    border                : 1px solid transparent;
+    border-radius         : 4px;
+    background-color      : silver;
+    text-transform        : uppercase;
+    color                 : white;
+    font                  : 1.6rem spec;
+    font-weight           : 900;
+    letter-spacing        : 1px;
+    cursor                : pointer;
+    transition            : background-color .5s, border-color .5s;
+  }
+}
+
+//BEM-blocks
+@import "../BEM-blocks/language-switcher/language-switcher.scss";
+@import "../BEM-blocks/header/header.scss";
+@import "../BEM-blocks/pagination/pagination.scss";
+@import "../BEM-blocks/small-popup/small-popup.scss";

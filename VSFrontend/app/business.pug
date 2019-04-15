@@ -1,0 +1,126 @@
+doctype html
+html(lang='ua')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description' content="VeteranoService - свій до свого по своє ;-)")
+
+    title VeteranoService
+    link(rel='icon', href='assets/img/logo.png')
+
+    // css-libs (slick, animate ...)
+    link(rel='stylesheet', type='text/css', href='assets/libs-css/reset.css')
+    link(rel='stylesheet', type='text/css', href='assets/libs-css/animate.css')
+
+    // jquery
+    script(src='assets/libs/jquery.js')
+
+    // own stylesheet
+    link(rel='stylesheet', type='text/css', href='assets/css/business.css')
+
+  body
+    // HEADER
+    include assets/BEM-blocks/header/header.pug
+    // /HEADER
+
+    // MAIN SECTION
+    main.main
+      // SECTION 1
+      section.main-section
+        h1.main-section__header БІЗНЕСИ
+
+        .search-wrapper
+          form.search
+            button.search__type-btn(type='button' title='вибрати тип пошуку')
+              .search__type-btn-cover-for-click
+              img(src="assets/img/bar-chart.png", alt="bar-chart.png")
+            ul.search__type-list
+              li.search__list-item
+                .search__list-item-img-wrapper: img(src="assets/img/pie-chart.png", alt="pie-chart.png")
+                span пошук по видах
+              li.search__list-item
+                .search__list-item-img-wrapper: img(src="assets/img/place-marker.png", alt="place-marker.png")
+                span пошук по містах
+            select#type-search.search__field
+              option(value='null') пошук по видах...
+              option(value='vyd1') вид 1
+              option(value='vyd2') вид 2
+              option(value='vyd3') вид 3
+              option(value='vyd4') вид 4
+              option(value='vyd5') вид 5
+            select#sity-search.search__field
+              option(value='null') пошук по містах...
+              option(value='kyiv') Київ
+              option(value='odessa') Одесса
+              option(value='harkiv') Харків
+              option(value='lviv') Львів
+              option(value='mykolajiv') Миколаїв
+            button.search__btn(type='button')
+              i.fas.fa-search
+              span пошук
+
+        .business-wrapper
+          a(href="#" onclick="showBusiness()").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name атомийка
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name veterano brauni
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name атомийка
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name veterano brauni
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name атомийка
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name veterano brauni
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name атомийка
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name veterano brauni
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name атомийка
+          a(href="#").business
+            img.business__bcg(src="assets/img/gear-wheel.png", alt="gear-wheel.png")
+            img.business__img(src="assets/img/atocarwash.jpg", alt="atocarwash.jpg")
+            h3.business__name veterano brauni
+
+        include assets/BEM-blocks/banners-holder/banners-holder.pug
+
+      // /SECTION 1
+
+      // SECTION 2
+      section.popups-section
+        //- include assets/BEM-blocks/popup-compliment/popup-compliment.pug
+        include assets/BEM-blocks/popup-business/popup-business.pug
+        include assets/BEM-blocks/popup-no-russian-language-suppurt/popup-no-russian-language-suppurt.pug
+      // /SECTION 2
+
+      include assets/BEM-blocks/pagination/pagination.pug
+
+    // /MAIN SECTION
+
+    // FOOTER
+    //- include assets/BEM-blocks/footer/footer.pug
+    // /FOOTER
+
+    script(src='assets/libs/fontawesome-all.js')
+
+    // own js
+    script(src='assets/js/business.js')

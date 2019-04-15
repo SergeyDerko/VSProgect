@@ -1,0 +1,72 @@
+.language-switcher {
+  border: 1px solid darkgrey;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 5px white;
+}
+
+.language-switcher__img {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 3px;
+}
+
+.language-switcher__shutter, .language-switcher__shutter-ua, .language-switcher__shutter-en, .language-switcher__shutter-ru, .language-switcher__shutter-ua, .language-switcher__shutter-en, .language-switcher__shutter-ru {
+  display: block;
+  height: 100%;
+  width: 33.33%;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.language-switcher__shutter-ua {
+  left: 0%;
+  height: .1px;
+}
+
+.language-switcher__shutter-en {
+  left: 33.33%;
+}
+
+.language-switcher__shutter-ru {
+  left: 66.66%;
+}
+
+@media only screen and (min-width: 768px) {
+  .language-switcher {
+    border: 1px solid darkgrey;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px white;
+  }
+  .language-switcher__img {
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    margin: 3px;
+  }
+  .language-switcher__shutter, .language-switcher__shutter-ua, .language-switcher__shutter-en, .language-switcher__shutter-ru, .language-switcher__shutter-ua, .language-switcher__shutter-en, .language-switcher__shutter-ru {
+    display: block;
+    height: 100%;
+    width: 33.33%;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .language-switcher__shutter-ua {
+    left: 0%;
+    height: .1px;
+  }
+  .language-switcher__shutter-en {
+    left: 33.33%;
+  }
+  .language-switcher__shutter-ru {
+    left: 66.66%;
+  }
+}

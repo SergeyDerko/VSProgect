@@ -1,0 +1,14 @@
+@media only screen and (min-width: 768px) {
+
+  .index-section {
+
+    &__navigation {
+      .main-navigation-list {
+        position: static;
+      }
+      .main-navigation-list-item {
+        position   : absolute;
+      }
+    }
+  }
+}

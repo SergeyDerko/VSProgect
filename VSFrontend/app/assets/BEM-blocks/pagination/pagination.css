@@ -1,0 +1,47 @@
+.pagination {
+  height: 50px;
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination__link {
+  display: block;
+  position: relative;
+  height: 40px;
+  text-align: center;
+  width: 40px;
+  margin: 0 6px;
+  transition: height .3s, width .3s;
+}
+
+.pagination__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+
+.pagination__pade-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-family: spec;
+  font-size: 1.8rem;
+}
+
+.pagination__pade-arrow {
+  width: 30px;
+  height: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

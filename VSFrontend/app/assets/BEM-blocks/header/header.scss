@@ -1,0 +1,386 @@
+
+.header {
+	max-width            : 1920px;
+	width                : 100%;
+	height               : 70px;
+	margin               : 0 auto;
+	position             : fixed;
+	z-index              : 7777;
+	top                  : 0;
+	left                 : 50%;
+	transform            : translate(-50%);
+	display              : flex;
+	justify-content      : space-between;
+	align-items          : center;
+	padding              : 15px;
+	background-image     : linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.01));
+	box-shadow           : 0 0 5px rgba(0,0,0,.05);
+	transition           : background-color .5s;
+
+	&__logo {
+		margin-right       : auto;
+		align-self         : flex-start;
+		transition         : margin-top .5s;
+	}
+
+	&__logo-img {
+		height             : 160px;
+		display            : block;
+		transition         : height .3s;
+	}
+
+	&__social-btns-area {
+		display: none;
+		height             : 25px;
+		margin             : 0 6px;
+	}
+
+	&__social-btn {
+		display            : inline-block;
+		margin             : 0 6px;
+		height             : 100%;
+		border-radius      : 50%;
+		box-shadow         : 0 0 5px white;
+		transition         : background-color .5s, box-shadow .5s;
+		&:hover {
+			background-color : yellow;
+			box-shadow       : 0 0 10px green;
+		};
+	}
+
+	&__social-img {
+		height: 100%;
+	}
+
+	&__menu {
+		position           : relative;
+		margin-left        : 6px;
+		box-shadow         : 0 0 5px white;
+  }
+
+	&__menu-btn {
+		width              : 90px;
+		display            : flex;
+		justify-content    : space-between;
+		align-items        : center;
+    background-color   : transparent;
+		border             : {
+			top              : 2px solid yellow;
+			right            : 1px solid lightgrey;
+			bottom           : 2px solid green;
+			left             : 1px solid lightgrey;
+		}
+		cursor             : pointer;
+		span {
+			font-family      : spec;
+			font-size        : 1.6rem;
+			padding-right    : 3px;
+			text-shadow      : 0 0 5px white;
+		}
+		img {
+			height           : 25px;
+		}
+	}
+
+	&__menu-list {
+		display            : none;
+		position           : absolute;
+		width              : 100%;
+		overflow           : hidden;
+		li {}
+	}
+
+	&__menu-link {
+		font-family        : norm;
+		font-size          : 1.6rem;
+		display            : block;
+		position           : relative;
+		z-index            : 1;
+		right              : calc( -100% - 15px );
+		padding            : 6px 0px;
+		margin             : 6px 0;
+		border             : 1px solid transparent;
+		border-right       : yellow;
+		border-radius      : 6px;
+		text-align         : center;
+		background-image   : linear-gradient(to right, green, yellow, yellow, yellow);
+		transition         : right .2s ease-out;
+    &:before {
+			content          : '';
+			display          : block;
+			height           : 100%;
+			width            : 100%;
+			border-radius    : inherit;
+			position         : absolute;
+			z-index          : -1;
+			top              : 0;
+			left             : 0;
+			background       : linear-gradient(to right, green, yellow);
+			opacity          : 0;
+			transition       : opacity 1s;
+    }
+	  &:hover {
+		  &:before {
+		    opacity        : 1;
+		  }
+	  }
+	}
+}
+@media only screen and (min-width: 380px) {
+	.header {
+		max-width            : 1920px;
+		width                : 100%;
+		height               : 70px;
+		margin               : 0 auto;
+		position             : fixed;
+		z-index              : 7777;
+		top                  : 0;
+		left                 : 50%;
+		transform            : translate(-50%);
+		display              : flex;
+		justify-content      : space-between;
+		align-items          : center;
+		padding              : 15px;
+		background-image     : linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.01));
+		box-shadow           : 0 0 5px rgba(0,0,0,.05);
+		transition           : background-color .5s;
+
+		&__logo {
+			margin-right       : auto;
+			align-self         : flex-start;
+			transition         : margin-top .5s;
+		}
+
+		&__logo-img {
+			height             : 160px;
+			display            : block;
+			transition         : height .3s;
+		}
+
+		&__social-btns-area {
+			display            : block;
+			height             : 25px;
+			margin             : 0 6px;
+		}
+
+		&__social-btn {
+			display            : inline-block;
+			margin             : 0 6px;
+			height             : 100%;
+			border-radius      : 50%;
+			box-shadow         : 0 0 5px white;
+			transition         : background-color .5s, box-shadow .5s;
+			&:hover {
+				background-color : yellow;
+				box-shadow       : 0 0 10px green;
+			};
+		}
+
+		&__social-img {
+			height: 100%;
+		}
+
+		&__menu {
+			position           : relative;
+			margin-left        : 6px;
+			box-shadow         : 0 0 5px white;
+	  }
+
+		&__menu-btn {
+			width              : 90px;
+			display            : flex;
+			justify-content    : space-between;
+			align-items        : center;
+	    background-color   : transparent;
+			border             : {
+				top              : 2px solid yellow;
+				right            : 1px solid lightgrey;
+				bottom           : 2px solid green;
+				left             : 1px solid lightgrey;
+			}
+			cursor             : pointer;
+			span {
+				font-family      : spec;
+				font-size        : 1.6rem;
+				padding-right    : 3px;
+				text-shadow      : 0 0 5px white;
+			}
+			img {
+				height           : 25px;
+			}
+		}
+
+		&__menu-list {
+			display            : none;
+			position           : absolute;
+			width              : 100%;
+			overflow           : hidden;
+			li {}
+		}
+
+		&__menu-link {
+			font-family        : norm;
+			font-size          : 1.6rem;
+			display            : block;
+			position           : relative;
+			z-index            : 1;
+			right              : calc( -100% - 15px );
+			padding            : 6px 0px;
+			margin             : 6px 0;
+			border             : 1px solid transparent;
+			border-right       : yellow;
+			border-radius      : 6px;
+			text-align         : center;
+			background-image   : linear-gradient(to right, green, yellow, yellow, yellow);
+			transition         : right .2s ease-out;
+	    &:before {
+				content          : '';
+				display          : block;
+				height           : 100%;
+				width            : 100%;
+				border-radius    : inherit;
+				position         : absolute;
+				z-index          : -1;
+				top              : 0;
+				left             : 0;
+				background       : linear-gradient(to right, green, yellow);
+				opacity          : 0;
+				transition       : opacity 1s;
+	    }
+		  &:hover {
+			  &:before {
+			    opacity        : 1;
+			  }
+		  }
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+.header {
+	max-width            : 1920px;
+	width                : 100%;
+	height               : 70px;
+	margin               : 0 auto;
+	position             : fixed;
+	z-index              : 7777;
+	top                  : 0;
+	left                 : 50%;
+	transform            : translate(-50%);
+	display              : flex;
+	justify-content      : space-between;
+	align-items          : center;
+	padding              : 15px;
+	background-image     : linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.01));
+	box-shadow           : 0 0 5px rgba(0,0,0,.05);
+	transition           : background-color .5s;
+
+	&__logo {
+		margin-right       : auto;
+		align-self         : flex-start;
+		transition         : margin-top .5s;
+	}
+
+	&__logo-img {
+		height             : 160px;
+		display            : block;
+		transition         : height .3s;
+	}
+
+	&__social-btns-area {
+		height             : 100%;
+		margin             : 0 20px;
+	}
+
+	&__social-btn {
+		display            : inline-block;
+		margin             : 0 10px;
+		height             : 100%;
+		border-radius      : 50%;
+		box-shadow         : 0 0 5px white;
+		transition         : background-color .5s, box-shadow .5s;
+		&:hover {
+			background-color : yellow;
+			box-shadow       : 0 0 10px green;
+		};
+	}
+
+	&__social-img {
+		height: 100%;
+	}
+
+	&__menu {
+		position           : relative;
+		margin-left        : 25px;
+		box-shadow         : 0 0 5px white;
+  }
+
+	&__menu-btn {
+		width              : 180px;
+		display            : flex;
+		justify-content    : space-between;
+		align-items        : center;
+    background-color   : transparent;
+		border             : {
+			top              : 4px solid yellow;
+			right            : 4px solid lightgrey;
+			bottom           : 4px solid green;
+			left             : 4px solid lightgrey;
+		}
+		cursor             : pointer;
+		span {
+			font-family      : bold;
+			font-size        : 2.6rem;
+			padding-right    : 10px;
+			text-shadow      : 0 0 5px white;
+		}
+		img {
+			height           : 40px;
+		}
+	}
+
+	&__menu-list {
+		display            : none;
+		position           : absolute;
+		width              : 100%;
+		overflow           : hidden;
+		li {}
+	}
+
+	&__menu-link {
+		font-family        : norm;
+		font-size          : 1.6rem;
+		display            : block;
+		position           : relative;
+		z-index            : 1;
+		right              : calc( -100% - 15px );
+		padding            : 6px 0px;
+		margin             : 6px 0;
+		border             : 1px solid transparent;
+		border-right       : yellow;
+		border-radius      : 6px;
+		text-align         : center;
+		background-image   : linear-gradient(to right, green, yellow, yellow, yellow);
+		transition         : right .2s ease-out;
+    &:before {
+			content          : '';
+			display          : block;
+			height           : 100%;
+			width            : 100%;
+			border-radius    : inherit;
+			position         : absolute;
+			z-index          : -1;
+			top              : 0;
+			left             : 0;
+			background       : linear-gradient(to right, green, yellow);
+			opacity          : 0;
+			transition       : opacity 1s;
+    }
+	  &:hover {
+		  &:before {
+		    opacity        : 1;
+		  }
+	  }
+	}
+}
+}

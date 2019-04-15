@@ -1,0 +1,20 @@
+// ↓↓↓ BEM-blocks: popup-compliment (start) ↓↓↓
+//- .compliment
+.small-popup#popup-compliment
+  button.small-popup__close-button#popup-compliment__close-button
+    img.small-popup__close-cross(src="assets/img/cross.png", alt="cross.png")
+
+  h5.small-popup__header Дякуємо, що Ви з нами
+
+  .small-popup__body  Нам дуже приємно, що Ви знаєте про наш сервіс і користуєтеся ним. У нас є багато цікавенького :)
+
+  .small-popup__buttons-area
+    button.small-popup__button(onclick='closeComplimentPopup()') Зрозуміло
+
+  .small-popup__background
+    img.small-popup__background-image(src="assets/img/ornament.jpg", alt="ornament.jpg")
+style
+  include popup-compliment.css
+script
+  include ../minjs/popup-compliment/popup-compliment.js
+// ↑↑↑ BEM-blocks: popup-compliment (end) ↑↑↑
