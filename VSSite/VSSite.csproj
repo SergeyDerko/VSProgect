@@ -121,6 +121,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Progress\Telerik UI for ASP.NET MVC R3 2018\export\binaries\net40\Telerik.Windows.Documents.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Documents.Flow, Version=2018.1.112.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Progress\Telerik UI for ASP.NET MVC R1 2018\export\binaries\net40\Telerik.Windows.Documents.Flow.dll</HintPath>
@@ -373,6 +377,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Business\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\NewsAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

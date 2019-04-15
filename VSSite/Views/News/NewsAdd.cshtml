@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Add News";
+}
+
+<h2>NewsAdd</h2>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                            <tr>
+                                <td>SAVE</td>
+                                <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveNews")))</td>
+                            </tr>
+                            <tr>
+                                <td>TitleUA</td>
+                                <td>@(Html.Kendo().TextBox().Name("titleUA").HtmlAttributes(new {style = "width:300px"}))</td>
+                            </tr>
+                            <tr>
+                                <td>TitleEn</td>
+                                <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new {style = "width:300px"}))</td>
+                            </tr>
+                            <tr>
+                                <td>DetailUrl</td>
+                                <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:300px"}))</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">Body</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyUa")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          //.Formatting()
+                                          .CleanFormatting()
+                                          //.FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      //.ExportAs()
+                                      //.Import()
+                                      )
+                        )
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">Body EN</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyEn")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          //.Formatting()
+                                          .CleanFormatting()
+                                          //.FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      //.ExportAs()
+                                      //.Import()
+                                      )
+                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function SaveNews() {
+            var bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
+            var bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
+            var _titleUA = $("#titleUA").val();
+            var _titleEn = $("#titleEn").val();
+            var _detailUrl = $("#detailUrl").val();
+            var data = { titleUA: _titleUA, titleEn: _titleEn, body: bodyContentUA, bodyEn: bodyContentEN, detailUrl: _detailUrl };
+            $.ajax({
+                type: "POST",
+                url: "/News/Save",
+                data: data
+            });
+        }
+    </script>
+</body>
+</html>
+
