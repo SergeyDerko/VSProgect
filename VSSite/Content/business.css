@@ -54,7 +54,7 @@ html {
 }
 
 body {
-  background-image: url("../img/texture.jpg");
+  background-image: url("../Content/img/texture.jpg");
 }
 
 .main-section {
@@ -582,7 +582,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px;
-  background-image: url("assets/img/texture.jpg");
+  background-image: url("../Content/img/texture.jpg");
   box-shadow: 0 0 15px white, 0 0 15px grey inset;
   overflow-y: auto;
   display: none;

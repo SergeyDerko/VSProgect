@@ -54,7 +54,7 @@ html {
 }
 
 body {
-  background-image: url("../img/texture.jpg");
+  background-image: url("../Content/img/texture.jpg");
 }
 
 .main-section {
@@ -866,7 +866,14 @@ body {
 
 .index-section__navigation .main-navigation-link {
   font-size: 1.6rem;
-  text-shadow: 10px  10px 20px white, -10px -10px 20px white, 10px -10px 20px white, -10px  10px 20px white, 0px  10px 20px white, 0px -10px 20px white, 10px   0px 20px white, -10px   0px 20px white;
+  text-shadow: 10px  10px 20px white,
+ -10px -10px 20px white,
+ 10px -10px 20px white,
+ -10px  10px 20px white,
+ 0px  10px 20px white,
+ 0px -10px 20px white,
+ 10px   0px 20px white,
+ -10px   0px 20px white;
 }
 
 .language-switcher-wrapper {
