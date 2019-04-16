@@ -28,19 +28,19 @@
                         </tr>
                         <tr>
                             <td>TitleUA</td>
-                            <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new {style = "width:300px"}).Value(Model.Title))</td>
+                            <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new {style = "width:500px"}).Value(Model.Title))</td>
                         </tr>
                         <tr>
                             <td>TitleEn</td>
-                            <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new {style = "width:300px"}).Value(Model.TitleEn))</td>
+                            <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new {style = "width:500px" }).Value(Model.TitleEn))</td>
                         </tr>
                         <tr>
                             <td>DetailUrl</td>
-                            <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:300px"}).Value(Model.DetailUrl))</td>
+                            <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:500px" }).Value(Model.DetailUrl))</td>
                         </tr>
                         <tr>
                             <td>VideoUrl</td>
-                            <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new {style = "width:300px"}))</td>
+                            <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new {style = "width:500px" }).Value(Model.Video))</td>
                         </tr>
                         </tbody>
                     </table>
@@ -65,7 +65,7 @@
                               .ViewHtml()
                               //.Formatting()
                               .CleanFormatting()
-                              //.FontName()
+                              .FontName()
                               .FontSize()
                               .FontColor().BackColor()
                           //.ExportAs()
@@ -94,7 +94,7 @@
                               .ViewHtml()
                               //.Formatting()
                               .CleanFormatting()
-                              //.FontName()
+                              .FontName()
                               .FontSize()
                               .FontColor().BackColor()
                           //.ExportAs()

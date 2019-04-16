@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -112,6 +113,31 @@ namespace VSSite.Controllers
                     return RedirectToAction("Index");
                 }
             }
+        }
+
+        public ActionResult Async_Save(HttpPostedFileBase file)
+        {
+            if (file !=null)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                file.SaveAs(physicalPath);
+            }
+            return Content("");
+        }
+
+        public ActionResult Async_Remove(string fileNames)
+        {
+            if (fileNames != null)
+            {
+                var fileName = Path.GetFileName(fileNames);
+                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+                if (System.IO.File.Exists(physicalPath))
+                {
+                    System.IO.File.Delete(physicalPath);
+                }
+            }
+            return Content("");
         }
 
     }

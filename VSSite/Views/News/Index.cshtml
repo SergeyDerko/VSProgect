@@ -15,6 +15,21 @@
         <div class="panel panel-default">
             <div class="panel-heading">@i.Title - @i.DateNews.Date.ToShortDateString() @Html.ActionLink("Edit","EditNews","News",new {id = i.NewsId},null)</div>
             <div class="panel-body">@Html.Raw(i.Body)</div>
+            <div style="max-width: 644px;">
+                @if (!string.IsNullOrEmpty(i.Video))
+                {
+                    @(Html.Kendo().MediaPlayer()
+                                  .AutoPlay(false)
+                                  .Navigatable(true)
+                                  .Media(m => m
+                                      .Title(i.Title)
+                                      .Source(i.Video)
+                                  )
+                                  .Name("mediaPlayer")
+                                  .HtmlAttributes(new { style = "height:360px" })
+                    )
+                }
+            </div>
         </div>
     }
 

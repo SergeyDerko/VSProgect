@@ -226,6 +226,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageBrowserController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -315,6 +316,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\libs-css\Site.css" />
+    <Content Include="Images\fsack.png" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -378,10 +380,11 @@
     <Content Include="Views\Business\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\NewsAdd.cshtml" />
-    <Content Include="Views\News\EditNew.cshtml" />
+    <Content Include="Views\News\EditNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ImageBrowser\" />
     <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>

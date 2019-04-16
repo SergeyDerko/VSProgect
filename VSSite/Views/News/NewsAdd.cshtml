@@ -13,98 +13,105 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel">
-                    <div class="panel-heading"></div>
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered">
-                            <tbody>
-                            <tr>
-                                <td>SAVE</td>
-                                <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveNews")))</td>
-                            </tr>
-                            <tr>
-                                <td>TitleUA</td>
-                                <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new {style = "width:300px"}))</td>
-                            </tr>
-                            <tr>
-                                <td>TitleEn</td>
-                                <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new {style = "width:300px"}))</td>
-                            </tr>
-                            <tr>
-                                <td>DetailUrl</td>
-                                <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:300px"}))</td>
-                            </tr>
-                            <tr>
-                                <td>VideoUrl</td>
-                                <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new {style = "width:300px"}))</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<div class="container-fluid">
+    @(Html.Kendo().Notification()
+          .Name("newsActionNoty")
+          .Position(p=>p.Top(30).Right(30))
+          .AllowHideAfter(200))
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>SAVE</td>
+                            <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveNews")))</td>
+                        </tr>
+                        <tr>
+                            <td>PHOTO</td>
+                            <td>@(Html.Kendo().Upload().Name("files").Async(a=>a.Save("Async_Save", "News").Remove("Async_Remove", "News").AutoUpload(false)))</td>
+                        </tr>
+                        <tr>
+                            <td>TitleUA</td>
+                            <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new {style = "width:300px"}))</td>
+                        </tr>
+                        <tr>
+                            <td>TitleEn</td>
+                            <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new {style = "width:300px"}))</td>
+                        </tr>
+                        <tr>
+                            <td>DetailUrl</td>
+                            <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:300px"}))</td>
+                        </tr>
+                        <tr>
+                            <td>VideoUrl</td>
+                            <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new {style = "width:300px"}))</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="panel">
-                    <div class="panel-heading">Body</div>
-                    <div class="panel-body">
-                        @(Html.Kendo().Editor()
-                                      .Name("bodyUa")
-                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                      .Tools(tools => tools
-                                          .Clear()
-                                          .Bold().Italic().Underline().Strikethrough()
-                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                          .InsertUnorderedList().InsertOrderedList()
-                                          .Outdent().Indent()
-                                          .CreateLink().Unlink()
-                                          .SubScript()
-                                          .SuperScript()
-                                          .TableEditing()
-                                          .ViewHtml()
-                                          //.Formatting()
-                                          .CleanFormatting()
-                                          //.FontName()
-                                          .FontSize()
-                                          .FontColor().BackColor()
-                                      //.ExportAs()
-                                      //.Import()
-                                      )
-                        )
-                    </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">Body</div>
+                <div class="panel-body">
+                    @(Html.Kendo().Editor()
+                          .Name("bodyUa")
+                          .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                          .Tools(tools => tools
+                              .Clear()
+                              .Bold().Italic().Underline().Strikethrough()
+                              .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                              .InsertUnorderedList().InsertOrderedList()
+                              .Outdent().Indent()
+                              .CreateLink().Unlink()
+                              .SubScript()
+                              .SuperScript()
+                              .TableEditing()
+                              .ViewHtml()
+                              //.Formatting()
+                              .CleanFormatting()
+                              .FontName()
+                              .FontSize()
+                              .FontColor().BackColor()
+                          //.ExportAs()
+                          //.Import()
+                          )
+                          )
                 </div>
-                <div class="panel">
-                    <div class="panel-heading">Body EN</div>
-                    <div class="panel-body">
-                        @(Html.Kendo().Editor()
-                                      .Name("bodyEn")
-                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                      .Tools(tools => tools
-                                          .Clear()
-                                          .Bold().Italic().Underline().Strikethrough()
-                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                          .InsertUnorderedList().InsertOrderedList()
-                                          .Outdent().Indent()
-                                          .CreateLink().Unlink()
-                                          .SubScript()
-                                          .SuperScript()
-                                          .TableEditing()
-                                          .ViewHtml()
-                                          //.Formatting()
-                                          .CleanFormatting()
-                                          //.FontName()
-                                          .FontSize()
-                                          .FontColor().BackColor()
-                                      //.ExportAs()
-                                      //.Import()
-                                      )
-                        )
-                    </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">Body EN</div>
+                <div class="panel-body">
+                    @(Html.Kendo().Editor()
+                          .Name("bodyEn")
+                          .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                          .Tools(tools => tools
+                              .Clear()
+                              .Bold().Italic().Underline().Strikethrough()
+                              .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                              .InsertUnorderedList().InsertOrderedList()
+                              .Outdent().Indent()
+                              .CreateLink().Unlink()
+                              .SubScript()
+                              .SuperScript()
+                              .TableEditing()
+                              .ViewHtml()
+                              //.Formatting()
+                              .CleanFormatting()
+                              .FontName()
+                              .FontSize()
+                              .FontColor().BackColor()
+                          //.ExportAs()
+                          //.Import()
+                          )
+                          )
                 </div>
             </div>
         </div>
     </div>
-videoUrl
+</div>
     <script>
         function SaveNews() {
             var bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
@@ -117,7 +124,17 @@ videoUrl
             $.ajax({
                 type: "POST",
                 url: "/News/Save",
-                data: data
+                data: data,
+                success: function () {
+                    $("#bodyUa").data('kendoEditor').value('');
+                    $("#bodyEn").data('kendoEditor').value('');
+                    $("#titleUa").val('');
+                    $("#titleEn").val('');
+                    $("#detailUrl").val('');
+                    $("#videoUrl").val('');
+                    var popupNotification = $("#newsActionNoty").data("kendoNotification");
+                    popupNotification.show("New is Saved");
+                }
             });
         }
     </script>
