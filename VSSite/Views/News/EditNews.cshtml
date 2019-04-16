@@ -38,6 +38,10 @@
                             <td>DetailUrl</td>
                             <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new {style = "width:300px"}).Value(Model.DetailUrl))</td>
                         </tr>
+                        <tr>
+                            <td>VideoUrl</td>
+                            <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new {style = "width:300px"}))</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -112,13 +116,15 @@
         var _titleUa = $("#titleUa").val();
         var _titleEn = $("#titleEn").val();
         var _detailUrl = $("#detailUrl").val();
+        var _videoUrl = $("#videoUrl").val();
         var data = {
             id: newId,
             titleUa: _titleUa,
             titleEn: _titleEn,
             body: bodyContentUA,
             bodyEn: bodyContentEN,
-            detailUrl: _detailUrl
+            detailUrl: _detailUrl,
+            videoUrl: _videoUrl
         };
         $.ajax({
             type: "POST",

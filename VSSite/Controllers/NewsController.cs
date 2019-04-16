@@ -98,7 +98,7 @@ namespace VSSite.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditNew(int id)
+        public ActionResult EditNews(int id)
         {
             using (Context context = new Context())
             {
