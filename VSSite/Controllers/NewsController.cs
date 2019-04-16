@@ -86,7 +86,6 @@ namespace VSSite.Controllers
         }
 
 
-        [HttpPost]
         public ActionResult Delete(int id)
         {
             using (Context context = new Context())

@@ -1,0 +1,27 @@
+﻿
+@(Html.Kendo().Grid<VSCore.Entity.CategoryBusness>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.Logo);
+        columns.Bound(c => c.Name);
+        columns.Bound(c => c.NameEn);
+        columns.Bound(c => c.Meta1);
+        columns.Bound(c => c.Meta2);
+        columns.Bound(c => c.Meta3);
+        columns.Command(command => { command.Edit(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("CatEdit"))
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.IdCategory))
+          .Read(read => read.Action("CategoryBusnesses_Read", "Category"))
+          .Create(create => create.Action("CategoryBusnesses_Create", "Category"))
+          .Update(update => update.Action("CategoryBusnesses_Update", "Category"))
+      )
+)

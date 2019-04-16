@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,7 +22,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        @*<div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -38,7 +39,44 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
-        </div>
+        </div>*@
+
+        @(Html.Kendo().Menu().Name("MainMenu").Items(items =>
+                                            {
+                                                items.Add().Text("Бизнес")
+                                                    .Items(inner =>
+                                                    {
+                                                        inner.Add().Text("Бизнесы");
+                                                        inner.Add().Text("Отделения бизнеса");
+                                                        inner.Add().Text("Категории бизнеса");
+                                                    });
+                                                items.Add().Text("Новости")
+                                                    .Items(inner =>
+                                                    {
+                                                        inner.Add().Text("Все новости").Action("Index","News");
+                                                        inner.Add().Text("Добавить новость").Action("NewsAdd","News");
+                                                    });
+                                                items.Add().Text("Рубрики")
+                                                    .Items(inner =>
+                                                    {
+                                                        inner.Add().Text("Полезное");
+                                                        inner.Add().Text("Полезыне рубрики");
+
+                                                    });
+                                                items.Add().Text("Здравствуйте," + User.Identity.GetUserName())
+                                                    .Items(inner =>
+                                                    {
+                                                        inner.Add().Text("Настройка").Action("Index", "Manage");
+                                                        inner.Add().Text("Выход").Content(@<text>
+                                                            @(Html.Kendo().Button()
+                                                                                                    .Name("primaryTextButton")
+                                                                                                    .HtmlAttributes(new { type = "button", @class = "k-primary" })
+                                                                                                    .Content("Выход")
+                                                                                                    .Events(ev => ev.Click("logout")))
+                                                        </text>);
+
+                                                });
+                                        }))
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -48,7 +86,11 @@
         </footer>
     </div>
 
-    
+<script>
+    function logout() {
+        document.getElementById('logoutForm').submit();
+    }
+</script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

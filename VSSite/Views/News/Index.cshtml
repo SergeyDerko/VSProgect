@@ -13,9 +13,12 @@
     @foreach (var i in Model)
     {
         <div class="panel panel-default">
-            <div class="panel-heading">@i.Title - @i.DateNews.Date.ToShortDateString() @Html.ActionLink("Edit","EditNews","News",new {id = i.NewsId},null)</div>
+            <div class="panel-heading" style="display: flex; justify-content: space-between">
+                <strong style="flex-grow: 1">@i.Title</strong>  @Html.ActionLink("Edit", "EditNews", "News", new { id = i.NewsId }, new { @class = "btn btn-success" })
+               &nbsp; @Html.ActionLink("Delete", "Delete", "News", new { id = i.NewsId }, new { @class = "btn btn-danger" })
+            </div>
             <div class="panel-body">@Html.Raw(i.Body)</div>
-            <div style="max-width: 644px;">
+            @*<div style="max-width: 644px;">
                 @if (!string.IsNullOrEmpty(i.Video))
                 {
                     @(Html.Kendo().MediaPlayer()
@@ -29,7 +32,8 @@
                                   .HtmlAttributes(new { style = "height:360px" })
                     )
                 }
-            </div>
+            </div>*@
+            <div class="panel-footer">@i.DateNews.Date.ToShortDateString()</div>
         </div>
     }
 
