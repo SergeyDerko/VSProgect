@@ -19,10 +19,17 @@ namespace VSCore.Entity
         /// Заголовок En
         /// </summary>
         public string TitleEn { get; set; }
+
+        /// <summary>
+        /// Кртинка новости
+        /// </summary>
+        public string Picture { get; set; }
+        
         /// <summary>
         /// Тело HTML
         /// </summary>
         public string Body { get; set; }
+
         /// <summary>
         /// Тело HTML En
         /// </summary>
@@ -31,8 +38,14 @@ namespace VSCore.Entity
         /// ссылка на новость на сторонних сайтах
         /// </summary>
         public string DetailUrl { get; set; }
+        public string Meta1 { get; set; }
+        public string Meta2 { get; set; }
+        public string Meta3 { get; set; }
         public DateTime DateNews { get; set; }
-        public virtual ICollection<Video> Videos { get; set; }
+        /// <summary>
+        /// видео
+        /// </summary>
+        public string Video { get; set; }
 
 
     }

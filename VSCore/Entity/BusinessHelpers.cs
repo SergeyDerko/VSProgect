@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VSCore.Entity
 {
     /// <summary>
-    /// Полезная информация
+    /// Помощь бизнесу
     /// </summary>
-    public class Useful
+    public class BusinessHelpers
     {
         [Key]
-        public int UsefulId { get; set; }
+        public int BusinessHelperslId { get; set; }
 
         public string Logo { get; set; }
         public string Title { get; set; }
@@ -36,10 +35,5 @@ namespace VSCore.Entity
         public string Meta2 { get; set; }
         public string Meta3 { get; set; }
         public DateTime DateAdd { get; set; }
-        public virtual UsefulRubrics UsefulRubrics { get; set; }
-        /// <summary>
-        /// видео
-        /// </summary>
-        public string Video { get; set; }
     }
 }

@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VSCore.Entity
 {
     /// <summary>
-    /// Полезная информация
+    /// Вакансии
     /// </summary>
-    public class Useful
+    public class Jobs
     {
         [Key]
-        public int UsefulId { get; set; }
+        public int JobsId { get; set; }
 
-        public string Logo { get; set; }
-        public string Title { get; set; }
-        public string TitleEu { get; set; }
+        public string LogoJobs { get; set; }
+        public string TitleJobs { get; set; }
+        public string TitleEuJobs { get; set; }
 
-        public string Email { get; set; }
-        public string Description { get; set; }
-        public string DescriptionEn { get; set; }
+        public string EmailJobs { get; set; }
+        public string DescriptionJobs { get; set; }
+        public string DescriptionEnJobs { get; set; }
         public string Site { get; set; }
         public string Fb { get; set; }
         public string Google { get; set; }
@@ -36,10 +35,5 @@ namespace VSCore.Entity
         public string Meta2 { get; set; }
         public string Meta3 { get; set; }
         public DateTime DateAdd { get; set; }
-        public virtual UsefulRubrics UsefulRubrics { get; set; }
-        /// <summary>
-        /// видео
-        /// </summary>
-        public string Video { get; set; }
     }
 }

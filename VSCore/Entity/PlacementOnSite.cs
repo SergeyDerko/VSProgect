@@ -1,57 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace VSCore.Entity
 {
-    /// <summary>
-    /// Бизнесы ветеранов
-    /// </summary>
-    public class Business
+    public class PlacementOnSite
     {
         [Key]
-        public int BusinessId { get; set; }
-        /// <summary>
-        /// Логотип
-        /// </summary>
+        public int Id { get; set; }
+
+        public string NameBrand { get; set; }
         public string Logo { get; set; }
-        /// <summary>
-        /// Название бизнесса
-        /// </summary>
-        public string MainName { get; set; }
-        /// <summary>
-        /// Название бизнесса En
-        /// </summary>
-        public string MainNameEn { get; set; }
-        /// <summary>
-        /// Фото
-        /// </summary>
+        public string Email { get; set; }
         public string Photo { get; set; }
         /// <summary>
-        /// Мыло
+        /// Имя-Фамилия владельца
         /// </summary>
-        public string Email { get; set; }
+        public string NameDirector { get; set; }
         /// <summary>
-        /// Описание HTML
+        /// Описание бизнеса
         /// </summary>
-        public string Description { get; set; }
+        public string Deskription { get; set; }
         /// <summary>
-        /// Описание HTML En
+        /// Пример бизнеса
         /// </summary>
-        public string DescriptionEn { get; set; }
+        public int IdBusnessAsExample { get; set; }
+        /// <summary>
+        /// Суть бизнеса
+        /// </summary>
+        public string BrandSens { get; set; }
+        /// <summary>
+        /// История создания бизнеса
+        /// </summary>
+        public string HistoryOfBrand { get; set; }
+
+        /// <summary>
+        /// ФИО и контакты кому звонить для пояснений
+        /// </summary>
+        public string ContactToAnsver { get; set; }
         /// <summary>
         /// Адресс сайта
         /// </summary>
         public string Site { get; set; }
-      
+
         public string Fb { get; set; }
-        
+
         public string Google { get; set; }
-        
+
         public string Tw { get; set; }
-        
+
         public string Inst { get; set; }
-       
+
         public string Map { get; set; }
         /// <summary>
         /// Город
@@ -70,26 +72,14 @@ namespace VSCore.Entity
         /// </summary>
         public string AddressEn { get; set; }
 
-        /// <summary>
-        /// видео
-        /// </summary>
-        public string Video { get; set; }
-
         public string Phone1 { get; set; }
-      
+
         public string Phone2 { get; set; }
-    
+
         public string Phone3 { get; set; }
         public string Meta1 { get; set; }
         public string Meta2 { get; set; }
         public string Meta3 { get; set; }
-
-        public DateTime DateAdd { get; set; }
-       
-        public virtual ICollection<Branch>Branches { get; set; }
-        
-
-        public virtual CategoryBusness Category { get; set; }
-
+        public DateTime Date { get; set; }
     }
 }

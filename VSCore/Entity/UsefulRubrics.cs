@@ -13,8 +13,11 @@ namespace VSCore.Entity
 
         public string RubName { get; set; }
         public string RubNameEu { get; set; }
-        public string Photo { get; set; }
+        public string Picture { get; set; }
+        public string Meta1 { get; set; }
+        public string Meta2 { get; set; }
+        public string Meta3 { get; set; }
 
-        public virtual ICollection<UsefulRubrics> UsefulRubricses { get; set; }
+        public virtual ICollection<Useful> Usefuls { get; set; }
     }
 }
