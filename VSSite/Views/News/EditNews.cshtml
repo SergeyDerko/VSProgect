@@ -14,6 +14,7 @@
 
 <body>
 <input type="hidden" id="newsId" value="@Model.NewsId"/>
+<input type="hidden" id="fileNameFull" value="@Model.Picture" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -25,6 +26,11 @@
                         <tr>
                             <td>SAVE</td>
                             <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveNews")))</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="~/Images/@Model.Picture" style="width: 150px;height: auto"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>TitleUA</td>

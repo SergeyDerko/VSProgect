@@ -27,7 +27,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl)
+        public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl, string pic)
         {
 
             string bodyHtml = HttpUtility.HtmlDecode(body);
@@ -46,7 +46,8 @@ namespace VSSite.Controllers
                   Body = htmlProvider.Export(document),
                   BodyEn = htmlProvider.Export(documentEn),
                   DetailUrl = detailUrl,
-                  Video = videoUrl
+                  Video = videoUrl,
+                  Picture = pic
               });
               db.SaveChanges();
             }
@@ -55,7 +56,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEdit(int id,string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl)
+        public ActionResult SaveEdit(int id,string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl, string pic)
         {
 
             string bodyHtml = HttpUtility.HtmlDecode(body);
@@ -76,6 +77,7 @@ namespace VSSite.Controllers
                     news.BodyEn = htmlProvider.Export(documentEn);
                     news.DetailUrl = detailUrl;
                     news.Video = videoUrl;
+                    news.Picture = pic;
                     db.SaveChanges();
                 }
             }
@@ -115,28 +117,48 @@ namespace VSSite.Controllers
             }
         }
 
-        public ActionResult Async_Save(HttpPostedFileBase file)
+        public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> files)
         {
-            if (file !=null)
+            var name = Guid.NewGuid().ToString();
+            string fullFile="";
+            foreach (var file in files)
             {
-                var fileName = Path.GetFileName(file.FileName);
-                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
-                file.SaveAs(physicalPath);
-            }
-            return Content("");
-        }
 
-        public ActionResult Async_Remove(string fileNames)
-        {
-            if (fileNames != null)
-            {
-                var fileName = Path.GetFileName(fileNames);
-                var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
-                if (System.IO.File.Exists(physicalPath))
+                if (file != null)
                 {
-                    System.IO.File.Delete(physicalPath);
+                    //var fileName = Path.GetFileName(file.FileName);
+
+                    var ext = Path.GetExtension(file.FileName);
+                    var physicalPath = Path.Combine(Server.MapPath("~/Images"), $"{name}{ext}");
+                    fullFile = $"{name}{ext}";
+                    file.SaveAs(physicalPath);
                 }
             }
+
+            return Json(new{fileName = fullFile });
+        }
+
+        public ActionResult Async_Remove(string[] fileNames)
+        {
+            // The parameter of the Remove action must be called "fileNames"
+
+            if (fileNames != null)
+            {
+                foreach (var fullName in fileNames)
+                {
+                    var fileName = Path.GetFileName(fullName);
+                    var physicalPath = Path.Combine(Server.MapPath("~/Images"), fileName);
+
+                    // TODO: Verify user permissions
+
+                    if (System.IO.File.Exists(physicalPath))
+                    {
+                         System.IO.File.Delete(physicalPath);
+                    }
+                }
+            }
+
+            // Return an empty string to signify success
             return Content("");
         }
 
