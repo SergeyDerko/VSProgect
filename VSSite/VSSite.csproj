@@ -378,6 +378,7 @@
     <Content Include="Views\Business\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\NewsAdd.cshtml" />
+    <Content Include="Views\News\EditNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,7 +26,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(string titleUA, string titleEn, string body, string bodyEn, string detailUrl, List<string> videoUrl)
+        public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, List<string> videoUrl)
         {
 
             string bodyHtml = HttpUtility.HtmlDecode(body);
@@ -48,7 +48,7 @@ namespace VSSite.Controllers
 
               db.Newses.Add(new News
               {
-                  Title = titleUA,
+                  Title = titleUa,
                   TitleEn = titleEn,
                   DateNews = DateTime.Now,
                   Body = htmlProvider.Export(document),
@@ -63,6 +63,45 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult SaveEdit(int id,string titleUa, string titleEn, string body, string bodyEn, string detailUrl, List<string> videoUrl)
+        {
+
+            string bodyHtml = HttpUtility.HtmlDecode(body);
+            string bodyHtmlEn = HttpUtility.HtmlDecode(bodyEn);
+            HtmlFormatProvider htmlProvider = new HtmlFormatProvider();
+            RadFlowDocument document = htmlProvider.Import(bodyHtml);
+            RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
+            using (Context db = new Context())
+            {
+                var vidData = new List<Video>();
+
+                foreach (var x in vidData)
+                {
+                    vidData.Add(new Video
+                    {
+                        Url = x.Url
+                    });
+                }
+
+                var news = db.Newses.FirstOrDefault(x => x.NewsId == id);
+                if (news !=null)
+                {
+                    news.Title = titleUa;
+                    news.TitleEn = titleEn;
+                    news.DateNews = DateTime.Now;
+                    news.Body = htmlProvider.Export(document);
+                    news.BodyEn = htmlProvider.Export(documentEn);
+                    news.DetailUrl = detailUrl;
+                    news.Videos = vidData;
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             using (Context context = new Context())
@@ -75,6 +114,22 @@ namespace VSSite.Controllers
                 }
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult EditNew(int id)
+        {
+            using (Context context = new Context())
+            {
+                var news = context.Newses.FirstOrDefault(x => x.NewsId == id);
+                if (news !=null)
+                {
+                    return View(news);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
         }
 
     }

@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <td>TitleUA</td>
-                                <td>@(Html.Kendo().TextBox().Name("titleUA").HtmlAttributes(new {style = "width:300px"}))</td>
+                                <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new {style = "width:300px"}))</td>
                             </tr>
                             <tr>
                                 <td>TitleEn</td>
@@ -105,10 +105,10 @@
         function SaveNews() {
             var bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
             var bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
-            var _titleUA = $("#titleUA").val();
+            var _titleUa = $("#titleUa").val();
             var _titleEn = $("#titleEn").val();
             var _detailUrl = $("#detailUrl").val();
-            var data = { titleUA: _titleUA, titleEn: _titleEn, body: bodyContentUA, bodyEn: bodyContentEN, detailUrl: _detailUrl };
+            var data = { titleUa: _titleUa, titleEn: _titleEn, body: bodyContentUA, bodyEn: bodyContentEN, detailUrl: _detailUrl };
             $.ajax({
                 type: "POST",
                 url: "/News/Save",
