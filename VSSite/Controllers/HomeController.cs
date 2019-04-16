@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using VSCore.Concrete;
 using VSCore.Entity;
@@ -42,47 +43,303 @@ namespace VSSite.Controllers
 
                     #region Бизнессы
 
-                    context.Businesses.Add(new Business
+                    for (int i = 0; i < 20; i++)
                     {
-                        
-                    });
+                        context.Businesses.Add(new Business
+                        {
+                            Description = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            Category = context.CategoryBusnesses.FirstOrDefault(x => x.IdCategory == 1),
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Email = "milamamaramu@gmail.com",
+                            Fb = "https://www.facebook.com/",
+                            Google = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Logo = "fsack.png",
+                            MainName = "Название",
+                            MainNameEn = "Name",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Photo = "fsack.png",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            Video = "https://www.youtube.com/watch?v=1qDbi0_fAHg"
+                        });
+                    }
+
+                    context.SaveChanges();
                     #endregion
 
+                    #region отделения бизнесов
 
+                    for (int i = 0; i < 2; i++)
+                    {
+
+
+                        context.Branches.Add(new Branch
+                        {
+
+                            Description = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            Business = context.Businesses.FirstOrDefault(x => x.BusinessId == 1),
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Email = "milamamaramu@gmail.com",
+                            Fb = "https://www.facebook.com/",
+                            Google = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Logo = "fsack.png",
+                            MainName = "Название",
+                            MainNameEn = "Name",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Photo = "fsack.png",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+
+                        });
+                    }
+
+                    context.SaveChanges();
+
+                    #endregion
 
                     #region Новости
 
-                    context.Newses.Add(new News
+                    for (int i = 0; i < 20; i++)
                     {
-                        
-                    });
+                        context.Newses.Add(new News
+                        {
+                            Video = "https://www.youtube.com/watch?v=1qDbi0_fAHg",
+                            Body = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            BodyEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            DateNews = DateTime.Now,
+                            DetailUrl = "https://www.facebook.com/",
+                            Picture = "fsack.png",
+                            Title = "Новость",
+                            TitleEn = "News"
+                        });
+                    }
 
-
-
+                    context.SaveChanges();
                     #endregion
 
                     #region Партнерка
 
-                    context.Partners.Add(new Partner
+                    for (int i = 0; i < 20; i++)
                     {
-                        
-                    });
-
-
+                        context.Partners.Add(new Partner
+                        {
+                            Description = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            NameEn = "Партнер",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            Fb = "https://www.facebook.com/",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Logo = "fsack.png",
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Google = "https://www.facebook.com/",
+                            Name = "Partner",
+                        });
+                    }
+                    context.SaveChanges();
                     #endregion
 
                     #region Рубрики полезно
 
                     context.UsefulRubricses.Add(new UsefulRubrics
                     {
-
+                        Picture = "fsack.png",
+                        RubName = "Рубрика1",
+                        RubNameEu = "Rubric1"
                     });
-
+                    context.UsefulRubricses.Add(new UsefulRubrics
+                    {
+                        Picture = "fsack.png",
+                        RubName = "Рубрика2",
+                        RubNameEu = "Rubric2"
+                    });
+                    context.UsefulRubricses.Add(new UsefulRubrics
+                    {
+                        Picture = "fsack.png",
+                        RubName = "Рубрика3",
+                        RubNameEu = "Rubric3"
+                    });
+                    context.UsefulRubricses.Add(new UsefulRubrics
+                    {
+                        Picture = "fsack.png",
+                        RubName = "Рубрика4",
+                        RubNameEu = "Rubric4"
+                    });
+                    context.SaveChanges();
 
                     #endregion
 
+                    #region Полезно
+
+                    for (int i = 0; i < 20; i++)
+                    {
+
+                        context.Usefuls.Add(new Useful
+                        {
+                            Description = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            UsefulRubrics = context.UsefulRubricses.FirstOrDefault(x => x.RubricsId == 1),
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Email = "milamamaramu@gmail.com",
+                            Fb = "https://www.facebook.com/",
+                            Google = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Logo = "fsack.png",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            Video = "https://www.youtube.com/watch?v=1qDbi0_fAHg",
+                            Title = "Очень полезно",
+                            TitleEu = "Very userfull",
+                        });
+
+                    }
+
+                    context.SaveChanges();
+
+                    #endregion
+
+                    #region Помощь бизнесу
+
+                    for (int i = 0; i < 20; i++)
+                    {
 
 
+                        context.BusinessHelperses.Add(new BusinessHelpers
+                        {
+                            Description = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEn = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Email = "milamamaramu@gmail.com",
+                            Fb = "https://www.facebook.com/",
+                            Google = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Logo = "fsack.png",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            Title = "Допомога",
+                            TitleEu = "Helper",
+                        });
+                    }
+
+                    context.SaveChanges();
+
+                    #endregion
+
+                    #region Вакансии
+
+                    for (int i = 0; i < 20; i++)
+                    {
+                        context.Jobses.Add(new Jobs
+                        {
+                            DescriptionJobs = "<span>Тестовая надпись все дела, Путин ХУйло, лалалалал лалал лала :)</span>",
+                            DescriptionEnJobs = "<span>Putin huilo lal al aala la la lol  :)</span>",
+                            Address = "Ул.УбитогоСепара 666 кв 66",
+                            AddressEn = "killSepar 666",
+                            City = "Киев",
+                            CityEn = "Kiev",
+                            DateAdd = DateTime.Now,
+                            Fb = "https://www.facebook.com/",
+                            Google = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Map = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023",
+                            Phone1 = "9999999999999",
+                            Phone2 = "9999999999999",
+                            Phone3 = "9999999999999",
+                            Site = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            EmailJobs = "milamamaramu@gmail.com",
+                            LogoJobs = "fsack.png",
+                            TitleEuJobs = "Name",
+                            TitleJobs = "Название"
+                        });
+                    }
+
+                    context.SaveChanges();
+
+                    #endregion
+
+                    #region Про нас
+
+                    context.AboutUses.Add(new AboutUs
+                    {
+                        Description = "вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! вот такие мы! ",
+                        Phone1 = "232323232232323",
+                        Phone3 = "45345345353553",
+                        Phone2 = "42424244242424",
+                        Email = "milaNet@ukr.net",
+                        DescriptionEn = "Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! "
+                    });
+                    context.SaveChanges();
+
+                    for (int i = 0; i < 3; i++)
+                    {
+
+
+                        context.TeamMembers.Add(new TeamMember
+                        {
+                            Description = "Гусь в метро, ездит в метро! Гусь в метро, ездит в метро! Гусь в метро, ездит в метро! Гусь в метро, ездит в метро! Гусь в метро, ездит в метро! Гусь в метро, ездит в метро! ",
+                            Google = "https://www.facebook.com/",
+                            Fb = "https://www.facebook.com/",
+                            Inst = "https://www.facebook.com/",
+                            Tw = "https://www.facebook.com/",
+                            Phone1 = "234234234234234",
+                            Phone2 = "232323232323232",
+                            City = "Киев",
+                            Email = "milonet@ukr.net",
+                            Name = "Гусь Метровый",
+                            Photo = "fsack.png",
+                            DescriptionEn = "Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! Yo! ",
+                            NameEn = "Gus Metrovii",
+                            CityEn = "Kiev"
+
+                        });
+                    }
+
+                    context.SaveChanges();
+
+                    #endregion
                 }
             }
 
