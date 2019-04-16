@@ -13,6 +13,130 @@ namespace VSSite.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Выдача всех бизнессов
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Business()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Сортировка бизнессов
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Business(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача партнеров
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Partners()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача партнеров с сортировками
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Partners(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача вакансий
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Jobs()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача вакансий с сортировками
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Jobs(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача полезного
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Useful()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача полезного с сортировками
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Useful(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача новостей
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult News()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача новостей с сортировками
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult News(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача помощь бизнесу
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Help()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача помощь бизнесу с сортировками
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Help(int page)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Выдача про нас
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AboutAs()
+        {
+            return View();
+        }
+
+
         public string DataSid()
         {
             using (Context context = new Context())

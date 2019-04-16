@@ -19,12 +19,12 @@ namespace VSSite.Controllers
         {
             if (language != null)
             {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ru");
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
             }
             HttpCookie cookie = new HttpCookie("Language") { Value = language };
             Response.Cookies.Add(cookie);
-            return Redirect("/Home/Index");
+            return null;
         }
     }
 }

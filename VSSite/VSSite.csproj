@@ -224,7 +224,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageBrowserController.cs" />
@@ -336,9 +335,11 @@
     <Content Include="Scripts\business.js" />
     <Content Include="Scripts\form.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\libs\fontawesome-all.js" />
     <Content Include="Scripts\libs\jquery-1.10.2.js" />
     <Content Include="Scripts\libs\jquery-1.10.2.min.js" />
     <None Include="Scripts\libs\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\libs\jquery.js" />
     <Content Include="Scripts\libs\jquery.validate.js" />
     <Content Include="Scripts\libs\jquery.validate.min.js" />
     <Content Include="Scripts\libs\jquery.validate.unobtrusive.js" />
@@ -380,7 +381,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Business\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\NewsAdd.cshtml" />
     <Content Include="Views\News\EditNews.cshtml" />
@@ -399,6 +399,19 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CatEdit.cshtml" />
+    <Content Include="Views\Home\Business.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Home\Jobs.cshtml" />
+    <Content Include="Views\Home\Useful.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Views\Home\AboutAs.cshtml" />
+    <Content Include="Views\Home\PartialBusiness.cshtml" />
+    <Content Include="Views\Home\PartialPartners.cshtml" />
+    <Content Include="Views\Home\PartialJobs.cshtml" />
+    <Content Include="Views\Home\PartialUseful.cshtml" />
+    <Content Include="Views\Home\PartialNews.cshtml" />
+    <Content Include="Views\Home\PartialHelp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
