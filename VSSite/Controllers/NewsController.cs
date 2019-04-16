@@ -26,7 +26,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, List<string> videoUrl)
+        public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl)
         {
 
             string bodyHtml = HttpUtility.HtmlDecode(body);
@@ -36,15 +36,6 @@ namespace VSSite.Controllers
             RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
             using (Context db = new Context())
             {
-                var vidData = new List<Video>();
-
-                foreach (var x in vidData)
-                {
-                    vidData.Add(new Video
-                    {
-                        Url = x.Url
-                    });
-                }
 
               db.Newses.Add(new News
               {
@@ -54,7 +45,7 @@ namespace VSSite.Controllers
                   Body = htmlProvider.Export(document),
                   BodyEn = htmlProvider.Export(documentEn),
                   DetailUrl = detailUrl,
-                  Videos = vidData
+                  Video = videoUrl
               });
               db.SaveChanges();
             }
@@ -63,7 +54,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveEdit(int id,string titleUa, string titleEn, string body, string bodyEn, string detailUrl, List<string> videoUrl)
+        public ActionResult SaveEdit(int id,string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl)
         {
 
             string bodyHtml = HttpUtility.HtmlDecode(body);
@@ -73,15 +64,6 @@ namespace VSSite.Controllers
             RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
             using (Context db = new Context())
             {
-                var vidData = new List<Video>();
-
-                foreach (var x in vidData)
-                {
-                    vidData.Add(new Video
-                    {
-                        Url = x.Url
-                    });
-                }
 
                 var news = db.Newses.FirstOrDefault(x => x.NewsId == id);
                 if (news !=null)
@@ -92,7 +74,7 @@ namespace VSSite.Controllers
                     news.Body = htmlProvider.Export(document);
                     news.BodyEn = htmlProvider.Export(documentEn);
                     news.DetailUrl = detailUrl;
-                    news.Videos = vidData;
+                    news.Video = videoUrl;
                     db.SaveChanges();
                 }
             }
