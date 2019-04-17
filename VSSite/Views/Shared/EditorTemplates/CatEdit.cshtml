@@ -1,21 +1,129 @@
 ﻿@model VSCore.Entity.CategoryBusness
 
+<style>
+    .k-edit-form-container
+    {
+        width: 500px;
+    }
+
+    /*
+    Decrease the width of the edit form labels. The default one is 30%.
+    The new width should depend on the column titles.
+    Switch the text alignment to the left. By default, it is to the right.
+*/
+
+    .k-popup-edit-form .k-edit-label
+    {
+        width: 20%;
+        text-align: left;
+    }
+
+    /*
+    Increase the width of the textbox containers. The default one is 60%.
+    The sum of label and editor percentage widths should be around 90%, to make up for existing paddings.
+*/
+    .k-popup-edit-form .k-edit-field
+    {
+        width: 70%;
+    }
+
+    /*
+    Expand the edit textboxes and any other Kendo UI widgets.
+    In case of unexpected side effects, use widget-specific classes, instead of .k-widget.
+*/
+    .k-popup-edit-form .k-edit-field > .k-textbox,
+    .k-popup-edit-form .k-edit-field > .k-widget:not(.k-tooltip)
+    {
+        width: 98%;
+    }
+
+    .dropZoneElement {
+        position: relative;
+        display: inline-block;
+        background-color: #f8f8f8;
+        border: 1px solid #c7c7c7;
+        width: 230px;
+        height: 110px;
+        text-align: center;
+    }
+
+    .textWrapper {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        font-size: 24px;
+        line-height: 1.2em;
+        font-family: Arial,Helvetica,sans-serif;
+        color: #000;
+    }
+
+    .dropImageHereText {
+        color: #c7c7c7;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .product {
+        float: left;
+        position: relative;
+        margin: 0 10px 10px 0;
+        padding: 0;
+    }
+
+    .product img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .wrapper:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
+<div class="k-edit-form-container">
+    <h3 style="margin-left: 10px">Add new category</h3>
     <br />
     @Html.HiddenFor(model => model.IdCategory)
-
-    <div class="form-group">
+    @*<input type="hidden" id="fileNameFull" value=""/>*@
+    <div id="products"></div>
+    <div>
+        @(Html.Kendo().Upload().Name("files")
+              .Validation(validation =>
+              {
+                  validation.AllowedExtensions(new string[] {".jpg", ".jpeg", ".png", ".bmp", ".gif"});
+                  validation.MinFileSize(500);
+              })
+              .Events(e => e.Success("onSuccess").Remove("onSuccess"))
+              .Async(a => a
+                  .Save("Async_Save", "Category")
+                  .Remove("Async_Remove", "Category")
+                  .AutoUpload(true)))
+    </div>
+    <div class="k-edit-label">
         @Html.LabelFor(model => model.Name)
-        @Html.EditorFor(model => model.Name,new { htmlAttributes = new { @class = "form-control" }})
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.NameEn)
-        @Html.EditorFor(model => model.NameEn, new { htmlAttributes = new { @class = "form-control" } })
-    </div>
-
-    @*<div class="k-edit-label">
-        @Html.LabelFor(model => model.BirthDate)
     </div>
     <div class="k-edit-field">
-        @Html.Kendo().DateTimePickerFor(model => model.BirthDate)
-        @Html.ValidationMessageFor(model => model.BirthDate)
-    </div>*@
+        @*@Html.EditorFor(model => model.Name)*@
+        @Html.Kendo().TextBoxFor(model=>model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="k-edit-label">
+        @Html.LabelFor(model => model.NameEn)
+    </div>
+    <div class="k-edit-field">
+        @Html.EditorFor(model => model.NameEn)
+        @Html.ValidationMessageFor(model => model.NameEn)
+    </div>
+    <div class="k-edit-label">
+        @Html.LabelFor(model => model.Logo)
+    </div>
+    <div class="k-edit-field">
+        @Html.Kendo().TextBoxFor(model => model.Logo).Enable(false)
+    </div>
+
+</div>
+

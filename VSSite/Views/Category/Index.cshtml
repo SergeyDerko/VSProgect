@@ -4,11 +4,11 @@
       .Columns(columns =>
       {
         columns.Bound(c => c.Logo);
-        columns.Bound(c => c.Name);
-        columns.Bound(c => c.NameEn);
-        columns.Bound(c => c.Meta1);
-        columns.Bound(c => c.Meta2);
-        columns.Bound(c => c.Meta3);
+        columns.Bound(c => c.Name).Title("NAME UA");
+        columns.Bound(c => c.NameEn).Title("NAME EN");
+        columns.Bound(c => c.Meta1).Visible(false);
+        columns.Bound(c => c.Meta2).Visible(false);
+        columns.Bound(c => c.Meta3).Visible(false);
         columns.Command(command => { command.Edit(); }).Width(180);
       })
       .ToolBar(toolbar => {
@@ -24,4 +24,27 @@
           .Create(create => create.Action("CategoryBusnesses_Create", "Category"))
           .Update(update => update.Action("CategoryBusnesses_Update", "Category"))
       )
-)
+      )
+
+<script>
+    function onSuccess(e) {
+        alert(e.response.fileName);
+        $("#fileNameFull").val(e.response.fileName);
+        if (e.operation == "upload") {
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i].rawFile;
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function() {
+                        $("<div class='product'><img src=" + this.result + " /></div>").appendTo($("#products"));
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+        if (e.operation == "remove") {}
+    }
+</script>
