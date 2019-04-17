@@ -1,0 +1,201 @@
+﻿@using VSSite.Resources
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VeteranoService - свій до свого по своє ;-)">
+    <title>VeteranoService</title>
+    <link rel="icon" href="/Content/img/logo.png">
+    <!-- css-libs (slick, animate ...)-->
+    <link rel="stylesheet" type="text/css" href="/Content/libs-css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/Content//libs-css/animate.css">
+    <!-- jquery-->
+    <script src="~/Scripts/libs/jquery.js"></script>
+    <!-- own stylesheet-->
+    <link rel="stylesheet" type="text/css" href="/Content/business.css">
+</head>
+<body>
+    <!-- HEADER-->
+    <!-- ↓↓↓ BEM-blocks: header (start) ↓↓↓-->
+<div class="header">
+    <input type="hidden" id="lang" value="@Translator.language"/>
+    <a class="header__logo" href="/Home/Index"><img class="header__logo-img" src="/Content/img/logo.png" alt="logo.png"></a>
+    <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a></div>
+    <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
+    <div class="language-switcher" data-language="ua">
+        <img class="language-switcher__img" src="/Content/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="/Content/img/uk.png" alt="en.png"><img class="language-switcher__img" src="/Content/img/ru.png" alt="ru.png">
+        <div class="language-switcher__shutter-ua" href="#"></div>
+        <div class="language-switcher__shutter-en" href="#"></div>
+        <div class="language-switcher__shutter-ru" href="#"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var lang = $('#lang').val();
+            if (lang == "en") {
+                $('.language-switcher__shutter-ua').css('height', '100%');
+                $('.language-switcher__shutter-en').css('height', '.1px');
+                $('.language-switcher').attr('data-language', 'en');
+            }
+            $('.language-switcher__shutter-ua').click(function () {
+                $('.language-switcher__shutter-ua').css('height', '.1px');
+                $('.language-switcher__shutter-en').css('height', '100%');
+                $('.language-switcher').attr('data-language', 'ua');
+                $.ajax({
+                    url: "/Language/ChoiceOfLanguage?language=ru",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+
+            });
+
+            $('.language-switcher__shutter-en').click(function () {
+                $('.language-switcher__shutter-ua').css('height', '100%');
+                $('.language-switcher__shutter-en').css('height', '.1px');
+                $('.language-switcher').attr('data-language', 'en');
+                $.ajax({
+                    url: "/Language/ChoiceOfLanguage?language=en",
+                    success: function () {
+                        location.reload();
+                    }
+                });
+            });
+
+        });
+    </script>
+    <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
+    <div class="header__menu">
+        <button class="header__menu-btn"><span>МЕНЮ</span><img src="/Content/img/gear-wheel.png" alt="gear-wheel.png"></button>
+        <ul class="header__menu-list">
+            <li><a class="header__menu-link" href="index.html">Головна</a></li>
+            <li><a class="header__menu-link" href="/Home/Business">@Translator.Businesses_of_veterans</a></li>
+            <li><a class="header__menu-link" href="/Home/Help">@Translator.Business_Assistance</a></li>
+            <li><a class="header__menu-link" href="/Home/Jobs">@Translator.jobs</a></li>
+            <li><a class="header__menu-link" href="/Home/Useful">@Translator.useful</a></li>
+            <li><a class="header__menu-link" href="/Home/Partners">@Translator.Partners</a></li>
+            <li><a class="header__menu-link" href="/Home/AboutAs">@Translator.About_us</a></li>
+            <li><a class="header__menu-link" href="/Home/News">@Translator.News</a></li>
+        </ul>
+    </div>
+</div>
+    <script>
+$(document).ready(function () {
+
+            /* ↓↓↓ зміна розмірів логотипу при прокрутці ↓↓↓ */
+            if ($('.header').outerWidth() > 480) {
+                if ($('.header').offset().top >= 30) {
+                    $('.header__logo-img').css({ 'height': '50px', 'margin-top': '-5px' });
+                    $('.header').css({ 'background-color': 'rgba(0,0,0,.75)' });
+                } else {
+                    $('.header__logo-img').css({ 'height': '160px', 'margin-top': '0px' });
+                    $('.header').css({ 'background-color': 'transparent' });
+                }
+            } else {
+                $('.header__logo-img').css({ 'height': '50px', 'margin-top': '-5px' });
+                $('.header').css({ 'background-color': 'rgba(0,0,0,.75)' });
+            }
+
+            $(document).scroll(function () {
+                if ($('.header').outerWidth() > 480) {
+                    if ($('.header').offset().top >= 30) {
+                        $('.header__logo-img').css({ 'height': '50px', 'margin-top': '-5px' });
+                        $('.header').css({ 'background-color': 'rgba(0,0,0,.75)' });
+                    } else {
+                        $('.header__logo-img').css({ 'height': '160px', 'margin-top': '0px' });
+                        $('.header').css({ 'background-color': 'transparent' });
+                    }
+                } else {
+                    $('.header__logo-img').css({ 'height': '50px', 'margin-top': '-5px' });
+                    $('.header').css({ 'background-color': 'rgba(0,0,0,.75)' });
+                }
+            }); /* ↑↑↑ /зміна розмірів логотипу при прокрутці ↑↑↑ */
+
+            /* ↓↓↓ логіка меню ↓↓↓ */
+            var isMenuClicable = true;
+            var isMemuOpen = false;
+            var arrOfMenuItems = $('.header__menu-link');
+            var delay = 0;
+            var delayStep = 70;
+            var freezeTime = arrOfMenuItems.length * delayStep;
+
+
+            $('.header__menu-btn').click(function () {
+
+                // якщо меню зараз не анімується (не відкивається і не закривається)
+                if (isMenuClicable) {
+
+                    // блокування повторних кліків на час анімації
+                    isMenuClicable = false;
+                    setTimeout(function () {
+                        isMenuClicable = true
+                    }, freezeTime);
+
+                    // відкриття/закриття
+                    if (isMemuOpen) {
+                        closeMenu()
+                    } else {
+                        $('.header__menu-list').css('display', 'block');
+
+                        delay = 0;
+                        // навішування анімації через цикл - для цього потрібна додаткова анонімна ф-я
+                        for (var i = 0; i < arrOfMenuItems.length; i++) {
+                            (function (j) {
+                                setTimeout(function () {
+                                    $(arrOfMenuItems[j]).css({ 'right': '0%' });
+                                }, delay);
+                                delay = delay + delayStep;
+                            })(i);
+                        }
+                        isMemuOpen = true;
+                    }
+                }
+            });
+            /* ↑↑↑ /логіка меню ↑↑↑ */
+
+            $(document).click(function (event) {
+                if (isMemuOpen && isMenuClicable && event.target.className != 'header__menu-btn') {
+                    closeMenu()
+                }
+            });
+
+            function closeMenu() {
+                // закрити меню
+                delay = 0;
+                // навішування анімації через цикл - для цього потрібна додаткова анонімна ф-я
+                for (var i = 0; i < arrOfMenuItems.length; i++) {
+                    (function (j) {
+                        setTimeout(function () {
+                            $(arrOfMenuItems[j]).css({ 'right': 'calc( -100% - 15px )' });
+                        }, delay);
+                        delay = delay + delayStep;
+                    })(i);
+                }
+                setTimeout(function () {
+                    $('.header__menu-list').css('display', 'none');
+                }, delay);
+                isMemuOpen = false;
+            }
+        });
+    </script>
+    <!-- ↑↑↑ BEM-blocks: header (end) ↑↑↑-->
+    <!-- /HEADER-->
+    <!-- MAIN SECTION-->
+    <main class="main">
+        <!-- SECTION 1-->
+        <section class="main-section">
+            @RenderBody()
+            <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
+            <div class="banners-holder"><a class="place" href="form.html"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
+            <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
+        </section>
+        <!-- /SECTION 1-->
+    </main>
+    <!-- /MAIN SECTION-->
+    <!-- FOOTER-->
+    <!-- /FOOTER-->
+    <script src="~/Scripts/libs/fontawesome-all.js"></script>
+    <!-- own js-->
+    <script src="~/Scripts/business.js"></script>
+</body>
+</html>
