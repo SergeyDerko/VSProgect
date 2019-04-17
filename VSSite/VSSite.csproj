@@ -224,6 +224,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BranchController.cs" />
+    <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageBrowserController.cs" />
@@ -316,6 +318,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\libs-css\Site.css" />
+    <Content Include="Images\Category\f20fc995-4dc1-4ac6-8444-49f6d590e648.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\fsack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -412,9 +417,13 @@
     <Content Include="Views\Home\PartialUseful.cshtml" />
     <Content Include="Views\Home\PartialNews.cshtml" />
     <Content Include="Views\Home\PartialHelp.cshtml" />
+    <Content Include="Views\Business\AddNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Logo\" />
+    <Folder Include="Images\Photo\" />
+    <Folder Include="Views\Branch\" />
     <Folder Include="Views\Busness\" />
     <Folder Include="Views\ImageBrowser\" />
     <Folder Include="Views\Language\" />

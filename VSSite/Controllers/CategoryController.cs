@@ -87,6 +87,28 @@ namespace VSSite.Controllers
         }
 
 
+        public ActionResult HierarchyBinding_Buisnes(int catId, [DataSourceRequest] DataSourceRequest request)
+        {
+            var data = db.Businesses.Where(x => x.Category.IdCategory == catId).ToList();
+
+            List<HierarchyModel> model = new List<HierarchyModel>();
+
+            foreach (var x in data)
+            {
+                model.Add(new HierarchyModel
+                {
+                    BLogo = x.Logo,
+                    BMainName = x.MainName,
+                    BPhone1 = x.Phone1,
+                    BEmail = x.Email,
+                    BDate = x.DateAdd,
+                    BCity = x.City
+                });
+            }
+
+            return Json(model.ToDataSourceResult(request),JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> files)
         {
             var name = Guid.NewGuid().ToString();
@@ -137,5 +159,36 @@ namespace VSSite.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public ActionResult GetCategoryList()
+        {
+            List<CategoryList> model = new List<CategoryList>();
+            var data = db.CategoryBusnesses;
+            foreach (var x in data)
+            {
+                model.Add(new CategoryList
+                {
+                    CategoryId = x.IdCategory,
+                    CategoryName = x.Name
+                });
+            }
+            return Json(model,JsonRequestBehavior.AllowGet);
+        }
+    }
+
+    public class HierarchyModel
+    {
+        public string BLogo { get; set; }
+        public string BMainName { get; set; }
+        public string BCity { get; set; }
+        public string BEmail { get; set; }
+        public string BPhone1 { get; set; }
+        public DateTime BDate { get; set; }
+    }
+
+    public class CategoryList
+    {
+        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
     }
 }

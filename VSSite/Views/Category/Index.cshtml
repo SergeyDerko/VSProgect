@@ -1,24 +1,27 @@
 ﻿
 @(Html.Kendo().Grid<VSCore.Entity.CategoryBusness>()
       .Name("grid")
+      .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
       .Columns(columns =>
       {
-        columns.Bound(c => c.Logo);
-        columns.Bound(c => c.Name).Title("NAME UA");
-        columns.Bound(c => c.NameEn).Title("NAME EN");
-        columns.Bound(c => c.Meta1).Visible(false);
-        columns.Bound(c => c.Meta2).Visible(false);
-        columns.Bound(c => c.Meta3).Visible(false);
-        columns.Command(command => { command.Edit(); }).Width(180);
+          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Logo#' alt='#: data.Name #' height='62' width='auto'/>");
+          columns.Bound(c => c.Name).Title("NAME UA");
+          columns.Bound(c => c.NameEn).Title("NAME EN");
+          columns.Bound(c => c.Meta1).Visible(false);
+          columns.Bound(c => c.Meta2).Visible(false);
+          columns.Bound(c => c.Meta3).Visible(false);
+          columns.Command(command => { command.Edit(); }).Width(180);
       })
       .ToolBar(toolbar => {
-            toolbar.Create();
+          toolbar.Create();
       })
+      .ClientDetailTemplateId("template")
       .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("CatEdit"))
       .Pageable()
       .Scrollable()
       .DataSource(dataSource => dataSource
           .Ajax()
+          .PageSize(20)
           .Model(model => model.Id(p => p.IdCategory))
           .Read(read => read.Action("CategoryBusnesses_Read", "Category"))
           .Create(create => create.Action("CategoryBusnesses_Create", "Category"))
@@ -26,25 +29,46 @@
       )
       )
 
-<script>
-    function onSuccess(e) {
-        alert(e.response.fileName);
-        $("#fileNameFull").val(e.response.fileName);
-        if (e.operation == "upload") {
-            for (var i = 0; i < e.files.length; i++) {
-                var file = e.files[i].rawFile;
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<VSSite.Controllers.HierarchyModel>()
+          .Name("grid_#=IdCategory#")
+          .Columns(col =>
+          {
+              col.Bound(c => c.BMainName).Title("Название");
+              col.Bound(c => c.BPhone1).Title("Телефон");
+              col.Bound(c => c.BEmail).Title("Email");
+              col.Bound(c => c.BCity).Title("Город");
+              col.Bound(c => c.BDate).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+          })
+          .DataSource(ds=>ds
+              .Ajax()
+              .PageSize(5)
+              .Read(read=>read.Action("HierarchyBinding_Buisnes","Category",new {catId= "#=IdCategory#" })))
+              .Pageable()
+          .Sortable()
+          .ToClientTemplate())
 
-                if (file) {
-                    var reader = new FileReader();
+</script>
 
-                    reader.onloadend = function() {
-                        $("<div class='product'><img src=" + this.result + " /></div>").appendTo($("#products"));
-                    };
+    <script>
+        function onSuccess(e) {
+            // alert(e.response.fileName);
+            $("#Logo").val(e.response.fileName).trigger("change");
+            if (e.operation == "upload") {
+                for (var i = 0; i < e.files.length; i++) {
+                    var file = e.files[i].rawFile;
 
-                    reader.readAsDataURL(file);
+                    if (file) {
+                        var reader = new FileReader();
+
+                        reader.onloadend = function () {
+                            $("<div class='product'><img src=" + this.result + " /></div>").appendTo($("#products"));
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
                 }
             }
+            if (e.operation == "remove") { }
         }
-        if (e.operation == "remove") {}
-    }
-</script>
+    </script>
