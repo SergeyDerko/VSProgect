@@ -190,13 +190,10 @@
                   .SuperScript()
                   .TableEditing()
                   .ViewHtml()
-                  //.Formatting()
                   .CleanFormatting()
                   .FontName()
                   .FontSize()
                   .FontColor().BackColor()
-              //.ExportAs()
-              //.Import()
               )
               )
     </div>
@@ -218,13 +215,10 @@
                   .SuperScript()
                   .TableEditing()
                   .ViewHtml()
-                  //.Formatting()
                   .CleanFormatting()
                   .FontName()
                   .FontSize()
                   .FontColor().BackColor()
-              //.ExportAs()
-              //.Import()
               )
               )
     </div>
@@ -285,7 +279,7 @@
         };
         $.ajax({
             type: "POST",
-            url: "/Business/SaveEdit",
+            url: "/Business/SaveNew",
             data: data,
             success: function() {
                 location.reload();

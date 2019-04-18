@@ -419,12 +419,16 @@
     <Content Include="Views\Home\PartialHelp.cshtml" />
     <Content Include="Views\Business\AddNew.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Business\Edit.cshtml" />
+    <Content Include="Views\Business\Index.cshtml" />
+    <Content Include="Views\Branch\AddNew.cshtml" />
+    <Content Include="Views\Branch\Edit.cshtml" />
+    <Content Include="Views\Branch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Logo\" />
     <Folder Include="Images\Photo\" />
-    <Folder Include="Views\Branch\" />
     <Folder Include="Views\Busness\" />
     <Folder Include="Views\ImageBrowser\" />
     <Folder Include="Views\Language\" />

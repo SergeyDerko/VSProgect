@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Telerik.Windows.Documents.Flow.FormatProviders.Html;
 using Telerik.Windows.Documents.Flow.Model;
 using VSCore.Concrete;
@@ -13,10 +15,11 @@ namespace VSSite.Controllers
 {
     public class BusinessController : Controller
     {
+        Context db = new Context();
         // GET: Business
         public ActionResult Index()
         {
-            return null;
+            return View();
         }
 
         public ActionResult AddNew()
@@ -24,13 +27,102 @@ namespace VSSite.Controllers
             return View();
         }
 
-        public ActionResult Edit()
+        public ActionResult Busnesses_Read([DataSourceRequest]DataSourceRequest request)
         {
-            return null;
+            IQueryable<Business> queryable = db.Businesses;
+            DataSourceResult result = queryable.ToDataSourceResult(request, business => new
+            {
+                BusinessId = business.BusinessId,
+                Logo = business.Logo,
+                MainName = business.MainName,
+                Email = business.Email,
+                City = business.City,
+                Phone1 = business.Phone1,
+                DateAdd = business.DateAdd
+            });
+
+            return Json(result);
+        }
+
+        public ActionResult HierarchyBinding_Branch(int buiId, [DataSourceRequest] DataSourceRequest request)
+        {
+            var data = db.Branches.Where(x => x.Business.BusinessId == buiId).ToList();
+
+            List<HierarchyModelBuisnes> model = new List<HierarchyModelBuisnes>();
+
+            foreach (var x in data)
+            {
+                model.Add(new HierarchyModelBuisnes
+                {
+                    BLogo = x.Logo,
+                    BMainName = x.MainName,
+                    BPhone1 = x.Phone1,
+                    BEmail = x.Email,
+                    BCity = x.City,
+                    BDateAdd = x.DateAdd
+                    
+                });
+            }
+
+            return Json(model.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Edit(int id)
+        {
+
+                var model = db.Businesses.FirstOrDefault(x => x.BusinessId == id);
+                if (model != null)
+                {
+                    return View(model);
+                }
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult Save(int id, string bodyContentUA, string bodyContentEN, string fileNameBLogo, string fileNamePhoto, string mainName, string mainNameEn, string address,
+            string addressEn, string phone1, string phone2, string phone3, string email, string siteUrl, string fbUrl, string googleUrl, string twUrl, string instUrl, string mapUrl,
+            int category, string videoUrl, string city, string cityEn)
+        {
+            string bodyHtml = HttpUtility.HtmlDecode(bodyContentUA);
+            string bodyHtmlEn = HttpUtility.HtmlDecode(bodyContentEN);
+            HtmlFormatProvider htmlProvider = new HtmlFormatProvider();
+            RadFlowDocument document = htmlProvider.Import(bodyHtml);
+            RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
+            var curBuisnes = db.Businesses.FirstOrDefault(x => x.BusinessId == id);
+            if (curBuisnes != null)
+            {
+                var cat = db.CategoryBusnesses.FirstOrDefault(x => x.IdCategory == category);
+                curBuisnes.Address = address;
+                curBuisnes.AddressEn = addressEn;
+                curBuisnes.City = city;
+                curBuisnes.CityEn = cityEn;
+                curBuisnes.Description = htmlProvider.Export(document);
+                curBuisnes.DescriptionEn = htmlProvider.Export(documentEn);
+                curBuisnes.Email = email;
+                curBuisnes.Fb = fbUrl;
+                curBuisnes.Inst = instUrl;
+                curBuisnes.Google = googleUrl;
+                curBuisnes.MainName = mainName;
+                curBuisnes.MainNameEn = mainNameEn;
+                curBuisnes.Phone1 = phone1;
+                curBuisnes.Phone2 = phone2;
+                curBuisnes.Phone3 = phone3;
+                curBuisnes.Site = siteUrl;
+                curBuisnes.Map = mapUrl;
+                curBuisnes.Tw = twUrl;
+                curBuisnes.Video = videoUrl;
+                curBuisnes.Logo = fileNameBLogo;
+                curBuisnes.Photo = fileNamePhoto;
+                curBuisnes.Category = cat;
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public ActionResult SaveEdit(string bodyContentUA,string bodyContentEN, string fileNameBLogo, string fileNamePhoto, string mainName, string mainNameEn, string address,
+        public ActionResult SaveNew(string bodyContentUA,string bodyContentEN, string fileNameBLogo, string fileNamePhoto, string mainName, string mainNameEn, string address,
             string addressEn, string phone1,  string phone2, string phone3, string email, string siteUrl, string fbUrl, string googleUrl, string twUrl, string instUrl, string mapUrl,
             int category, string videoUrl, string city, string cityEn)
         {
@@ -73,9 +165,24 @@ namespace VSSite.Controllers
             return null;
         }
 
-
+        [HttpPost]
         public ActionResult Delete(int id)
         {
+            using (Context context = new Context())
+            {
+                var curBuisnes = context.Businesses.FirstOrDefault(x => x.BusinessId == id);
+                if (curBuisnes !=null)
+                {
+                    var curBuisnesBr = curBuisnes.Branches;
+                    if (curBuisnesBr.Count >0)
+                    {
+                        context.Branches.RemoveRange(curBuisnesBr);
+                    }
+                    context.Businesses.Remove(curBuisnes);
+                    context.SaveChanges();
+                }
+            }
+
             return null;
         }
 
@@ -169,5 +276,15 @@ namespace VSSite.Controllers
             // Return an empty string to signify success
             return Content("");
         }
+    }
+
+    public class HierarchyModelBuisnes
+    {
+        public string BLogo { get; set; }
+        public string BMainName { get; set; }
+        public string BEmail { get; set; }
+        public string BCity { get; set; }
+        public string BPhone1 { get; set; }
+        public DateTime BDateAdd { get; set; }
     }
 }

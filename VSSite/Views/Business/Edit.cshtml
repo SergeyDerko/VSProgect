@@ -1,0 +1,280 @@
+﻿
+@{
+    ViewBag.Title = "Редактор бизнеса";
+}
+@model VSCore.Entity.Business
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <input type="hidden" id="fileNameBLogo" value="@Model.Logo" />
+        <input type="hidden" id="fileNamePhoto" value="@Model.Photo" />
+        <input type="hidden" id="buisnesId" value="@Model.BusinessId"/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>SAVE</td>
+                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveBuisnes")))</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                            <tr>
+                                <td>LOGO</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: center">
+                                    <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PHOTO</td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: center">
+                                    <img src="~/Images/Photo/@Model.Photo" height="150" width="auto"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>MainNameUA</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.MainName))</td>
+                                    <td>MainNameEn</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.MainNameEn))</td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>@(Html.Kendo().TextBox().Name("address").Value(@Model.Address))</td>
+                                    <td>AddressEn</td>
+                                    <td>@(Html.Kendo().TextBox().Name("addressEn").Value(@Model.AddressEn))</td>
+                                </tr>
+                                <tr>
+                                    <td>City</td>
+                                    <td>@(Html.Kendo().TextBox().Name("city").Value(@Model.City))</td>
+                                    <td>CityEn</td>
+                                    <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn))</td>
+                                </tr>
+                                <tr>
+                                    <td>Video</td>
+                                    <td>@(Html.Kendo().TextBox().Name("videoUrl").Value(@Model.Video))</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>Категория бизнеса - (@Model.Category.Name)</td>
+                                    <td>
+                                        @(Html.Kendo().DropDownList()
+                                                      .Name("category")
+                                                      .DataTextField("CategoryName")
+                                                      .DataValueField("CategoryId")
+                                                      .DataSource(s =>
+                                                      {
+                                                          s.Read(rd => rd.Action("GetCategoryList", "Category"));
+                                                      })
+                                              
+                                        )
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4>INFO</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="">PHONE1</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("phone1").Value(@Model.Phone1))</td>
+                                    <td class="">Email</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("email").Value(@Model.Email))</td>
+                                </tr>
+                                <tr>
+                                    <td class="">PHONE2</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("phone2").Value(@Model.Phone2))</td>
+                                    <td class="">Site</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("siteUrl").Value(@Model.Site))</td>
+                                </tr>
+                                <tr>
+                                    <td class="">PHONE3</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("phone3").Value(@Model.Phone3))</td>
+                                    <td class="">Facebook</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("fbUrl").Value(@Model.Fb))</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Google+</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("googleUrl").Value(@Model.Google))</td>
+                                    <td class="">Twitter</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("twUrl").Value(@Model.Tw))</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Instagram</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("instUrl").Value(@Model.Inst))</td>
+                                    <td class="">Map</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("mapUrl").Value(@Model.Map))</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">Body</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyUa")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          .CleanFormatting()
+                                          .FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      )
+                              .Value(Model.Description)
+                        )
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">Body EN</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyEn")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          .CleanFormatting()
+                                          .FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      )
+                              .Value(Model.DescriptionEn)
+                        )
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    function SaveBuisnes() {
+        var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
+        var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
+        var _fileNameBLogo = $("#fileNameBLogo").val();
+        var _fileNamePhoto = $("#fileNamePhoto").val();
+        var _mainName = $("#mainName").val();
+        var _mainNameEn = $("#mainNameEn").val();
+        var _address = $("#address").val();
+        var _addressEn = $("#addressEn").val();
+        var _phone1 = $("#phone1").val();
+        var _email = $("#email").val();
+        var _phone2 = $("#phone2").val();
+        var _siteUrl = $("#siteUrl").val();
+        var _phone3 = $("#phone3").val();
+        var _fbUrl = $("#fbUrl").val();
+        var _googleUrl = $("#googleUrl").val();
+        var _twUrl = $("#twUrl").val();
+        var _instUrl = $("#instUrl").val();
+        var _mapUrl = $("#mapUrl").val();
+        var _category = $("#category").data("kendoDropDownList").value();
+        var _videoUrl = $("#videoUrl").val();
+        var _cityEn = $("#cityEn").val();
+        var _city = $("#city").val();
+        var _id = $("$buisnesId").val();
+
+        var data = {
+            id:_id,
+            bodyContentUA: _bodyContentUA,
+            bodyContentEN: _bodyContentEN,
+            fileNameBLogo:_fileNameBLogo,
+            fileNamePhoto:_fileNamePhoto,
+            mainName:_mainName,
+            mainNameEn:_mainNameEn,
+            address:_address,
+            addressEn:_addressEn,
+            phone1:_phone1,
+            email:_email,
+            phone2:_phone2,
+            siteUrl:_siteUrl,
+            phone3:_phone3,
+            fbUrl:_fbUrl,
+            googleUrl:_googleUrl,
+            twUrl:_twUrl,
+            instUrl:_instUrl,
+            mapUrl:_mapUrl,
+            category: _category,
+            videoUrl: _videoUrl,
+            city: _city,
+            cityEn: _cityEn
+        };
+        $.ajax({
+            type: "POST",
+            url: "/Business/Save",
+            data: data
+        });
+
+    }
+
+    </script>
+</body>
+</html>
+

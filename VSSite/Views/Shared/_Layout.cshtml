@@ -46,8 +46,8 @@
                                                 items.Add().Text("Бизнес")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Бизнесы");
-                                                        inner.Add().Text("Отделения бизнеса");
+                                                        inner.Add().Text("Бизнесы").Action("Index","Business");
+                                                        inner.Add().Text("Отделения бизнеса").Action("Index","Branch");;
                                                         inner.Add().Text("Категории бизнеса").Action("Index","Category");
                                                     });
                                                 items.Add().Text("Новости")
