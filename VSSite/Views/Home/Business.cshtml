@@ -1,7 +1,76 @@
-﻿
+﻿@using VSSite.Resources
+@model  VSSite.Models.ForViews.BusinessPageModel
 @{
     ViewBag.Title = "Business";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>Business</h2>
+<h1 class="main-section__header">@Translator.BUSINESSES</h1>
+<div class="search-wrapper">
+    <form class="search">
+        <button class="search__type-btn" type="button" title="@Translator.select_search_type">
+            <div class="search__type-btn-cover-for-click"></div><img src="/Content/img/bar-chart.png" alt="bar-chart.png">
+        </button>
+        <ul class="search__type-list">
+            <li class="search__list-item">
+                <div class="search__list-item-img-wrapper"><img src="/Content/img/pie-chart.png" alt="pie-chart.png"></div><span>@Translator.search_by_type</span>
+            </li>
+            <li class="search__list-item">
+                <div class="search__list-item-img-wrapper"><img src="/Content/img/place-marker.png" alt="place-marker.png"></div><span>@Translator.search_by_city</span>
+            </li>
+        </ul>
+        <select class="search__field" id="type-search">
+            <option value="0">@Translator.search_by_type...</option>
+            @{
+                foreach (var i in Model.Category)
+                {
+                    if (Translator.language == "ru")
+                    {
+                        <option value="@i.IdCategory">@i.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@i.IdCategory">@i.NameEn</option>
+                    }
+                 
+                }
+            }
+        </select>
+        <select class="search__field" id="sity-search">
+            <option value="oll">@Translator.search_by_city...</option>
+            @{
+                foreach (var i in Model.Sity)
+                {
+                    <option value="@i">@i</option>
+                }
+            }
+        </select>
+        <button class="search__btn" type="button" onclick="Seach()"><i class="fas fa-search"></i><span>@Translator.search</span></button>
+    </form>
+</div>
+<div id="businessContent"></div>
 
+<script>
+    $(document).ready(function () {
+        selestPage(1);
+    });
+
+    function Seach() {
+        selestPage(1);
+    }
+    function selestPage(i) {
+        var a = {
+            page: i,
+            sity: $('#sity-search option:selected').val(),
+            category: $('#type-search option:selected').val()
+        };
+        $.ajax({
+            url: "/Home/BusinessSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#businessContent").html(data);
+            }
+        });
+    }
+</script>

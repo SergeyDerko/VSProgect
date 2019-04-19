@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using VSCore.Entity;
 
 namespace VSSite.Models.ForViews
 {
@@ -26,8 +26,36 @@ namespace VSSite.Models.ForViews
     /// <summary>
     /// модель, которая отдается в представение.
     /// </summary>
-    public class PageModel
+    public class BusinessPageModel
     {
+        public List<CategoryBusness> Category { get; set; }
+        public PageInfo PageInfo { get; set; }
+        public List<Business> Businesses { get; set; }
+        public List<string> Sity { get; set; }
+    }
+    public class PartnersPageModel
+    {
+        public List<Partner> Partners { get; set; }
+        public PageInfo PageInfo { get; set; }
+    }
+    public class NewsPageModel
+    {
+        public List<News> Newses { get; set; }
+        public PageInfo PageInfo { get; set; }
+    }
+    public class BusinessHelpersPageModel
+    {
+        public List<BusinessHelpers> BusinessHelperses { get; set; }
+        public PageInfo PageInfo { get; set; }
+    }
+    public class JobsHelpersPageModel
+    {
+        public List<Jobs> Jobses { get; set; }
+        public PageInfo PageInfo { get; set; }
+    }
+    public class UsefulsHelpersPageModel
+    {
+        public List<Useful> Usefuls { get; set; }
         public PageInfo PageInfo { get; set; }
     }
 }

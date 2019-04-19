@@ -79,11 +79,29 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на BUSINESSES.
+        /// </summary>
+        public static string BUSINESSES {
+            get {
+                return ResourceManager.GetString("BUSINESSES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Businesses of veterans.
         /// </summary>
         public static string Businesses_of_veterans {
             get {
                 return ResourceManager.GetString("Businesses_of_veterans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
         
@@ -106,6 +124,15 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на MENU.
+        /// </summary>
+        public static string MENU {
+            get {
+                return ResourceManager.GetString("MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на News.
         /// </summary>
         public static string News {
@@ -115,11 +142,65 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на There was nothing found on your request..
+        /// </summary>
+        public static string nothing_found {
+            get {
+                return ResourceManager.GetString("nothing_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Partners.
         /// </summary>
         public static string Partners {
             get {
                 return ResourceManager.GetString("Partners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на PARTNERS.
+        /// </summary>
+        public static string PARTNERS_titles {
+            get {
+                return ResourceManager.GetString("PARTNERS_titles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на search.
+        /// </summary>
+        public static string search {
+            get {
+                return ResourceManager.GetString("search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на search by city.
+        /// </summary>
+        public static string search_by_city {
+            get {
+                return ResourceManager.GetString("search_by_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на search by type.
+        /// </summary>
+        public static string search_by_type {
+            get {
+                return ResourceManager.GetString("search_by_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на select search type.
+        /// </summary>
+        public static string select_search_type {
+            get {
+                return ResourceManager.GetString("select_search_type", resourceCulture);
             }
         }
         

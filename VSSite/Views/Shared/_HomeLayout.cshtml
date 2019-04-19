@@ -9,28 +9,116 @@
     <link rel="icon" href="/Content/img/logo.png">
     <!-- css-libs (slick, animate ...)-->
     <link rel="stylesheet" type="text/css" href="/Content/libs-css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/Content//libs-css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/Content/libs-css/animate.css">
+    <link href="~/Content/about-us.css" rel="stylesheet" />
+    <link href="~/Content/business.css" rel="stylesheet" />
+    <link href="~/Content/form.css" rel="stylesheet" />
+    <link href="~/Content/infoblock.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/news.css" rel="stylesheet" />
+    <link href="~/Content/partners.css" rel="stylesheet" />
+    <link href="~/Content/useful.css" rel="stylesheet" />
+    <link href="~/Content/vacancy.css" rel="stylesheet" />
     <!-- jquery-->
     <script src="~/Scripts/libs/jquery.js"></script>
-    <!-- own stylesheet-->
-    <link rel="stylesheet" type="text/css" href="/Content/business.css">
+    <style>
+        .selected span {
+            font-size: 20px;
+            color: black;
+            font-weight: 700;
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(239, 243, 73, 0.39);
+            text-shadow: 0 0 3px white;
+            line-height: 28px;
+            position: relative;
+        }
+        .selected span:after,
+        .selected span:before{
+            display: block;
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            height: 1px;
+            width: 60%;
+            background-color: green;
+        }
+
+        .selected span:after {
+            bottom: -10px;
+        }
+
+        .selected span:before {
+            top: -10px;
+        }
+
+    </style>
 </head>
 <body>
     <!-- HEADER-->
     <!-- ↓↓↓ BEM-blocks: header (start) ↓↓↓-->
-<div class="header">
-    <input type="hidden" id="lang" value="@Translator.language"/>
-    <a class="header__logo" href="/Home/Index"><img class="header__logo-img" src="/Content/img/logo.png" alt="logo.png"></a>
-    <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a></div>
-    <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
-    <div class="language-switcher" data-language="ua">
-        <img class="language-switcher__img" src="/Content/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="/Content/img/uk.png" alt="en.png"><img class="language-switcher__img" src="/Content/img/ru.png" alt="ru.png">
-        <div class="language-switcher__shutter-ua" href="#"></div>
-        <div class="language-switcher__shutter-en" href="#"></div>
-        <div class="language-switcher__shutter-ru" href="#"></div>
+    <div class="header">
+        <input type="hidden" id="lang" value="@Translator.language" />
+        <a class="header__logo" href="/Home/Index"><img class="header__logo-img" src="/Content/img/logo.png" alt="logo.png"></a>
+        <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a></div>
+        <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
+        <div class="language-switcher" data-language="ua">
+            <img class="language-switcher__img" src="/Content/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="/Content/img/uk.png" alt="en.png"><img class="language-switcher__img" src="/Content/img/ru.png" alt="ru.png">
+            <div class="language-switcher__shutter-ua" href="#"></div>
+            <div class="language-switcher__shutter-en" href="#"></div>
+            <div class="language-switcher__shutter-ru" href="#"></div>
+        </div>
+        <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
+        <div class="header__menu">
+            <button class="header__menu-btn"><span>@Translator.MENU</span><img src="/Content/img/gear-wheel.png" alt="gear-wheel.png"></button>
+            <ul class="header__menu-list">
+                <li><a class="header__menu-link" href="index.html">@Translator.Home</a></li>
+                <li><a class="header__menu-link" href="/Home/Business">@Translator.Businesses_of_veterans</a></li>
+                <li><a class="header__menu-link" href="/Home/Help">@Translator.Business_Assistance</a></li>
+                <li><a class="header__menu-link" href="/Home/Jobs">@Translator.jobs</a></li>
+                <li><a class="header__menu-link" href="/Home/Useful">@Translator.useful</a></li>
+                <li><a class="header__menu-link" href="/Home/Partners">@Translator.Partners</a></li>
+                <li><a class="header__menu-link" href="/Home/AboutAs">@Translator.About_us</a></li>
+                <li><a class="header__menu-link" href="/Home/News">@Translator.News</a></li>
+            </ul>
+        </div>
     </div>
+
+    <!-- ↑↑↑ BEM-blocks: header (end) ↑↑↑-->
+    <!-- /HEADER-->
+    <!-- MAIN SECTION-->
+    <main class="main">
+        <!-- SECTION 1-->
+        <section class="main-section">
+            @RenderBody()
+            <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
+            <div class="banners-holder"><a class="place" href="#"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
+            <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
+        </section>
+        <!-- /SECTION 1-->
+    </main>
+    <section class="popups-section">
+        <!-- ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓-->
+        <div class="small-popup" id="popup-no-russian-language-suppurt">
+            <button class="small-popup__close-button" id="popup-no-russian-language-suppurt__close-button"><img class="small-popup__close-cross" src="/Content/img/cross.png" alt="cross.png"></button>
+            <h5 class="small-popup__header">Помилка 404...</h5>
+            <div class="small-popup__body">
+                <p>Вибачте, але патріотичний сервіс не підтримує мову окупантів.</p>
+                <p>Ми добре пам'ятаємо, як орки лізли на нашу землю під гаслами "защіти рускагаварящіх". На цій, ще не закінченій війні, уже загинуло більше 10 тисяч наших побратимів і просто цивільних людей...</p>
+            </div>
+            <div class="small-popup__buttons-area">
+                <button class="small-popup__button">Зрозуміло</button>
+            </div>
+            <div class="small-popup__background"><img class="small-popup__background-image" src="/Content/img/ornament.jpg" alt="ornament.jpg"></div>
+        </div>
+    </section>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
+
+            //смена языка
             var lang = $('#lang').val();
             if (lang == "en") {
                 $('.language-switcher__shutter-ua').css('height', '100%');
@@ -62,25 +150,6 @@
                 });
             });
 
-        });
-    </script>
-    <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
-    <div class="header__menu">
-        <button class="header__menu-btn"><span>МЕНЮ</span><img src="/Content/img/gear-wheel.png" alt="gear-wheel.png"></button>
-        <ul class="header__menu-list">
-            <li><a class="header__menu-link" href="index.html">Головна</a></li>
-            <li><a class="header__menu-link" href="/Home/Business">@Translator.Businesses_of_veterans</a></li>
-            <li><a class="header__menu-link" href="/Home/Help">@Translator.Business_Assistance</a></li>
-            <li><a class="header__menu-link" href="/Home/Jobs">@Translator.jobs</a></li>
-            <li><a class="header__menu-link" href="/Home/Useful">@Translator.useful</a></li>
-            <li><a class="header__menu-link" href="/Home/Partners">@Translator.Partners</a></li>
-            <li><a class="header__menu-link" href="/Home/AboutAs">@Translator.About_us</a></li>
-            <li><a class="header__menu-link" href="/Home/News">@Translator.News</a></li>
-        </ul>
-    </div>
-</div>
-    <script>
-$(document).ready(function () {
 
             /* ↓↓↓ зміна розмірів логотипу при прокрутці ↓↓↓ */
             if ($('.header').outerWidth() > 480) {
@@ -177,25 +246,80 @@ $(document).ready(function () {
                 isMemuOpen = false;
             }
         });
+
+
+        var bodyWidth;
+
+        $('.language-switcher__shutter-ru').click(function () {
+
+            // змінюємо зовнішній вигляд мовної панелі
+            $('.language-switcher__shutter-ua').css({ 'width': '50%', 'left': '0%' });
+            $('.language-switcher__shutter-en').css({ 'width': '50%', 'left': '50%' });
+            $('.language-switcher__shutter-ru').css({ 'display': 'none' });
+
+            // змінюємо положення московського прапора
+            var imageTop = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().top;
+            var imageLeft = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().left;
+            bodyWidth = $('body').outerWidth();
+
+            $('img.language-switcher__img[src="/Content/img/ru.png"]').remove();
+            $('body').append('<img class="language-switcher__img" src="/Content/img/ru.png">');
+            $('img.language-switcher__img[src="/Content/img/ru.png"]').css({
+                'position': 'absolute',
+                'zIndex': 8889,
+                'top': imageTop - 3,
+                'left': imageLeft - 88,
+                'cursor': 'pointer'
+            });
+            setTimeout(function () {
+                // переміщуємо московський прапор на центр екрана зверху
+                $('img.language-switcher__img[src="/Content/img/ru.png"]').css({
+                    'transition': 'left .5s',
+                    'left': bodyWidth / 2
+                })
+                    // по кліку - приховуємо прапор та показуємо повідомлення
+                    .bind('click mouseenter', function () {
+                        $(this).css({
+                            'transition': 'top .5s',
+                            'top': '-100%'
+                        });
+                        // поява підкладки
+                        $('.popups-section').css('display', 'block');
+
+                        setTimeout(function () {
+                            // поява спливаючого вікна
+                            $('#popup-no-russian-language-suppurt').css('top', '20px');
+                            // відмальовування потрібної кількості орнаментів
+                            var popupHeight = $('#popup-no-russian-language-suppurt').outerHeight(),
+                                ornamentHeight = $('.small-popup__background-image').outerHeight(),
+                                ornamentsAmount = Math.ceil(popupHeight / ornamentHeight);
+                            for (var i = 0; i < ornamentsAmount - 1; i++) {
+                                $('#popup-no-russian-language-suppurt .small-popup__background').append('<img class="small-popup__background-image" src="/Content/img/ornament.jpg", alt="ornament.jpg">');
+                            }
+
+                        }, 50);
+                    });
+            }, 100);
+        });
+
+        // навішування обробників на кнопки закриття
+        $('#popup-no-russian-language-suppurt__close-button, #popup-no-russian-language-suppurt button.small-popup__button').click(function () { closeNoRussianLanguageSuppurtPopup() });
+
+        function closeNoRussianLanguageSuppurtPopup() {
+            $('#popup-no-russian-language-suppurt').remove();
+            $('.popups-section').css('display', 'none');
+        }
+
+
     </script>
-    <!-- ↑↑↑ BEM-blocks: header (end) ↑↑↑-->
-    <!-- /HEADER-->
-    <!-- MAIN SECTION-->
-    <main class="main">
-        <!-- SECTION 1-->
-        <section class="main-section">
-            @RenderBody()
-            <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
-            <div class="banners-holder"><a class="place" href="form.html"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
-            <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
-        </section>
-        <!-- /SECTION 1-->
-    </main>
     <!-- /MAIN SECTION-->
     <!-- FOOTER-->
     <!-- /FOOTER-->
     <script src="~/Scripts/libs/fontawesome-all.js"></script>
     <!-- own js-->
     <script src="~/Scripts/business.js"></script>
+    <script src="~/Scripts/form.js"></script>
+    <script src="~/Scripts/index.js"></script>
+    <script src="~/Scripts/read-more-btn.js"></script>
 </body>
 </html>

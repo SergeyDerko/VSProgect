@@ -7,6 +7,15 @@ $('.search__type-btn').click(function(){
     $('.search__type-list').css('display','block');
     iMenuOpen = true
   }
+
+  var tempArr = $('#type-search option');
+  for (var i = 0; i < tempArr.length; i++) {
+      $(tempArr[i]).attr('selected', '').removeAttr('selected')
+  }
+  tempArr = $('#sity-search option');
+  for (var i = 0; i < tempArr.length; i++) {
+      $(tempArr[i]).attr('selected', '').removeAttr('selected')
+  }
 });
 
 $('.search__list-item').click(function(){

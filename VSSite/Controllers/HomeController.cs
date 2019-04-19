@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
+using Telerik.Windows.Documents.Flow.Model.Lists;
 using VSCore.Concrete;
 using VSCore.Entity;
+using VSSite.Models.ForViews;
 
 namespace VSSite.Controllers
 {
@@ -19,17 +23,48 @@ namespace VSSite.Controllers
         /// <returns></returns>
         public ActionResult Business()
         {
-            return View();
+            Context context = new Context();
+            BusinessPageModel model = new BusinessPageModel();
+          
+            List<string>list = new List<string>();
+            if (Resources.Translator.language == "ru")
+            {
+                foreach (var i in context.Businesses.GroupBy(x => x.City))
+                  list.Add(i.Key);
+                model.Category = context.CategoryBusnesses.ToList();
+            }
+            else
+            {
+                foreach (var i in context.Businesses.GroupBy(x => x.CityEn))
+                    list.Add(i.Key);
+                model.Category = context.CategoryBusnesses.ToList();
+            }
+            model.Sity = list;
+            return View(model);
         }
+
 
         /// <summary>
         /// Сортировка бизнессов
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Business(int page)
+        public ActionResult BusinessSort(int page,string sity, int category)
         {
-            return View();
+
+            Context context = new Context();
+            var tempBuis = context.Businesses.ToList();
+            #region Сортировки
+
+            if (!string.IsNullOrEmpty(sity) && sity != "oll")
+                tempBuis = Resources.Translator.language == "ru" ? tempBuis.Where(x => x.City == sity).ToList() : tempBuis.Where(x => x.CityEn == sity).ToList();
+            if (category != 0)
+                tempBuis = tempBuis.Where(x => x.Category.IdCategory == category).ToList();
+            #endregion
+            IEnumerable<Business> businesses = tempBuis.OrderByDescending(x=>x.DateAdd).Skip((page - 1) * 10).Take(10);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = tempBuis.Count };
+            BusinessPageModel model = new BusinessPageModel{Businesses = businesses.ToList(),PageInfo = pageInfo };
+            return PartialView("PartialBusiness",model);
         }
 
         /// <summary>
@@ -38,6 +73,7 @@ namespace VSSite.Controllers
         /// <returns></returns>
         public ActionResult Partners()
         {
+           
             return View();
         }
 
@@ -46,9 +82,14 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Partners(int page)
+        public ActionResult PartnersSort(int page)
         {
-            return View();
+            Context context = new Context();
+            var temp = context.Partners.ToList();
+            IEnumerable<Partner> businesses = temp.OrderByDescending(x => x.DateAdd).Skip((page - 1) * 5).Take(5);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = temp.Count };
+            PartnersPageModel model = new PartnersPageModel { Partners = businesses.ToList(), PageInfo = pageInfo };
+            return PartialView("PartialPartners", model);
         }
 
         /// <summary>
@@ -65,7 +106,7 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Jobs(int page)
+        public ActionResult JobsSort(int page)
         {
             return View();
         }
@@ -84,7 +125,7 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Useful(int page)
+        public ActionResult UsefulSort(int page)
         {
             return View();
         }
@@ -103,7 +144,7 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult News(int page)
+        public ActionResult NewsSort(int page)
         {
             return View();
         }
@@ -122,7 +163,7 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Help(int page)
+        public ActionResult HelpSort(int page)
         {
             return View();
         }

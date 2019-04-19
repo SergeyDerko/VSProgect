@@ -18,8 +18,10 @@ namespace VSSite.Models.ForViews
             TagBuilder tagFirst = new TagBuilder("a");
             tagFirst.MergeAttribute("onclick", "selestPage(1)");
             tagFirst.MergeAttribute("title", "start page");
-            tagFirst.InnerHtml = "&laquo;";
-            tagFirst.AddCssClass("btn btn-default");
+            tagFirst.InnerHtml =
+                "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-backward.png' alt='arrow-backward.png'>";
+
+            tagFirst.AddCssClass("pagination__link");
             result.Append(tagFirst);
             int count = 0;
 
@@ -31,13 +33,12 @@ namespace VSSite.Models.ForViews
                     TagBuilder tag = new TagBuilder("a");
                     tag.MergeAttribute("onclick", $"selestPage({i})");
                     tag.MergeAttribute("title", "page - " + i);
-                    tag.InnerHtml = i.ToString();
+                    tag.InnerHtml = "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><span class='pagination__pade-number'>"+i+"</span>";
                     if (i == pageInfo.PageNumber)
                     {
                         tag.AddCssClass("selected");
-                        tag.AddCssClass("btn-warning");
                     }
-                    tag.AddCssClass("btn btn-default");
+                    tag.AddCssClass("pagination__link");
                     result.Append(tag);
                 }
 
@@ -46,8 +47,8 @@ namespace VSSite.Models.ForViews
 
             tagLast.MergeAttribute("onclick", $"selestPage({pageInfo.TotalPages})");
             tagLast.MergeAttribute("title", "last page");
-            tagLast.InnerHtml = "&raquo;";
-            tagLast.AddCssClass("btn btn-default");
+            tagLast.InnerHtml = "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-forward.png' alt='arrow-forward.png'>"; 
+            tagLast.AddCssClass("pagination__link");
             result.Append(tagLast);
 
             return MvcHtmlString.Create(result.ToString());

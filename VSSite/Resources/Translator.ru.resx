@@ -141,4 +141,31 @@
   <data name="useful" xml:space="preserve">
     <value>Корисно</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Головна</value>
+  </data>
+  <data name="MENU" xml:space="preserve">
+    <value>МЕНЮ</value>
+  </data>
+  <data name="BUSINESSES" xml:space="preserve">
+    <value>БІЗНЕСИ</value>
+  </data>
+  <data name="nothing_found" xml:space="preserve">
+    <value>По вашому запиту, нічого не знайдено.</value>
+  </data>
+  <data name="PARTNERS_titles" xml:space="preserve">
+    <value>ПАРТНЕРИ</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>пошук</value>
+  </data>
+  <data name="search_by_city" xml:space="preserve">
+    <value>пошук по містах</value>
+  </data>
+  <data name="search_by_type" xml:space="preserve">
+    <value>пошук по видах</value>
+  </data>
+  <data name="select_search_type" xml:space="preserve">
+    <value>вибрати тип пошуку</value>
+  </data>
 </root>

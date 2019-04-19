@@ -905,3 +905,36 @@ body {
     font-size: 3rem;
   }
 }
+
+.selected span {
+    font-size: 20px;
+    color: black;
+    font-weight: 700;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(239, 243, 73, 0.39);
+    text-shadow: 0 0 3px white;
+    line-height: 28px;
+    position: relative;
+}
+.selected span:after,
+.selected span:before{
+    display: block;
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 1px;
+    width: 60%;
+    background-color: green;
+}
+
+.selected span:after {
+    bottom: -10px;
+}
+
+.selected span:before {
+    top: -10px;
+}

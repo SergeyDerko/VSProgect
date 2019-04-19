@@ -1,1 +1,34 @@
-﻿
+﻿@{
+    Layout = null;
+}
+@model  VSSite.Models.ForViews.BusinessPageModel
+@using VSSite.Models.ForViews
+@using VSSite.Resources;
+@if (!Model.Businesses.Any())
+{
+    <div style="text-align: center"><h1 style="font-size: 24px">@Translator.nothing_found</h1></div>
+}
+else
+{
+    <div class="business-wrapper">
+        @{
+            foreach (var i in Model.Businesses)
+            {
+                <a class="business" href="#" onclick="showBusiness()">
+                    <img class="business__bcg" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="business__img" src="/Images/@i.Logo" alt="atocarwash.jpg">
+                    @if (Translator.language == "ru")
+                    {
+                        <h3 class="business__name">@i.MainName</h3>
+                    }
+                    else
+                    {
+                        <h3 class="business__name">@i.MainNameEn</h3>
+                    }
+                </a>
+            }
+        }
+    </div>
+    <div class="pagination">
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("BusinessSort", new { page = x }))
+    </div>
+}

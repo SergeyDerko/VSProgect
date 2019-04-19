@@ -1,7 +1,25 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Partners";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<h1 class="main-section__header">@VSSite.Resources.Translator.PARTNERS_titles</h1>
+<div id="partnerContent"></div>
+<script>
+    $(document).ready(function () {
+        selestPage(1);
+    });
 
-<h2>Partners</h2>
-
+    function selestPage(i) {
+        var a = {
+            page: i
+        };
+        $.ajax({
+            url: "/Home/PartnersSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#partnerContent").html(data);
+            }
+        });
+    }
+</script>

@@ -141,4 +141,31 @@
   <data name="useful" xml:space="preserve">
     <value>Useful</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MENU" xml:space="preserve">
+    <value>MENU</value>
+  </data>
+  <data name="BUSINESSES" xml:space="preserve">
+    <value>BUSINESSES</value>
+  </data>
+  <data name="nothing_found" xml:space="preserve">
+    <value>There was nothing found on your request.</value>
+  </data>
+  <data name="PARTNERS_titles" xml:space="preserve">
+    <value>PARTNERS</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>search</value>
+  </data>
+  <data name="search_by_city" xml:space="preserve">
+    <value>search by city</value>
+  </data>
+  <data name="search_by_type" xml:space="preserve">
+    <value>search by type</value>
+  </data>
+  <data name="select_search_type" xml:space="preserve">
+    <value>select search type</value>
+  </data>
 </root>
