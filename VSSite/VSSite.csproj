@@ -232,6 +232,7 @@
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -424,6 +425,9 @@
     <Content Include="Views\Branch\AddNew.cshtml" />
     <Content Include="Views\Branch\Edit.cshtml" />
     <Content Include="Views\Branch\Index.cshtml" />
+    <Content Include="Views\Partner\Index.cshtml" />
+    <Content Include="Views\Partner\AddNew.cshtml" />
+    <Content Include="Views\Partner\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

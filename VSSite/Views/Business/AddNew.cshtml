@@ -289,7 +289,6 @@
     }
 
     function onSuccessLogo(e) {
-        alert(e.response.fileName);
         $("#fileNameBLogo").val(e.response.fileName);
         if (e.operation == "upload") {
             for (var i = 0; i < e.files.length; i++) {
@@ -310,7 +309,6 @@
         }
     }
     function onSuccessPhoto(e) {
-        alert(e.response.fileName);
         $("#fileNamePhoto").val(e.response.fileName);
         if (e.operation == "upload") {
             for (var i = 0; i < e.files.length; i++) {

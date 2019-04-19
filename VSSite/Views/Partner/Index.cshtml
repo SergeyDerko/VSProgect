@@ -1,0 +1,176 @@
+﻿@using Microsoft.Ajax.Utilities
+
+@{
+    ViewBag.Title = "Список партнеров";
+}
+
+<h2>Список партнеров</h2>
+<input type="hidden" id="idToDel" value="" />
+@(Html.Kendo().Grid<VSCore.Entity.Partner>()
+          .Name("grid")
+          .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
+          .Columns(columns =>
+          {
+              columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.Name #' height='62' width='auto'/>");
+              columns.Bound(c => c.Name).Title("NAME UA");
+              columns.Bound(c => c.City);
+              columns.Bound(c => c.Phone1);
+              columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+              columns.Command(command => {
+                  command.Custom("Info").Click("showDetails").Text("<span class='k-icon k-i-image-resize'></span>Подробно");
+                  command.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редактор"); 
+                  command.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Удалить");
+              }).Width(370);
+          })
+          .ToolBar(tb =>
+          {
+          tb.Template(@<text>
+                <div class="refreshBtnContainer">
+                    <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh" id="refreshPage"><span class="k-icon k-i-reload"></span></a>
+                </div>
+                <div class="refreshBtnContainer">
+                    <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Add" id="addNew"><span class="k-icon k-i-file-add"></span></a>
+                </div>
+            </text>);
+                })
+                .Pageable()
+                .Scrollable()
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(20)
+                    .Model(model => model.Id(p => p.PartnerId))
+                    .Read(read => read.Action("Partners_Read", "Partner"))
+      ))
+
+@(Html.Kendo().Dialog()
+          .Name("confirm")
+          .Visible(false)
+          .Title("Удаление партнера")
+          .Content("<p>Жалаете удалить данного партнера</p>")
+          .Width(350)
+          .Modal(true)
+          .Actions(act =>
+          {
+              act.Add().Text("Отмена").Primary(true);
+              act.Add().Text("Удалить").Action("onOK");
+          })
+      )
+
+@(Html.Kendo().Window().Name("Details")
+      .Title("Детали партнеров")
+      .Visible(false)
+      .Modal(true)
+      .Draggable(true)
+      .Width(600)       
+      )
+
+<script type="text/x-kendo-template" id="template">
+    <div id="details-container">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2>#= Name #</h2></div>
+            <div style="text-align: center;">
+                <image src="/Images/Logo/#= Logo #" height="250" width="auto"></image>
+            </div>
+                <em>Телефон 1: #= Phone1 #</em>
+                <dl>
+                    <dt>Город: #= City #</dt>
+                    <dt>Адрес: #= Address #</dt>
+                    <dt>Site: #= Site #</dt>
+                    <dt>Fb: #= Fb #</dt>
+                    <dt>Google: #= Google #</dt>
+                    <dt>Tw: #= Tw #</dt>
+                    <dt>Inst: #= Inst #</dt>
+
+                </dl>
+                <div class="panel-body">@Html.Raw("#=Description#")</div>
+        </div>
+    </div>
+</script>
+
+<script>
+    $(function() {
+        var grid = $("#grid");
+        grid.find(".k-grid-toolbar").on("click",
+            "#refreshPage",
+            function(e) {
+                e.preventDefault();
+                grid.data("kendoGrid").dataSource.read();
+            });
+        grid.find(".k-grid-toolbar").on("click",
+            "#addNew",
+            function() {
+                window.open(
+                    '/Partner/AddNew',
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            });
+
+    });
+
+    var detailsTemplate = kendo.template($("#template").html());
+
+    function showDetails(e) {
+        e.preventDefault();
+                
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        var wnd = $("#Details").data("kendoWindow");
+
+        wnd.content(detailsTemplate(dataItem));
+        wnd.center().open();
+    }
+
+    function openToDelete(e) {
+        e.preventDefault();
+        var tr = $(e.target).closest("tr"); // get the current table row (tr)
+        // get the data bound to the current table row
+        var data = this.dataItem(tr);
+        $("#idToDel").val(data.BusinessId);
+        var dialog = $("#confirm");
+        dialog.data("kendoDialog").open();
+    }
+
+    function openToEdit(e) {
+        e.preventDefault();
+        var tr = $(e.target).closest("tr");
+        var data = this.dataItem(tr);
+        window.open(
+            '/Partner/Edit/' + data.PartnerId,
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    }
+
+    function onOK() {
+        var a = { id: $("#idToDel").val() };
+        $.ajax({
+            type: "POST",
+            url: "/Partner/Delete",
+            data: a,
+            success: function() {
+                location.reload();
+            }
+        });
+    }
+
+</script>
+<style>
+    #grid .k-grid-toolbar
+    {
+        padding: .6em 1.3em .6em .4em;
+    }
+    .category-label
+    {
+        vertical-align: middle;
+        padding-right: .5em;
+    }
+    #category
+    {
+        vertical-align: middle;
+    }
+    .refreshBtnContainer {
+        display: inline-block;
+    }
+    .toolbar {
+        float: right;
+    }
+
+</style>

@@ -63,16 +63,22 @@
                                                         inner.Add().Text("Полезыне рубрики");
 
                                                     });
+                                                items.Add().Text("Партнеры")
+                                                    .Items(inner =>
+                                                    {
+                                                        inner.Add().Text("Список партнеров").Action("Index","Partner");
+                                                    });
                                                 items.Add().Text("Здравствуйте," + User.Identity.GetUserName())
                                                     .Items(inner =>
                                                     {
+                                                        inner.Add().Text("Про нас");
                                                         inner.Add().Text("Настройка").Action("Index", "Manage");
                                                         inner.Add().Text("Выход").Content(@<text>
                                                             @(Html.Kendo().Button()
-                                                                                                    .Name("primaryTextButton")
-                                                                                                    .HtmlAttributes(new { type = "button", @class = "k-primary" })
-                                                                                                    .Content("Выход")
-                                                                                                    .Events(ev => ev.Click("logout")))
+                                                              .Name("primaryTextButton")
+                                                              .HtmlAttributes(new { type = "button", @class = "k-primary" })
+                                                              .Content("Выход")
+                                                              .Events(ev => ev.Click("logout")))
                                                         </text>);
 
                                                 });
