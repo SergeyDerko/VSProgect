@@ -108,7 +108,12 @@ namespace VSSite.Controllers
         [HttpPost]
         public ActionResult JobsSort(int page)
         {
-            return View();
+            Context context = new Context();
+            var temp = context.Jobses.ToList();
+            IEnumerable<Jobs> jobs = temp.OrderByDescending(x => x.DateAdd).Skip((page - 1) * 5).Take(5);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = temp.Count };
+            JobsHelpersPageModel model = new JobsHelpersPageModel { Jobses = jobs.ToList(), PageInfo = pageInfo };
+            return PartialView("PartialJobs",model);
         }
 
         /// <summary>
@@ -146,7 +151,12 @@ namespace VSSite.Controllers
         [HttpPost]
         public ActionResult NewsSort(int page)
         {
-            return View();
+            Context context = new Context();
+            var temp = context.Newses.ToList();
+            IEnumerable<News> news = temp.OrderByDescending(x => x.DateNews).Skip((page - 1) * 5).Take(5);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = temp.Count };
+            NewsPageModel model = new NewsPageModel { Newses = news.ToList(), PageInfo = pageInfo };
+            return PartialView("PartialNews", model);
         }
 
         /// <summary>

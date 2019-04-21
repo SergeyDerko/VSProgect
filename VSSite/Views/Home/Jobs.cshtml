@@ -1,7 +1,27 @@
 ﻿
 @{
     ViewBag.Title = "Jobs";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>Jobs</h2>
+<h1 class="main-section__header">Вакансии</h1>
+<div id="jobsContent"></div>
+<script>
+    $(document).ready(function () {
+        selestPage(1);
+    });
 
+    function selestPage(i) {
+        var a = {
+            page: i
+        };
+        $.ajax({
+            url: "/Home/JobsSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#jobsContent").html(data);
+            }
+        });
+    }
+</script>

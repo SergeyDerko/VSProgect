@@ -1,7 +1,28 @@
 ﻿
 @{
     ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>News</h2>
+<h1 class="main-section__header">Новини</h1>
+<div id="newsContent"></div>
+<script>
+    $(document).ready(function () {
+        selestPage(1);
+    });
+
+    function selestPage(i) {
+        var a = {
+            page: i
+        };
+        $.ajax({
+            url: "/Home/NewsSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#newsContent").html(data);
+            }
+        });
+    }
+</script>
 

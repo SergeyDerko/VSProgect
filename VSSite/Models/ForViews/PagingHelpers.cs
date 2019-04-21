@@ -19,7 +19,7 @@ namespace VSSite.Models.ForViews
             tagFirst.MergeAttribute("onclick", "selestPage(1)");
             tagFirst.MergeAttribute("title", "start page");
             tagFirst.InnerHtml =
-                "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-backward.png' alt='arrow-backward.png'>";
+                "<img class='pagination__img' src='/Content/img/gear.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-backward.png' alt='arrow-backward.png'>";
 
             tagFirst.AddCssClass("pagination__link");
             result.Append(tagFirst);
@@ -33,7 +33,7 @@ namespace VSSite.Models.ForViews
                     TagBuilder tag = new TagBuilder("a");
                     tag.MergeAttribute("onclick", $"selestPage({i})");
                     tag.MergeAttribute("title", "page - " + i);
-                    tag.InnerHtml = "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><span class='pagination__pade-number'>"+i+"</span>";
+                    tag.InnerHtml = "<img class='pagination__img' src='/Content/img/gear.png'><span class='pagination__pade-number'>"+i+"</span>";
                     if (i == pageInfo.PageNumber)
                     {
                         tag.AddCssClass("selected");
@@ -47,7 +47,7 @@ namespace VSSite.Models.ForViews
 
             tagLast.MergeAttribute("onclick", $"selestPage({pageInfo.TotalPages})");
             tagLast.MergeAttribute("title", "last page");
-            tagLast.InnerHtml = "<img class='pagination__img' src='/Content/img/gear-wheel.png' alt='gear-wheel.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-forward.png' alt='arrow-forward.png'>"; 
+            tagLast.InnerHtml = "<img class='pagination__img' src='/Content/img/gear.png'><img class='pagination__pade-arrow' src='/Content/img/arrow-forward.png' alt='arrow-forward.png'>"; 
             tagLast.AddCssClass("pagination__link");
             result.Append(tagLast);
 

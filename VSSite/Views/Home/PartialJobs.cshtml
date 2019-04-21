@@ -1,1 +1,196 @@
-﻿
+﻿@{
+    Layout = null;
+}
+@model  JobsHelpersPageModel
+@using VSSite.Models.ForViews
+@using VSSite.Resources;
+@if (!Model.Jobses.Any())
+{
+    <div style="text-align: center"><h1 style="font-size: 24px">@Translator.nothing_found</h1></div>
+}
+else
+{
+    foreach (var i in Model.Jobses)
+    {
+        <div class="infoblock">
+            @if (Translator.language == "ru")
+            {
+                <h3 class="infoblock__header">@i.TitleJobs</h3>
+            }
+            else
+            {
+                <h3 class="infoblock__header">@i.TitleEuJobs</h3>
+            }
+
+            <div class="infoblock__img-holder">
+                <img class="infoblock__img-marker" src="/Content/img/gear.png" alt="">
+                <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="~/Images/Logo/@i.LogoJobs" alt=""></div>
+            </div>
+            <div class="infoblock__content-holder">
+                <div class="infoblock__text">
+                    @if (Translator.language == "ru")
+                    {
+                        <p>@Html.Raw(i.DescriptionJobs)</p>
+                    }
+                    else
+                    {
+                        <p>@Html.Raw(i.DescriptionEnJobs)</p>
+                    }
+
+                </div>
+                <div class="infoblock__social-btns-area">
+                    @if (!string.IsNullOrEmpty(i.Fb))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook"></a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(i.Inst))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Inst" target="_blank"><img class="infoblock__social-img" src="/Content/img/instagram.png" alt="instagram"></a>
+                    }
+
+                    @if (!string.IsNullOrEmpty(i.Tw))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Tw" target="_blank"><img class="infoblock__social-img" src="/Content/img/twitter.png" alt="twitter"></a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="pagination">
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("JobsSort", new { page = x }))
+    </div>
+}
+<input type="hidden" id="lang" value="@Translator.language" />
+<script>
+    var textElemStartHeight = 105;
+    var arrOfTextElemsStatus = [];
+
+    var arrOfTextElems = $('.infoblock__text');
+    var lang = $('#lang').val();
+    if (lang == 'ru') {
+        var html = '<div class="infoblock__text-cover"></div>\
+              <div class="infoblock__text-btns-wrapper">\
+                <button class="infoblock__text-btn" onclick="toggleInfoBlock(this)" data-close="">... читати далі</button>\
+              </div>';
+    } else {
+        var html = '<div class="infoblock__text-cover"></div>\
+              <div class="infoblock__text-btns-wrapper">\
+                <button class="infoblock__text-btn" onclick="toggleInfoBlock(this)" data-close="">... read more</button>\
+              </div>';
+    }
+
+
+        for (var i = 0; i < arrOfTextElems.length; i++) {
+            arrOfTextElemsStatus.push(false);
+            if ($(arrOfTextElems[i]).outerHeight() > textElemStartHeight) {
+                $(arrOfTextElems[i]).append(html);
+                $(arrOfTextElems[i]).css('height', textElemStartHeight);
+            }
+        }
+
+
+
+    function toggleInfoBlock(_this) {
+        var THIS = _this;
+        var arrOfTextElems = $('.infoblock__text');
+        var lang = $('#lang').val();
+        for (var i = 0; i < arrOfTextElems.length; i++) {
+
+            if ($(arrOfTextElems[i])[0] == $(THIS).parent().parent('.infoblock__text')[0]) {
+
+                if (arrOfTextElemsStatus[i] == false) {
+                    // якщо блок закритий
+                    // проанімувати розкриття
+                    var tempStartHeight = $(THIS).parent().parent('.infoblock__text').css('height');
+                    $(THIS).parent().parent('.infoblock__text').css('height', 'auto');
+                    var tempFinishHeight = $(THIS).parent().parent('.infoblock__text').outerHeight() + 30;
+                    $(THIS).parent().parent('.infoblock__text').css('height', tempStartHeight);
+                    $(THIS).parent().parent('.infoblock__text').css({ 'height': tempFinishHeight });
+                    // замінити текст кнопки
+                    if (lang == 'ru') {
+                        $(THIS).text('згорнути');
+                    } else {
+                        $(THIS).text('collapse');
+                    }
+
+                    // прибрати засвітлення
+                    $(THIS).parent().siblings('.infoblock__text-cover').css('display', 'none');
+                    // змінити прапор
+                    arrOfTextElemsStatus[i] = true;
+
+                    // якщо відкрито 2+ блоків - додати кнопку "закрити все"
+                    var count = 0;
+                    for (var i = 0; i < arrOfTextElemsStatus.length; i++) {
+                        if (arrOfTextElemsStatus[i] == true) count++;
+                        // якщо відкрито 2+ блоків
+                        if (count > 1) {
+                            for (var j = 0; j < arrOfTextElemsStatus.length; j++) {
+                                // якщо блок розкритий
+                                if (arrOfTextElemsStatus[j] == true) {
+                                    // якщо в блоці ще нема кнопки "згорнути все"
+                                    if ($(arrOfTextElems[j]).find('button[data-closeall]').length == 0) {
+                                        if (lang == 'ru') {
+                                            $(arrOfTextElems[j]).children('.infoblock__text-btns-wrapper')
+                                                .append('<button class="infoblock__text-btn" onclick="closeAllInfoBlocks()" data-closeall="">згорнути все</button>');
+                                        } else {
+                                            $(arrOfTextElems[j]).children('.infoblock__text-btns-wrapper')
+                                                .append('<button class="infoblock__text-btn" onclick="closeAllInfoBlocks()" data-closeall="">collapse all</button>');
+                                        }
+
+                                    }
+                                }
+                            }
+                            return;
+                        }
+                    }
+
+                    return;
+                } else {
+                    // якщо блок розкритий
+                    // проанімувати закриття
+                    $(THIS).parent().parent('.infoblock__text').css('height', textElemStartHeight);
+                    // додати засвітлення
+                    $(THIS).parent().siblings('.infoblock__text-cover').css('display', 'block');
+                    // замінити текст кнопки
+                    if (lang == 'ru') {
+                        $(THIS).text('... читати далі');
+                    } else {
+                        $(THIS).text('... read more');
+                    }
+
+                    // змінити прапор
+                    arrOfTextElemsStatus[i] = false;
+                    // якщо поруч є кнопка "згорнути все" - прибрати її
+                    $(arrOfTextElems[i]).find('button[data-closeall]').remove();
+                }
+            }
+        }
+    }
+
+    function closeAllInfoBlocks() {
+        var arrOfTextElems = $('.infoblock__text'),
+            arrOfClosebtns = ('button[data-close]'),
+            arrOfCloseAllBtns = ('button[data-closeall]');
+        var lang = $('#lang').val();
+        // видалити усі кнопки "згорнути все"
+        $(arrOfCloseAllBtns).remove();
+        // у кнопок "згорнути" замінити текст
+        if (lang == 'ru') {
+            $(arrOfClosebtns).text('... читати далі');
+        } else {
+            $(arrOfClosebtns).text('... read more');
+        }
+
+        // повернути блокам початкову висоту
+        $(arrOfTextElems).css('height', textElemStartHeight);
+        // показати засвітлення
+        $(arrOfClosebtns).parent().siblings('.infoblock__text-cover').css('display', 'block');
+        // записати зміни в масиві станів
+        for (var i = 0; i < arrOfTextElemsStatus.length; i++) {
+            arrOfTextElemsStatus[i] = false;
+        }
+    }
+</script>
