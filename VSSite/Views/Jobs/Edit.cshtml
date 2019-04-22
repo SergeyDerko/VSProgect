@@ -1,10 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Редактор партнера";
+    ViewBag.Title = "Редактор работы";
 }
-@model VSCore.Entity.Partner
-<h2>Редактор партнера</h2>
-
+@model VSCore.Entity.Jobs
+<h2>Редактор работы</h2>
 
 <!DOCTYPE html>
 <html>
@@ -18,8 +17,8 @@
     <br />
     <br />
     <div class="container-fluid">
-        <input type="hidden" id="fileNameBLogo" value="@Model.Logo" />
-        <input type="hidden" id="buisnesId" value="@Model.PartnerId" />
+        <input type="hidden" id="fileNameBLogo" value="@Model.LogoJobs" />
+        <input type="hidden" id="buisnesId" value="@Model.JobsId" />
         <div class="row">
             <div class="col-md-12">
                 <div class="panel">
@@ -48,7 +47,7 @@
                                 <tr>
                                     <td></td>
                                     <td style="text-align: center">
-                                        <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" />
+                                        <img src="~/Images/Logo/@Model.LogoJobs" height="150" width="auto" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -57,9 +56,9 @@
                             <tbody>
                                 <tr>
                                     <td>MainNameUA</td>
-                                    <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.Name).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.TitleJobs).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td>MainNameEn</td>
-                                    <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.NameEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.TitleEuJobs).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
@@ -67,12 +66,16 @@
                                     <td>AddressEn</td>
                                     <td>@(Html.Kendo().TextBox().Name("addressEn").Value(@Model.AddressEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
-                                <tr>
-                                    <td>City</td>
-                                    <td>@(Html.Kendo().TextBox().Name("city").Value(@Model.City).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td>CityEn</td>
-                                    <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>@(Html.Kendo().TextBox().Name("city").Value(@Model.City).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                <td>CityEn</td>
+                                <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>@(Html.Kendo().TextBox().Name("email").Value(@Model.EmailJobs).HtmlAttributes(new {style = "display:block; width:100%" }))</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -124,25 +127,25 @@
                     <div class="panel-heading">Body</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                              .Name("bodyUa")
-                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                              .Tools(tools => tools
-                                                  .Clear()
-                                                  .Bold().Italic().Underline().Strikethrough()
-                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                                  .InsertUnorderedList().InsertOrderedList()
-                                                  .Outdent().Indent()
-                                                  .CreateLink().Unlink()
-                                                  .SubScript()
-                                                  .SuperScript()
-                                                  .TableEditing()
-                                                  .ViewHtml()
-                                                  .CleanFormatting()
-                                                  .FontName()
-                                                  .FontSize()
-                                                  .FontColor().BackColor()
-                                              )
-                                      .Value(Model.Description)
+                                                      .Name("bodyUa")
+                                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                                      .Tools(tools => tools
+                                                          .Clear()
+                                                          .Bold().Italic().Underline().Strikethrough()
+                                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                          .InsertUnorderedList().InsertOrderedList()
+                                                          .Outdent().Indent()
+                                                          .CreateLink().Unlink()
+                                                          .SubScript()
+                                                          .SuperScript()
+                                                          .TableEditing()
+                                                          .ViewHtml()
+                                                          .CleanFormatting()
+                                                          .FontName()
+                                                          .FontSize()
+                                                          .FontColor().BackColor()
+                                                      )
+                                              .Value(Model.DescriptionJobs)
                         )
                     </div>
                 </div>
@@ -150,25 +153,25 @@
                     <div class="panel-heading">Body EN</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                              .Name("bodyEn")
-                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                              .Tools(tools => tools
-                                                  .Clear()
-                                                  .Bold().Italic().Underline().Strikethrough()
-                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                                  .InsertUnorderedList().InsertOrderedList()
-                                                  .Outdent().Indent()
-                                                  .CreateLink().Unlink()
-                                                  .SubScript()
-                                                  .SuperScript()
-                                                  .TableEditing()
-                                                  .ViewHtml()
-                                                  .CleanFormatting()
-                                                  .FontName()
-                                                  .FontSize()
-                                                  .FontColor().BackColor()
-                                              )
-                                      .Value(Model.DescriptionEn)
+                                                      .Name("bodyEn")
+                                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                                      .Tools(tools => tools
+                                                          .Clear()
+                                                          .Bold().Italic().Underline().Strikethrough()
+                                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                          .InsertUnorderedList().InsertOrderedList()
+                                                          .Outdent().Indent()
+                                                          .CreateLink().Unlink()
+                                                          .SubScript()
+                                                          .SuperScript()
+                                                          .TableEditing()
+                                                          .ViewHtml()
+                                                          .CleanFormatting()
+                                                          .FontName()
+                                                          .FontSize()
+                                                          .FontColor().BackColor()
+                                                      )
+                                              .Value(Model.DescriptionEnJobs)
                         )
                     </div>
                 </div>
@@ -198,6 +201,7 @@
         var _cityEn = $("#cityEn").val();
         var _city = $("#city").val();
         var _id = $("#buisnesId").val();
+        var _email = $("#email").val();
 
         var data = {
             id:_id,
@@ -218,11 +222,12 @@
             instUrl:_instUrl,
             mapUrl:_mapUrl,
             city: _city,
-            cityEn: _cityEn
+            cityEn: _cityEn,
+            email: _email
         };
         $.ajax({
             type: "POST",
-            url: "/Partner/Save",
+            url: "/Jobs/Save",
             data: data,
             success: function() {
                 window.close();
