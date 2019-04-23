@@ -1,0 +1,92 @@
+﻿@model IEnumerable<VSCore.Entity.PlacementOnSite>
+@{
+    ViewBag.Title = "Заявки";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<h2>Заявки</h2>
+<br />
+<br />
+<br />
+@foreach (var i in Model)
+{
+   <div class="panel panel-default">
+        <div class="panel-heading" style="display: flex; justify-content: space-between">
+            <strong style="flex-grow: 1">ID: @i.Id - @i.NameBrand - @i.NameDirector</strong>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Logo</td>
+                        <td style="text-align: center"><img src="~/Images/Temp/@i.Logo" height="100" width="auto" /></td>
+                        <td>Photo</td>
+                        <td style="text-align: center"><img src="~/Images/Temp/@i.Photo" height="100" width="auto" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped table-bordered">
+                <tbody>
+                <tr>
+                    <td>Email</td>
+                    <td>@i.Email</td>
+                    <td>Phone1</td>
+                    <td>@i.Phone1</td>
+                </tr>
+                <tr>
+                    <td>CityEn</td>
+                    <td>@i.CityEn</td>
+                    <td>Phone2</td>
+                    <td>@i.Phone2</td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>@i.City</td>
+                    <td>Phone3</td>
+                    <td>@i.Phone3</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped table-bordered">
+                <tbody>
+                <tr>
+                    <td>Site</td>
+                    <td>@i.Site</td>
+                    <td>Fb</td>
+                    <td>@i.Fb</td>
+                </tr>
+                <tr>
+                    <td>Google</td>
+                    <td>@i.Google</td>
+                    <td>Tw</td>
+                    <td>@i.Tw</td>
+                </tr>
+                <tr>
+                    <td>Inst</td>
+                    <td>@i.Inst</td>
+                    <td>Map</td>
+                    <td>@i.Map</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="panel panel-info">
+                <div class="panel-heading">BrandSens</div>
+                <div class="panel-body">@i.BrandSens</div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">Deskription</div>
+                <div class="panel-body">@i.Deskription</div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">HistoryOfBrand</div>
+                <div class="panel-body">@i.HistoryOfBrand</div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">ContactToAnsver</div>
+                <div class="panel-body">@i.ContactToAnsver</div>
+            </div>
+        </div>
+   </div>
+}

@@ -261,6 +261,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PartnerController.cs" />
+    <Compile Include="Controllers\PlacementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -352,6 +353,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\fsack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Temp\fsack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\libs\bootstrap.js" />
@@ -460,6 +464,7 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\AddNew.cshtml" />
+    <Content Include="Views\Placement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

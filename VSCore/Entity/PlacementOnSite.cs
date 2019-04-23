@@ -16,22 +16,27 @@ namespace VSCore.Entity
         public string Logo { get; set; }
         public string Email { get; set; }
         public string Photo { get; set; }
+
         /// <summary>
         /// Имя-Фамилия владельца
         /// </summary>
         public string NameDirector { get; set; }
+
         /// <summary>
         /// Описание бизнеса
         /// </summary>
         public string Deskription { get; set; }
+
         /// <summary>
         /// Пример бизнеса
         /// </summary>
         public int IdBusnessAsExample { get; set; }
+
         /// <summary>
         /// Суть бизнеса
         /// </summary>
         public string BrandSens { get; set; }
+
         /// <summary>
         /// История создания бизнеса
         /// </summary>
@@ -41,6 +46,7 @@ namespace VSCore.Entity
         /// ФИО и контакты кому звонить для пояснений
         /// </summary>
         public string ContactToAnsver { get; set; }
+
         /// <summary>
         /// Адресс сайта
         /// </summary>
