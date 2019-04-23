@@ -12,81 +12,122 @@
 <br />
 @foreach (var i in Model)
 {
-   <div class="panel panel-default">
-        <div class="panel-heading" style="display: flex; justify-content: space-between">
-            <strong style="flex-grow: 1">ID: @i.Id - @i.NameBrand - @i.NameDirector</strong>
-        </div>
-        <div class="panel-body">
-            <table class="table table-striped table-bordered">
-                <tbody>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading header" style="display: flex; justify-content: space-between">
+                <strong style="flex-grow: 1">ID: @i.Id - @i.NameBrand - @i.NameDirector</strong> @Html.ActionLink("Delete", "Delete", "Placement", new { id = i.Id }, new { @class = "btn btn-danger" })
+            </div>
+
+            <div class="panel-body content">
+                <table class="table table-striped table-bordered">
+                    <tbody>
                     <tr>
                         <td>Logo</td>
                         <td style="text-align: center"><img src="~/Images/Temp/@i.Logo" height="100" width="auto" /></td>
                         <td>Photo</td>
                         <td style="text-align: center"><img src="~/Images/Temp/@i.Photo" height="100" width="auto" /></td>
                     </tr>
-                </tbody>
-            </table>
-            <table class="table table-striped table-bordered">
-                <tbody>
-                <tr>
-                    <td>Email</td>
-                    <td>@i.Email</td>
-                    <td>Phone1</td>
-                    <td>@i.Phone1</td>
-                </tr>
-                <tr>
-                    <td>CityEn</td>
-                    <td>@i.CityEn</td>
-                    <td>Phone2</td>
-                    <td>@i.Phone2</td>
-                </tr>
-                <tr>
-                    <td>City</td>
-                    <td>@i.City</td>
-                    <td>Phone3</td>
-                    <td>@i.Phone3</td>
-                </tr>
-                </tbody>
-            </table>
-            <table class="table table-striped table-bordered">
-                <tbody>
-                <tr>
-                    <td>Site</td>
-                    <td>@i.Site</td>
-                    <td>Fb</td>
-                    <td>@i.Fb</td>
-                </tr>
-                <tr>
-                    <td>Google</td>
-                    <td>@i.Google</td>
-                    <td>Tw</td>
-                    <td>@i.Tw</td>
-                </tr>
-                <tr>
-                    <td>Inst</td>
-                    <td>@i.Inst</td>
-                    <td>Map</td>
-                    <td>@i.Map</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="panel panel-info">
-                <div class="panel-heading">BrandSens</div>
-                <div class="panel-body">@i.BrandSens</div>
-            </div>
-            <div class="panel panel-info">
-                <div class="panel-heading">Deskription</div>
-                <div class="panel-body">@i.Deskription</div>
-            </div>
-            <div class="panel panel-info">
-                <div class="panel-heading">HistoryOfBrand</div>
-                <div class="panel-body">@i.HistoryOfBrand</div>
-            </div>
-            <div class="panel panel-info">
-                <div class="panel-heading">ContactToAnsver</div>
-                <div class="panel-body">@i.ContactToAnsver</div>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>Email</td>
+                        <td>@i.Email</td>
+                        <td>Phone1</td>
+                        <td>@i.Phone1</td>
+                    </tr>
+                    <tr>
+                        <td>CityEn</td>
+                        <td>@i.CityEn</td>
+                        <td>Phone2</td>
+                        <td>@i.Phone2</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>@i.City</td>
+                        <td>Phone3</td>
+                        <td>@i.Phone3</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>Site</td>
+                        <td>@i.Site</td>
+                        <td>Fb</td>
+                        <td>@i.Fb</td>
+                    </tr>
+                    <tr>
+                        <td>Google</td>
+                        <td>@i.Google</td>
+                        <td>Tw</td>
+                        <td>@i.Tw</td>
+                    </tr>
+                    <tr>
+                        <td>Inst</td>
+                        <td>@i.Inst</td>
+                        <td>Map</td>
+                        <td>@i.Map</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="panel panel-info">
+                    <div class="panel-heading">BrandSens</div>
+                    <div class="panel-body">@i.BrandSens</div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Deskription</div>
+                    <div class="panel-body">@i.Deskription</div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">HistoryOfBrand</div>
+                    <div class="panel-body">@i.HistoryOfBrand</div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">ContactToAnsver</div>
+                    <div class="panel-body">@i.ContactToAnsver</div>
+                </div>
             </div>
         </div>
-   </div>
+    </div>
+    <br/>
 }
+<script>
+    $(".header").click(function () {
+
+        $header = $(this);
+        //getting the next element
+        $content = $header.next();
+        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+        $content.slideToggle(500, function () {
+            //execute this after slideToggle is done
+            //change text of header based on visibility of content div
+            //$header.text(function () {
+            //    //change text based on condition
+            //    return $content.is(":visible") ? "Collapse" : "Expand";
+            //});
+        });
+
+    });
+</script>
+<style>
+    .container {
+        width:100%;
+        border:1px solid #d3d3d3;
+    }
+    .container div {
+        width:100%;
+    }
+    .container .header {
+        background-color:#d3d3d3;
+        padding: 2px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .container .content {
+        display: none;
+        padding : 5px;
+    }
+</style>

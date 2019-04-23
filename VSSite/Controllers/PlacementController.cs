@@ -17,5 +17,20 @@ namespace VSSite.Controllers
 
             return View(model);
         }
+
+
+        public ActionResult Delete(int id)
+        {
+            using (Context context = new Context())
+            {
+                var toRemove = context.PlacementOnSites.FirstOrDefault(x => x.Id == id);
+                if (toRemove != null)
+                {
+                    context.PlacementOnSites.Remove(toRemove);
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
