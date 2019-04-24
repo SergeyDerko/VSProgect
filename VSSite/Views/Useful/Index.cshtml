@@ -1,0 +1,49 @@
+﻿
+@(Html.Kendo().Grid<VSCore.Entity.UsefulRubrics>()
+      .Name("grid")
+      .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.Picture).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Picture#' alt='#: data.RubName #' height='62' width='auto'/>").Title("LOGO");
+        columns.Bound(c => c.RubName).Title("RubName");
+        columns.Bound(c => c.RubNameEu).Title("RubNameEu");
+        columns.Command(command => { command.Edit().Text("Редактировать"); command.Destroy().Text("Удалить"); }).Width(300).Title("Действия");
+      })
+      .ToolBar(toolbar => {
+            toolbar.Create();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("RubEdit"))
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p => p.RubricsId))
+          .Read(read => read.Action("UsefulRubricses_Read", "Useful"))
+          .Create(create => create.Action("UsefulRubricses_Create", "Useful"))
+          .Update(update => update.Action("UsefulRubricses_Update", "Useful"))
+          .Destroy(destroy => destroy.Action("UsefulRubricses_Destroy", "Useful"))
+      )
+      )
+
+<script>
+    function onSuccess(e) {
+        // alert(e.response.fileName);
+        $("#Picture").val(e.response.fileName).trigger("change");
+        if (e.operation == "upload") {
+            for (var i = 0; i < e.files.length; i++) {
+                var file = e.files[i].rawFile;
+
+                if (file) {
+                    var reader = new FileReader();
+
+                    reader.onloadend = function () {
+                        $("<div class='product'><img src=" + this.result + " /></div>").appendTo($("#products"));
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+        if (e.operation == "remove") { }
+    }
+</script>

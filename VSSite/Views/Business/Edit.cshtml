@@ -239,7 +239,7 @@
         var _videoUrl = $("#videoUrl").val();
         var _cityEn = $("#cityEn").val();
         var _city = $("#city").val();
-        var _id = $("$buisnesId").val();
+        var _id = $("#buisnesId").val();
 
         var data = {
             id:_id,
@@ -269,7 +269,10 @@
         $.ajax({
             type: "POST",
             url: "/Business/Save",
-            data: data
+            data: data,
+            success: function () {
+                window.close();
+            }
         });
 
     }

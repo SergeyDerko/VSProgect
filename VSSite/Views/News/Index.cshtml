@@ -22,7 +22,8 @@
                 @if (!string.IsNullOrEmpty(i.Video))
                 {
                     @(Html.Kendo().MediaPlayer()
-                                  .AutoPlay(false)
+                                  .
+                (false)
                                   .Navigatable(true)
                                   .Media(m => m
                                       .Title(i.Title)

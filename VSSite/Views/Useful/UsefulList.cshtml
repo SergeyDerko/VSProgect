@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Полезное";
+}
+
+<h2>Полезное</h2>
+<input type="hidden" id="idToDel" value="" />
+
+@(Html.Kendo().Grid<VSCore.Entity.Useful>()
+      .Name("grid")
+      .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.Title #' height='62' width='auto'/>").Title("Лого");
+          columns.Bound(c => c.Title).Title("NAME UA");
+          columns.Bound(c => c.Email).Title("Email");
+          columns.Bound(c => c.City).Title("Город");
+          columns.Bound(c => c.Phone1).Title("Телефон");
+          columns.Bound(c => c.UsefulRubrics).Title("Рубрика");
+          columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+          columns.Command(command =>
+          {
+              command.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редактор");
+              command.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Удалить");
+          });
+      })
+      .ToolBar(tb =>
+      {
+          tb.Template(@<text>
+                          <div class="refreshBtnContainer">
+                              <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh" id="refreshPage"><span class="k-icon k-i-reload"></span></a>
+                          </div>
+                          <div class="refreshBtnContainer">
+                              <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Add" id="addNew"><span class="k-icon k-i-file-add"></span></a>
+                          </div>
+                       </text>);
+      })
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .PageSize(20)
+                        .Model(model => model.Id(p => p.UsefulId))
+                        .Read(read => read.Action("Useful_Read", "Useful"))
+      ))
+
+
+
+@(Html.Kendo().Dialog()
+          .Name("confirm")
+          .Visible(false)
+          .Title("Удаление")
+          .Content("<p>Жалаете удалить?</p>")
+          .Width(300)
+          .Modal(true)
+          .Actions(act =>
+          {
+              act.Add().Text("Отмена").Primary(true);
+              act.Add().Text("Удалить").Action("onOK");
+          })
+)
+<script>
+    $(function() {
+        var grid = $("#grid");
+        grid.find(".k-grid-toolbar").on("click",
+            "#refreshPage",
+            function(e) {
+                e.preventDefault();
+                grid.data("kendoGrid").dataSource.read();
+            });
+        grid.find(".k-grid-toolbar").on("click",
+            "#addNew",
+            function() {
+                window.open(
+                    '/Useful/AddNew',
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            });
+
+    });
+
+    function openToDelete(e) {
+        e.preventDefault();
+        var tr = $(e.target).closest("tr"); // get the current table row (tr)
+        // get the data bound to the current table row
+        var data = this.dataItem(tr);
+        $("#idToDel").val(data.BusinessId);
+        var dialog = $("#confirm");
+        dialog.data("kendoDialog").open();
+    }
+
+    function onOK() {
+        var a = { id: $("#idToDel").val() };
+        $.ajax({
+            type: "POST",
+            url: "/Useful/Delete",
+            data: a,
+            success: function() {
+                location.reload();
+            }
+        });
+    }
+
+    function openToEdit(e) {
+        e.preventDefault();
+        var tr = $(e.target).closest("tr");
+        var data = this.dataItem(tr);
+        window.open(
+            '/Useful/EditUseful/' + data.UsefulId,
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    }
+</script>
+<style>
+    #grid .k-grid-toolbar {
+        padding: .6em 1.3em .6em .4em;
+    }
+
+    .category-label {
+        vertical-align: middle;
+        padding-right: .5em;
+    }
+
+    #category {
+        vertical-align: middle;
+    }
+
+    .refreshBtnContainer {
+        display: inline-block;
+    }
+
+    .toolbar {
+        float: right;
+    }
+</style>
+

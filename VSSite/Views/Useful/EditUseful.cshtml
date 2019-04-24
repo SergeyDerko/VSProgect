@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Редактирование подразделения";
+    ViewBag.Title = "Редактор";
 }
-@model VSCore.Entity.Branch
+@model VSCore.Entity.Useful
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,10 @@
 <body>
     <br />
     <br />
-<br />
-<h2>Редактирование подразделения</h2>
+    <br />
     <div class="container-fluid">
         <input type="hidden" id="fileNameBLogo" value="@Model.Logo" />
-        <input type="hidden" id="fileNamePhoto" value="@Model.Photo" />
-        <input type="hidden" id="buisnesId" value="@Model.BranchId" />
+        <input type="hidden" id="buisnesId" value="@Model.UsefulId" />
         <div class="row">
             <div class="col-md-12">
                 <div class="panel">
@@ -50,25 +49,15 @@
                                         <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" />
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>PHOTO</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td style="text-align: center">
-                                        <img src="~/Images/Photo/@Model.Photo" height="150" width="auto" />
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
                                     <td>MainNameUA</td>
-                                    <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.MainName).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.Title).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td>MainNameEn</td>
-                                    <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.MainNameEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                    <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.TitleEu).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
@@ -82,6 +71,10 @@
                                     <td>CityEn</td>
                                     <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
+                                <tr>
+                                    <td>Video</td>
+                                    <td>@(Html.Kendo().TextBox().Name("videoUrl").Value(@Model.Video).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -91,17 +84,18 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>В бизнесе - (@Model.Business.MainName)</td>
+                                    <td>Категория бизнеса - (@Model.UsefulRubrics.RubName)</td>
                                     <td>
                                         @(Html.Kendo().DropDownList()
-                                              .Name("category")
-                                              .DataTextField("BuisnesName")
-                                              .DataValueField("BuisnesId")
-                                              .DataSource(s =>
-                                              {
-                                                  s.Read(rd => rd.Action("GetBuisnesList", "Branch"));
-                                              })
-                                              )
+                                                              .Name("category")
+                                                              .DataTextField("CategoryName")
+                                                              .DataValueField("CategoryId")
+                                                              .DataSource(s =>
+                                                              {
+                                                                  s.Read(rd => rd.Action("GetUsefulList", "Useful"));
+                                                              })
+
+                                        )
                                     </td>
                                 </tr>
                             </tbody>
@@ -155,25 +149,25 @@
                     <div class="panel-heading">Body</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                                      .Name("bodyUa")
-                                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                                      .Tools(tools => tools
-                                                          .Clear()
-                                                          .Bold().Italic().Underline().Strikethrough()
-                                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                                          .InsertUnorderedList().InsertOrderedList()
-                                                          .Outdent().Indent()
-                                                          .CreateLink().Unlink()
-                                                          .SubScript()
-                                                          .SuperScript()
-                                                          .TableEditing()
-                                                          .ViewHtml()
-                                                          .CleanFormatting()
-                                                          .FontName()
-                                                          .FontSize()
-                                                          .FontColor().BackColor()
-                                                      )
-                                              .Value(Model.Description)
+                                              .Name("bodyUa")
+                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                              .Tools(tools => tools
+                                                  .Clear()
+                                                  .Bold().Italic().Underline().Strikethrough()
+                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                  .InsertUnorderedList().InsertOrderedList()
+                                                  .Outdent().Indent()
+                                                  .CreateLink().Unlink()
+                                                  .SubScript()
+                                                  .SuperScript()
+                                                  .TableEditing()
+                                                  .ViewHtml()
+                                                  .CleanFormatting()
+                                                  .FontName()
+                                                  .FontSize()
+                                                  .FontColor().BackColor()
+                                              )
+                                      .Value(Model.Description)
                         )
                     </div>
                 </div>
@@ -181,25 +175,25 @@
                     <div class="panel-heading">Body EN</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                                      .Name("bodyEn")
-                                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                                      .Tools(tools => tools
-                                                          .Clear()
-                                                          .Bold().Italic().Underline().Strikethrough()
-                                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                                          .InsertUnorderedList().InsertOrderedList()
-                                                          .Outdent().Indent()
-                                                          .CreateLink().Unlink()
-                                                          .SubScript()
-                                                          .SuperScript()
-                                                          .TableEditing()
-                                                          .ViewHtml()
-                                                          .CleanFormatting()
-                                                          .FontName()
-                                                          .FontSize()
-                                                          .FontColor().BackColor()
-                                                      )
-                                              .Value(Model.DescriptionEn)
+                                              .Name("bodyEn")
+                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                              .Tools(tools => tools
+                                                  .Clear()
+                                                  .Bold().Italic().Underline().Strikethrough()
+                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                  .InsertUnorderedList().InsertOrderedList()
+                                                  .Outdent().Indent()
+                                                  .CreateLink().Unlink()
+                                                  .SubScript()
+                                                  .SuperScript()
+                                                  .TableEditing()
+                                                  .ViewHtml()
+                                                  .CleanFormatting()
+                                                  .FontName()
+                                                  .FontSize()
+                                                  .FontColor().BackColor()
+                                              )
+                                      .Value(Model.DescriptionEn)
                         )
                     </div>
                 </div>
@@ -209,67 +203,66 @@
 
     <script>
 
-        function SaveBuisnes() {
-            var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
-            var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
-            var _fileNameBLogo = $("#fileNameBLogo").val();
-            var _fileNamePhoto = $("#fileNamePhoto").val();
-            var _mainName = $("#mainName").val();
-            var _mainNameEn = $("#mainNameEn").val();
-            var _address = $("#address").val();
-            var _addressEn = $("#addressEn").val();
-            var _phone1 = $("#phone1").val();
-            var _email = $("#email").val();
-            var _phone2 = $("#phone2").val();
-            var _siteUrl = $("#siteUrl").val();
-            var _phone3 = $("#phone3").val();
-            var _fbUrl = $("#fbUrl").val();
-            var _googleUrl = $("#googleUrl").val();
-            var _twUrl = $("#twUrl").val();
-            var _instUrl = $("#instUrl").val();
-            var _mapUrl = $("#mapUrl").val();
-            var _category = $("#category").data("kendoDropDownList").value();
-            var _cityEn = $("#cityEn").val();
-            var _city = $("#city").val();
-            var _id = $("#buisnesId").val();
+    function SaveBuisnes() {
+        var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
+        var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
+        var _fileNameBLogo = $("#fileNameBLogo").val();
+        var _mainName = $("#mainName").val();
+        var _mainNameEn = $("#mainNameEn").val();
+        var _address = $("#address").val();
+        var _addressEn = $("#addressEn").val();
+        var _phone1 = $("#phone1").val();
+        var _email = $("#email").val();
+        var _phone2 = $("#phone2").val();
+        var _siteUrl = $("#siteUrl").val();
+        var _phone3 = $("#phone3").val();
+        var _fbUrl = $("#fbUrl").val();
+        var _googleUrl = $("#googleUrl").val();
+        var _twUrl = $("#twUrl").val();
+        var _instUrl = $("#instUrl").val();
+        var _mapUrl = $("#mapUrl").val();
+        var _category = $("#category").data("kendoDropDownList").value();
+        var _videoUrl = $("#videoUrl").val();
+        var _cityEn = $("#cityEn").val();
+        var _city = $("#city").val();
+        var _id = $("#buisnesId").val();
 
-            var data = {
-                id: _id,
-                bodyContentUA: _bodyContentUA,
-                bodyContentEN: _bodyContentEN,
-                fileNameBLogo: _fileNameBLogo,
-                fileNamePhoto: _fileNamePhoto,
-                mainName: _mainName,
-                mainNameEn: _mainNameEn,
-                address: _address,
-                addressEn: _addressEn,
-                phone1: _phone1,
-                email: _email,
-                phone2: _phone2,
-                siteUrl: _siteUrl,
-                phone3: _phone3,
-                fbUrl: _fbUrl,
-                googleUrl: _googleUrl,
-                twUrl: _twUrl,
-                instUrl: _instUrl,
-                mapUrl: _mapUrl,
-                category: _category,
-                city: _city,
-                cityEn: _cityEn
-            };
-            $.ajax({
-                type: "POST",
-                url: "/Branch/Save",
-                data: data,
-                success: function() {
-                    window.close();
-                }
-            });
+        var data = {
+            id:_id,
+            bodyContentUA: _bodyContentUA,
+            bodyContentEN: _bodyContentEN,
+            fileNameBLogo:_fileNameBLogo,
+            mainName:_mainName,
+            mainNameEn:_mainNameEn,
+            address:_address,
+            addressEn:_addressEn,
+            phone1:_phone1,
+            email:_email,
+            phone2:_phone2,
+            siteUrl:_siteUrl,
+            phone3:_phone3,
+            fbUrl:_fbUrl,
+            googleUrl:_googleUrl,
+            twUrl:_twUrl,
+            instUrl:_instUrl,
+            mapUrl:_mapUrl,
+            category: _category,
+            videoUrl: _videoUrl,
+            city: _city,
+            cityEn: _cityEn
+        };
+        $.ajax({
+            type: "POST",
+            url: "/Useful/Save",
+            data: data,
+            success: function () {
+                window.close();
+            }
+        });
 
-        }
+    }
 
     </script>
 </body>
 </html>
-
 

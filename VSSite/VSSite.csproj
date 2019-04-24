@@ -250,6 +250,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\PlacementController.cs" />
+    <Compile Include="Controllers\UsefulController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,6 +289,7 @@
   <ItemGroup>
     <Content Include="Content\about-us.css" />
     <Content Include="Content\img\gear.png" />
+    <Content Include="Content\img\success-icon.png" />
     <Content Include="Content\libs-css\bootstrap.css" />
     <Content Include="Content\libs-css\bootstrap.min.css" />
     <Content Include="Content\business.css" />
@@ -465,6 +468,11 @@
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\AddNew.cshtml" />
     <Content Include="Views\Placement\Index.cshtml" />
+    <Content Include="Views\Useful\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RubEdit.cshtml" />
+    <Content Include="Views\Useful\UsefulList.cshtml" />
+    <Content Include="Views\Useful\EditUseful.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
