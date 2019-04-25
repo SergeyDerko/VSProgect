@@ -1,9 +1,7 @@
 ﻿
 @{
-    ViewBag.Title = "Добавить партнера";
+    ViewBag.Title = "Добавить помощь";
 }
-
-<h2>Добавить партнера</h2>
 
 <!DOCTYPE html>
 <html>
@@ -18,6 +16,7 @@
     <br />
     <div class="container-fluid">
         <input type="hidden" id="fileNameBLogo" value="" />
+        <input type="hidden" id="fileNamePhoto" value="" />
         <div class="row">
             <div class="col-md-12">
                 <div class="panel">
@@ -26,7 +25,7 @@
                             <tbody>
                                 <tr>
                                     <td>SAVE</td>
-                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SavePartner")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
+                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveBuisnes")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -56,8 +55,8 @@
                                                       })
                                                       .Events(e => e.Success("onSuccessLogo").Remove("onSuccessLogo"))
                                                       .Async(a => a
-                                                          .Save("Async_Save", "Partner")
-                                                          .Remove("Async_Remove", "Partner")
+                                                          .Save("Async_Save", "Business")
+                                                          .Remove("Async_Remove", "Business")
                                                           .AutoUpload(true)))
                                     </td>
                                 </tr>
@@ -93,8 +92,8 @@
                                 <tr>
                                     <td class="">PHONE1</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone1").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td class=""></td>
-                                    <td class=""></td>
+                                    <td class="">Email</td>
+                                    <td class="">@(Html.Kendo().TextBox().Name("email").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
                                     <td class="">PHONE2</td>
@@ -182,15 +181,17 @@
 
     <script>
 
-        function SavePartner() {
+    function SaveBuisnes() {
         var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
         var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
         var _fileNameBLogo = $("#fileNameBLogo").val();
+        var _fileNamePhoto = $("#fileNamePhoto").val();
         var _mainName = $("#mainName").val();
         var _mainNameEn = $("#mainNameEn").val();
         var _address = $("#address").val();
         var _addressEn = $("#addressEn").val();
         var _phone1 = $("#phone1").val();
+        var _email = $("#email").val();
         var _phone2 = $("#phone2").val();
         var _siteUrl = $("#siteUrl").val();
         var _phone3 = $("#phone3").val();
@@ -206,11 +207,13 @@
             bodyContentUA: _bodyContentUA,
             bodyContentEN: _bodyContentEN,
             fileNameBLogo:_fileNameBLogo,
-            name:_mainName,
-            nameEn:_mainNameEn,
+            fileNamePhoto:_fileNamePhoto,
+            mainName:_mainName,
+            mainNameEn:_mainNameEn,
             address:_address,
             addressEn:_addressEn,
             phone1:_phone1,
+            email:_email,
             phone2:_phone2,
             siteUrl:_siteUrl,
             phone3:_phone3,
@@ -224,7 +227,7 @@
         };
         $.ajax({
             type: "POST",
-            url: "/Partner/SaveNew",
+            url: "/Business/SaveNewHelpers",
             data: data,
             success: function() {
                 location.reload();

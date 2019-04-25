@@ -473,6 +473,9 @@
     <Content Include="Views\Useful\UsefulList.cshtml" />
     <Content Include="Views\Useful\EditUseful.cshtml" />
     <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="Views\Business\IndexHelpers.cshtml" />
+    <Content Include="Views\Business\AddNewHelpers.cshtml" />
+    <Content Include="Views\Business\EditHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,7 +26,7 @@
                             <tbody>
                                 <tr>
                                     <td>SAVE</td>
-                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SavePartner")))</td>
+                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SavePartner")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                                 </tr>
                             </tbody>
                         </table>

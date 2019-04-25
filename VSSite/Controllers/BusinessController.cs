@@ -22,7 +22,21 @@ namespace VSSite.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Хелперы
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult IndexHelpers()
+        {
+            return View();
+        }
+
         public ActionResult AddNew()
+        {
+            return View();
+        }
+
+        public ActionResult AddNewHelpers()
         {
             return View();
         }
@@ -35,6 +49,23 @@ namespace VSSite.Controllers
                 BusinessId = business.BusinessId,
                 Logo = business.Logo,
                 MainName = business.MainName,
+                Email = business.Email,
+                City = business.City,
+                Phone1 = business.Phone1,
+                DateAdd = business.DateAdd
+            });
+
+            return Json(result);
+        }
+
+        public ActionResult BusnessesHelper_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            IQueryable<BusinessHelpers> queryable = db.BusinessHelperses;
+            DataSourceResult result = queryable.ToDataSourceResult(request, business => new
+            {
+                BusinessHelperslId = business.BusinessHelperslId,
+                Logo = business.Logo,
+                Title = business.Title,
                 Email = business.Email,
                 City = business.City,
                 Phone1 = business.Phone1,
@@ -79,6 +110,18 @@ namespace VSSite.Controllers
 
         }
 
+        public ActionResult EditHelper(int id)
+        {
+
+            var model = db.BusinessHelperses.FirstOrDefault(x => x.BusinessHelperslId == id);
+            if (model != null)
+            {
+                return View(model);
+            }
+            return RedirectToAction("IndexHelpers");
+
+        }
+
         public ActionResult Save(int id, string bodyContentUA, string bodyContentEN, string fileNameBLogo, string fileNamePhoto, string mainName, string mainNameEn, string address,
             string addressEn, string phone1, string phone2, string phone3, string email, string siteUrl, string fbUrl, string googleUrl, string twUrl, string instUrl, string mapUrl,
             int category, string videoUrl, string city, string cityEn)
@@ -119,6 +162,43 @@ namespace VSSite.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SaveHelpers(int id, string bodyContentUA, string bodyContentEN, string fileNameBLogo, string mainName, string mainNameEn, string address,
+    string addressEn, string phone1, string phone2, string phone3, string email, string siteUrl, string fbUrl, string googleUrl, string twUrl, string instUrl, string mapUrl,string city, string cityEn)
+        {
+            string bodyHtml = HttpUtility.HtmlDecode(bodyContentUA);
+            string bodyHtmlEn = HttpUtility.HtmlDecode(bodyContentEN);
+            HtmlFormatProvider htmlProvider = new HtmlFormatProvider();
+            RadFlowDocument document = htmlProvider.Import(bodyHtml);
+            RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
+            var curBuisnes = db.BusinessHelperses.FirstOrDefault(x => x.BusinessHelperslId == id);
+            if (curBuisnes != null)
+            {
+                curBuisnes.Address = address;
+                curBuisnes.AddressEn = addressEn;
+                curBuisnes.City = city;
+                curBuisnes.CityEn = cityEn;
+                curBuisnes.Description = htmlProvider.Export(document);
+                curBuisnes.DescriptionEn = htmlProvider.Export(documentEn);
+                curBuisnes.Email = email;
+                curBuisnes.Fb = fbUrl;
+                curBuisnes.Inst = instUrl;
+                curBuisnes.Google = googleUrl;
+                curBuisnes.Title = mainName;
+                curBuisnes.TitleEu = mainNameEn;
+                curBuisnes.Phone1 = phone1;
+                curBuisnes.Phone2 = phone2;
+                curBuisnes.Phone3 = phone3;
+                curBuisnes.Site = siteUrl;
+                curBuisnes.Map = mapUrl;
+                curBuisnes.Tw = twUrl;
+                curBuisnes.Logo = fileNameBLogo;
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("IndexHelpers");
         }
 
         [HttpPost]
@@ -166,6 +246,45 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult SaveNewHelpers(string bodyContentUA, string bodyContentEN, string fileNameBLogo, string fileNamePhoto, string mainName, string mainNameEn, string address,
+    string addressEn, string phone1, string phone2, string phone3, string email, string siteUrl, string fbUrl, string googleUrl, string twUrl, string instUrl, string mapUrl, string city, string cityEn)
+        {
+            string bodyHtml = HttpUtility.HtmlDecode(bodyContentUA);
+            string bodyHtmlEn = HttpUtility.HtmlDecode(bodyContentEN);
+            HtmlFormatProvider htmlProvider = new HtmlFormatProvider();
+            RadFlowDocument document = htmlProvider.Import(bodyHtml);
+            RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
+            using (Context db = new Context())
+            {
+                db.BusinessHelperses.Add(new BusinessHelpers
+                {
+                    Address = address,
+                    AddressEn = addressEn,
+                    City = city,
+                    CityEn = cityEn,
+                    DateAdd = DateTime.Now,
+                    Description = htmlProvider.Export(document),
+                    DescriptionEn = htmlProvider.Export(documentEn),
+                    Email = email,
+                    Fb = fbUrl,
+                    Inst = instUrl,
+                    Google = googleUrl,
+                    Title = mainName,
+                    TitleEu = mainNameEn,
+                    Phone1 = phone1,
+                    Phone2 = phone2,
+                    Phone3 = phone3,
+                    Site = siteUrl,
+                    Map = mapUrl,
+                    Tw = twUrl,
+                    Logo = fileNameBLogo,
+                });
+                db.SaveChanges();
+            }
+            return null;
+        }
+
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             using (Context context = new Context())
@@ -186,6 +305,21 @@ namespace VSSite.Controllers
             return null;
         }
 
+        [HttpPost]
+        public ActionResult DeleteHelpers(int id)
+        {
+            using (Context context = new Context())
+            {
+                var curBuisnes = context.BusinessHelperses.FirstOrDefault(x => x.BusinessHelperslId == id);
+                if (curBuisnes != null)
+                {
+                    context.BusinessHelperses.Remove(curBuisnes);
+                    context.SaveChanges();
+                }
+            }
+
+            return null;
+        }
 
         public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> logoUpload)
         {
