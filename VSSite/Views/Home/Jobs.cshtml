@@ -1,10 +1,11 @@
-﻿
+﻿@using VSSite.Resources
+
 @{
-    ViewBag.Title = "Jobs";
+    ViewBag.Title = Translator.vacancies;
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h1 class="main-section__header">Вакансии</h1>
+<h1 class="main-section__header">@Translator.vacancies</h1>
 <div id="jobsContent"></div>
 <script>
     $(document).ready(function () {

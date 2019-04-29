@@ -42,7 +42,3 @@ $(document).click(function(e) {
   }
 });
 
-function showBusiness() {
-  $('.popups-section').css('display','block');
-  $('.popup-business').css('display','block');
-}

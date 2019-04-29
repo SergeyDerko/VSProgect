@@ -55,7 +55,14 @@ namespace VSSite.Models.ForViews
     }
     public class UsefulsHelpersPageModel
     {
+        public List<UsefulRubrics> UsefulRubricses { get; set; }
         public List<Useful> Usefuls { get; set; }
         public PageInfo PageInfo { get; set; }
+    }
+
+    public class AboutUsForView
+    {
+        public AboutUs AboutUs { get; set; }
+        public List<TeamMember> TeamMembers { get; set; }
     }
 }

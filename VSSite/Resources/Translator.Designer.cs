@@ -70,6 +70,15 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на address.
+        /// </summary>
+        public static string address {
+            get {
+                return ResourceManager.GetString("address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Business Assistance.
         /// </summary>
         public static string Business_Assistance {
@@ -93,6 +102,24 @@ namespace VSSite.Resources {
         public static string Businesses_of_veterans {
             get {
                 return ResourceManager.GetString("Businesses_of_veterans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на city.
+        /// </summary>
+        public static string city {
+            get {
+                return ResourceManager.GetString("city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Department.
+        /// </summary>
+        public static string department {
+            get {
+                return ResourceManager.GetString("department", resourceCulture);
             }
         }
         
@@ -151,6 +178,15 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на we are on the map.
+        /// </summary>
+        public static string on_the_map {
+            get {
+                return ResourceManager.GetString("on_the_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Partners.
         /// </summary>
         public static string Partners {
@@ -165,6 +201,15 @@ namespace VSSite.Resources {
         public static string PARTNERS_titles {
             get {
                 return ResourceManager.GetString("PARTNERS_titles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на phone.
+        /// </summary>
+        public static string phone {
+            get {
+                return ResourceManager.GetString("phone", resourceCulture);
             }
         }
         
@@ -205,11 +250,29 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на site.
+        /// </summary>
+        public static string site {
+            get {
+                return ResourceManager.GetString("site", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Useful.
         /// </summary>
         public static string useful {
             get {
                 return ResourceManager.GetString("useful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на vacancies.
+        /// </summary>
+        public static string vacancies {
+            get {
+                return ResourceManager.GetString("vacancies", resourceCulture);
             }
         }
     }

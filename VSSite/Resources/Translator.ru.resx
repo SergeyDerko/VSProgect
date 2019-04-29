@@ -168,4 +168,25 @@
   <data name="select_search_type" xml:space="preserve">
     <value>вибрати тип пошуку</value>
   </data>
+  <data name="address" xml:space="preserve">
+    <value>адреса</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>місто</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>Відділення</value>
+  </data>
+  <data name="on_the_map" xml:space="preserve">
+    <value>ми на мапі</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>телефон</value>
+  </data>
+  <data name="site" xml:space="preserve">
+    <value>сайт</value>
+  </data>
+  <data name="vacancies" xml:space="preserve">
+    <value>вакансії</value>
+  </data>
 </root>

@@ -168,4 +168,25 @@
   <data name="select_search_type" xml:space="preserve">
     <value>select search type</value>
   </data>
+  <data name="address" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>city</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="on_the_map" xml:space="preserve">
+    <value>we are on the map</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>phone</value>
+  </data>
+  <data name="site" xml:space="preserve">
+    <value>site</value>
+  </data>
+  <data name="vacancies" xml:space="preserve">
+    <value>vacancies</value>
+  </data>
 </root>

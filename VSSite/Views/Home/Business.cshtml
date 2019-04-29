@@ -50,7 +50,24 @@
 </div>
 <div id="businessContent"></div>
 
+
 <script>
+    function showBusiness(id) {
+        var a = {
+            id: id
+        };
+        $.ajax({
+            url: "/Home/GetBusines",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#partialBusiness").html(data);
+                $('.popups-section').css('display', 'block');
+                $('.popup-business').css('display', 'block');
+            }
+        });
+      
+    }
     $(document).ready(function () {
         selestPage(1);
     });
@@ -73,4 +90,6 @@
             }
         });
     }
+
+
 </script>

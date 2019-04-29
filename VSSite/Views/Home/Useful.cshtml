@@ -1,7 +1,52 @@
 ﻿
 @{
     ViewBag.Title = "Useful";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+@using VSSite.Resources
+@model VSSite.Models.ForViews.UsefulsHelpersPageModel
 
-<h2>Useful</h2>
+<h1 class="main-section__header">КОРИСНО</h1>
+<div class="filters-wrapper">
+    <input type="hidden" id="filterId" value="0"/>
+    @foreach (var i in Model.UsefulRubricses)
+    {
+        <div class="filter" onclick="filter(@i.RubricsId)">
+            <img class="filter__img" src="/Images/Category/@i.Picture" alt="marker-centers.png">
+            @if (Translator.language == "ru")
+            {
+                <h4 class="filter__header">@i.RubName</h4>
+            }
+            else
+            {
+                <h4 class="filter__header">@i.RubNameEu</h4>
+            }
+        </div>
+    }
 
+</div>
+<div id="userfullContent"></div>
+
+<script>
+    $(document).ready(function () {
+        selestPage(1);
+    });
+    function filter(id) {
+        $('#filterId').val(id);
+        selestPage(1);
+    };
+    function selestPage(i) {
+        var a = {
+            rubric: $('#filterId').val(),
+            page: i
+        };
+        $.ajax({
+            url: "/Home/UsefulSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#userfullContent").html(data);
+            }
+        });
+    }
+</script>

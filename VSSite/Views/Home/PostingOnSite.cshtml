@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "PostingOnSite";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h1 class="main-section__header">Розміщення на сайті Veterano Service</h1>
+<div class="infoblock">
+    @using (Html.BeginForm("PostingOnSiteComplite", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+            <p class="coworking-form__info coworking-form__info_green">
+                Важливо! Інформація, яку Ви надасте, буде опублікована з виправленням граматичних помилок, але її наявність і якість залежить від Вас. Допоможіть нам краще Вас рекламувати. Поставтеся до написання інформації про себе та про свій бізнес відповідально. Також для кращої комунікації та поінформованості про роботу проекту просимо підписатися на наші сторінки в FB:
+                <a class="coworking-form__link" href="https://www.facebook.com/veteranoservice/?ref=bookmarks" target="_blank" title="https://www.facebook.com/veteranoservice/?ref=bookmarks">посилання</a>
+                та Twitter:
+
+                <a class="coworking-form__link" href="https://twitter.com/ServiceVeterano" target="_blank" title="https://twitter.com/ServiceVeterano">посилання</a>
+            </p>
+            <p class="coworking-form__info coworking-form__info_yellow">Поля, позначені зірочкою *, обов'язкові до заповнення.</p>
+            <div class="coworking-form__colump-wrapper">
+                <label for="email">Електронна адреса *</label>
+                <input class="coworking-form__input" id="email" type="text" name="email" placeholder="введіть пошту">
+                <div class="coworking-form__info coworking-form__info_red" id="email-error-info">Введіть коректну електронну адресу!</div>
+                <label for="companyName">Назва компанії, бренд *</label>
+                <input class="coworking-form__input" id="companyName" type="text" name="companyName" placeholder="введіть назву компанії">
+                <div class="coworking-form__info coworking-form__info_red" id="companyName-error-info">Введіть назву компанії або бренд!</div>
+                <label for="ownerName">Ім'я та прізвище власника/власників *</label>
+                <input class="coworking-form__input" id="ownerName" type="text" name="ownerName" placeholder="введіть ім'я та прізвище">
+                <div class="coworking-form__info coworking-form__info_red" id="ownerName-error-info">Введіть ім'я та празвище</div>
+                <label for="logo">Логотип компанії/сервісу/послуги у форматі .jpg, розмір 206рх*206рх. Якщо лого немає, додайте фото продукції. *</label>
+                <input id="logo" type="file" name="upload">
+                <div class="coworking-form__info coworking-form__info_red" id="logo-error-info">Вкажіть шлях до файлу</div>
+                <label for="ownerFoto">Фото власника/власників, бажано у військовій формі.</label>
+                <input id="ownerFoto" type="file"  name="upload">
+                <div class="coworking-form__info coworking-form__info_red" id="ownerFoto-error-info">Вкажіть шлях до файлу</div>
+                <label for="ownerBiography">Інформація про власника-ветерана(-нів) (у складі якого бату воювали - якщо можна публікувати). *</label>
+                <input class="coworking-form__input" id="ownerBiography" name="ownerBiography" type="text">
+                <div class="coworking-form__info coworking-form__info_red" id="ownerBiography-error-info">Надайте інформацію про власника бізнесу</div>
+                <label for="businessHistory">
+                    Історія виникнення бізнесу (звідки ідея?). 4 речення. Дивіться приклади історій на сайті
+                    <a class="coworking-form__link" href="http://veterano-service.com/jewelry.html" target="_blank" title="http://veterano-service.com/jewelry.html">посилання</a>
+                    Важливо! *
+                </label>
+                <textarea class="coworking-form__textarea" id="businessHistory" name="businessHistory"></textarea>
+                <div class="coworking-form__info coworking-form__info_red" id="businessHistory-error-info">Напишіть історію виникнення біхнесу</div>
+                <label for="businessCore">
+                    Суть бізнесу/послуги. 6 речень. Дивіться приклади на сайті
+                    <a class="coworking-form__link" href="http://veterano-service.com/jewelry.html" target="_blank" title="http://veterano-service.com/jewelry.html">посилання</a>
+                    Важливо! *
+                </label>
+                <textarea class="coworking-form__textarea" id="businessCore" name="businessCore" type="text"></textarea>
+                <div class="coworking-form__info coworking-form__info_red" id="businessCore-error-info">Опишіть суть Вашого бізнесу</div>
+                <label for="city">Місто: *</label>
+                <input class="coworking-form__input" id="city" type="text" name="city" placeholder="введіть назву міста">
+                <div class="coworking-form__info coworking-form__info_red" id="city-error-info">Вкажіть місто розташування бізнесу</div>
+                <label for="adress">Адреса (адреса розміщення бізнесу):</label>
+                <input class="coworking-form__input" id="adress" type="text" name="adress" placeholder="введіть адресу розміщення бізнесу">
+                <label for="contactPhone">Контактний номер: *</label>
+                <input class="coworking-form__input" id="contactPhone" type="text" name="contactPhone" placeholder="введіть контактний номер">
+                <div class="coworking-form__info coworking-form__info_red" id="contactPhone-error-info">Введіть контактний номер</div>
+                <label for="linkToSite">Посилання на сайт (якщо сайт є):</label>
+                <input class="coworking-form__input" id="linkToSite" type="text" name="linkToSite" placeholder="введіть посилання на сайт">
+                <label for="linkToOwnerSocialNetworkingWebsite">Посилання на сторінку в соцмережі власника/власників: *</label>
+                <input class="coworking-form__input" id="linkToOwnerSocialNetworkingWebsite" name="linkToOwnerSocialNetworkingWebsite">
+                <div class="coworking-form__info coworking-form__info_red" id="linkToOwnerSocialNetworkingWebsite-error-info" type="text" placeholder="введіть посилання на сторінку в соцмережі"></div>
+                <label for="linkToBusinessSocialNetworkingWebsite" placeholder="введіть посилання на сторінку в соцмережі">Посилання на сторінку бізнесу в соціальній мережі:</label>
+                <input class="coworking-form__input" id="linkToBusinessSocialNetworkingWebsite" name="linkToBusinessSocialNetworkingWebsite" type="text" placeholder="введіть посилання на сторінку в соцмережі">
+                <label for="infoPhone">Ім’я та телефон контактної особи з питань надання інформації для проекту «ВЕТЕРАНО СЕРВІС»</label>
+                <input class="coworking-form__input" id="infoPhone" type="text" name="infoPhone" placeholder="введіть контакти для ВЕТЕРАНО СЕРВІСА">
+                <label id="loveToUkraine-label" style="display: flex; align-items: center">
+                    <input id="loveToUkraine" type="checkbox" style="margin-right: 10px"><span>Я люблю неньку Україну і не веду бізнесу з окупантами і сєпарами</span>
+                </label>
+                <div class="coworking-form__info coworking-form__info_red" id="loveToUkraine-error-info">Пройдіть перевірку на сєпара!</div>
+            </div>
+            <p class="coworking-form__info coworking-form__info_green coworking-form__info_thanksgiving" id="thanksgiving">
+                Дякуємо, що заповнили нашу форму для приєднання до платформи Veterano Service. Далі наші співробітники напишуть текст до публікації, та пришлють Вам на затвердження. В порядку черги Ваш бізнес буде розміщено на сайті. Текст для публікації вам буде відправлено нашою колегою Тетяною Даневич. Додавайтесь в друзі, щоб не пропустити повідомлення :-))
+                <a class="coworking-form__link" href="https://www.facebook.com/profile.php?id=100002106068286" target="_blank" title="https://www.facebook.com/profile.php?id=100002106068286">посилання</a><br>Копії ваших відповідей буде надіслано на вказану електронну адресу.
+            </p>
+            <button class="coworking-form__btn" id="submitBtn" type="submit">Надіслати</button>
+     }
+    </div>
+

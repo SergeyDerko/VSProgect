@@ -1,1 +1,59 @@
-﻿
+﻿@{
+    Layout = null;
+
+}
+@using VSSite.Models.ForViews
+@using VSSite.Resources
+@model  BusinessHelpersPageModel
+
+@{
+    foreach (var i in Model.BusinessHelperses)
+    {
+        <div class="infoblock">
+            @if (Translator.language == "ru")
+            {
+                <h3 class="infoblock__header">@i.Title</h3>
+            }
+            else
+            {
+                <h3 class="infoblock__header">@i.TitleEu</h3>
+            }
+
+            <div class="infoblock__img-holder">
+                <img class="infoblock__img-marker" src="/Content/img/gear-wheel.png" alt="">
+                <div class="infoblock__main-img-wrapper">
+                    <img class="infoblock__main-img" src="/Images/Logo/@i.Logo" alt="">
+                </div>
+            </div>
+            <div class="infoblock__content-holder">
+                @if (Translator.language == "ru")
+                {
+                    <div class="infoblock__text">
+                        <p>@Html.Raw(i.Description)</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="infoblock__text">
+                        <p>@Html.Raw(i.DescriptionEn)</p>
+                    </div>
+                }
+                @{
+                    if (!string.IsNullOrEmpty(i.Site))
+                    {
+                        <div class="infoblock__link">
+                            <span>
+                                @Translator.site:
+                            </span><a href="@i.Site">@i.Site</a>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    }
+
+}
+<div class="pagination">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("HelpSort", new { page = x }))
+</div>

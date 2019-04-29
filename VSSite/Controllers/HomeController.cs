@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Telerik.Windows.Documents.Flow.Model.Lists;
 using VSCore.Concrete;
@@ -67,6 +68,18 @@ namespace VSSite.Controllers
             return PartialView("PartialBusiness",model);
         }
 
+        [HttpPost]
+        public ActionResult GetBusines(int id)
+        {
+            Context context = new Context();
+            var model = context.Businesses.FirstOrDefault(x => x.BusinessId == id);
+            if (model!=null)
+            {
+                return PartialView("PartialPopupBusiness", model);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Выдача партнеров
         /// </summary>
@@ -122,7 +135,12 @@ namespace VSSite.Controllers
         /// <returns></returns>
         public ActionResult Useful()
         {
-            return View();
+            Context context = new Context();
+            UsefulsHelpersPageModel model = new UsefulsHelpersPageModel
+            {
+                UsefulRubricses = context.UsefulRubricses.ToList()
+            };
+            return View(model);
         }
 
         /// <summary>
@@ -130,9 +148,16 @@ namespace VSSite.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult UsefulSort(int page)
+        public ActionResult UsefulSort(int rubric, int page)
         {
-            return View();
+            Context context = new Context();
+            var temp = context.Usefuls.ToList();
+            if (rubric!=0)
+                temp = temp.Where(x => x.UsefulRubrics.RubricsId == rubric).ToList();
+            IEnumerable<Useful> useful = temp.OrderByDescending(x => x.DateAdd).Skip((page - 1) * 5).Take(5);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = temp.Count };
+            UsefulsHelpersPageModel model = new UsefulsHelpersPageModel { Usefuls = useful.ToList(), PageInfo = pageInfo };
+            return PartialView("PartialUseful", model);
         }
 
         /// <summary>
@@ -175,7 +200,12 @@ namespace VSSite.Controllers
         [HttpPost]
         public ActionResult HelpSort(int page)
         {
-            return View();
+            Context context = new Context();
+            var temp = context.BusinessHelperses.ToList();
+            IEnumerable<BusinessHelpers> help = temp.OrderByDescending(x => x.DateAdd).Skip((page - 1) * 5).Take(5);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = temp.Count };
+            BusinessHelpersPageModel model = new BusinessHelpersPageModel { BusinessHelperses = help.ToList(), PageInfo = pageInfo };
+            return PartialView("PartialHelp", model);
         }
 
         /// <summary>
@@ -184,9 +214,24 @@ namespace VSSite.Controllers
         /// <returns></returns>
         public ActionResult AboutAs()
         {
-            return View();
+            AboutUsForView model = new AboutUsForView();
+            Context context = new Context();
+            model.AboutUs = context.AboutUses.FirstOrDefault();
+            model.TeamMembers = context.TeamMembers.ToList();
+            return View(model);
         }
 
+        public ActionResult PostingOnSite()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PostingOnSiteComplite(IEnumerable<HttpPostedFileBase> upload, string email, string companyName, string ownerName, string ownerBiography,
+            string businessHistory, string businessCore, string city, string adress, string contactPhone, string linkToSite, string linkToOwnerSocialNetworkingWebsite, string linkToBusinessSocialNetworkingWebsite,
+            string infoPhone)
+        {
+            return View();
+        }
 
         public string DataSid()
         {
@@ -521,4 +566,5 @@ namespace VSSite.Controllers
             return "Гтово!";
         }
     }
+    
 }

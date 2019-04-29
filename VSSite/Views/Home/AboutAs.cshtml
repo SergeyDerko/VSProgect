@@ -1,7 +1,70 @@
 ﻿
 @{
-    ViewBag.Title = "AboutAs";
+    ViewBag.Title = Translator.About_us;
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+@using VSSite.Resources
+@model VSSite.Models.ForViews.AboutUsForView
+<h1 class="main-section__header">@Translator.About_us</h1>
+@if (Translator.language == "ru")
+{
+    <p class="about-us-introduce">
+        @Html.Raw(Model.AboutUs.Description)
+    </p>
+}
+else
+{
+    <p class="about-us-introduce">
+        @Html.Raw(Model.AboutUs.DescriptionEn)
+    </p>
+}
+@{
+    foreach (var i in Model.TeamMembers)
+    {
+    <div class="infoblock">
+        @if (Translator.language == "ru")
+        {
+            <h3 class="infoblock__header">@i.Name</h3>
+        }
+        else
+        {
+            <h3 class="infoblock__header">@i.NameEn</h3>
+        }
 
-<h2>AboutAs</h2>
+        <div class="infoblock__img-holder">
+            <img class="infoblock__img-marker" src="/Content/img/marker-team.png" alt="">
+            <div class="infoblock__main-img-wrapper">
+                <img class="infoblock__main-img" src="/Images/Photo/@i.Photo" alt="">
+            </div>
+        </div>
+        <div class="infoblock__content-holder">
+            <div class="infoblock__text">
+                @if (Translator.language == "ru")
+                {
+                    <p>
+                        @Html.Raw(i.Description)
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        @Html.Raw(i.DescriptionEn)
+                    </p>
+                }
+            </div>
+            <div class="infoblock__social-btns-area">
+                @if (!string.IsNullOrEmpty(i.Fb))
+                {
+                    <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
+                }
+                @if (!string.IsNullOrEmpty(i.Email))
+                {
+                    <a class="infoblock__social-btn" href="mailto:@i.Email" target="_blank"><img class="infoblock__social-img" src="/Content/img/email.png" title="@i.Email"></a>
+                }
+
+            </div>
+        </div>
+    </div>
+    }
+}
 

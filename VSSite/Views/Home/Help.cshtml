@@ -1,7 +1,34 @@
 ﻿
 @{
     ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<h1 class="main-section__header">Допомога бізнесу</h1>
+<div id="helpContent"></div>
 
-<h2>Help</h2>
 
+<script>
+    
+    $(document).ready(function () {
+        selestPage(1);
+    });
+
+    function Seach() {
+        selestPage(1);
+    }
+    function selestPage(i) {
+        var a = {
+            page: i
+        };
+        $.ajax({
+            url: "/Home/HelpSort",
+            type: "POST",
+            data: a,
+            success: function (data) {
+                $("#helpContent").html(data);
+            }
+        });
+    }
+
+
+</script>

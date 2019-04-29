@@ -75,7 +75,7 @@
         <div class="header__menu">
             <button class="header__menu-btn"><span>@Translator.MENU</span><img src="/Content/img/gear-wheel.png" alt="gear-wheel.png"></button>
             <ul class="header__menu-list">
-                <li><a class="header__menu-link" href="index.html">@Translator.Home</a></li>
+                <li><a class="header__menu-link" href="/Home/Index">@Translator.Home</a></li>
                 <li><a class="header__menu-link" href="/Home/Business">@Translator.Businesses_of_veterans</a></li>
                 <li><a class="header__menu-link" href="/Home/Help">@Translator.Business_Assistance</a></li>
                 <li><a class="header__menu-link" href="/Home/Jobs">@Translator.jobs</a></li>
@@ -95,26 +95,31 @@
         <section class="main-section">
             @RenderBody()
             <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
-            <div class="banners-holder"><a class="place" href="#"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
+            <div class="banners-holder"><a class="place" href="/Home/PostingOnSite"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a><a class="help" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a></div>
             <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
         </section>
         <!-- /SECTION 1-->
     </main>
-    <section class="popups-section">
-        <!-- ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓-->
-        <div class="small-popup" id="popup-no-russian-language-suppurt">
-            <button class="small-popup__close-button" id="popup-no-russian-language-suppurt__close-button"><img class="small-popup__close-cross" src="/Content/img/cross.png" alt="cross.png"></button>
-            <h5 class="small-popup__header">Помилка 404...</h5>
-            <div class="small-popup__body">
-                <p>Вибачте, але патріотичний сервіс не підтримує мову окупантів.</p>
-                <p>Ми добре пам'ятаємо, як орки лізли на нашу землю під гаслами "защіти рускагаварящіх". На цій, ще не закінченій війні, уже загинуло більше 10 тисяч наших побратимів і просто цивільних людей...</p>
-            </div>
-            <div class="small-popup__buttons-area">
-                <button class="small-popup__button">Зрозуміло</button>
-            </div>
-            <div class="small-popup__background"><img class="small-popup__background-image" src="/Content/img/ornament.jpg" alt="ornament.jpg"></div>
+<section class="popups-section">
+    
+    <div id="partialBusiness"></div>
+    
+
+    <!-- ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓-->
+    <div class="small-popup" id="popup-no-russian-language-suppurt">
+        <button class="small-popup__close-button" id="popup-no-russian-language-suppurt__close-button"><img class="small-popup__close-cross" src="/Content/img/cross.png" alt="cross.png"></button>
+        <h5 class="small-popup__header">Помилка 404...</h5>
+        <div class="small-popup__body">
+            <p>Вибачте, але патріотичний сервіс не підтримує мову окупантів.</p>
+            <p>Ми добре пам'ятаємо, як орки лізли на нашу землю під гаслами "защіти рускагаварящіх". На цій, ще не закінченій війні, уже загинуло більше 10 тисяч наших побратимів і просто цивільних людей...</p>
         </div>
-    </section>
+        <div class="small-popup__buttons-area">
+            <button class="small-popup__button">Зрозуміло</button>
+        </div>
+        <div class="small-popup__background"><img class="small-popup__background-image" src="/Content/img/ornament.jpg" alt="ornament.jpg">
+        </div>
+    </div>
+</section>
     <script>
         $(document).ready(function () {
 
