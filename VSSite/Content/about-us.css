@@ -840,3 +840,12 @@ body {
     text-align: justify;
   }
 }
+
+.our-contacts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 6px;
+    font: 18px spec;
+    margin: 20px 0;
+}

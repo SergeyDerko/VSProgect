@@ -33,13 +33,14 @@ $('#contactPhone').keypress(function(e){
 
 var markerIsEmailValid = false;
 
-$('#submitBtn').click(function() {
+$('#submitBtn').click(function(e) {
 
   // валідація пошти
   var tempEmail = $('#email').val();
   if ( !isEmailValid(tempEmail) ) {
     showValidationMessage('#email');
     markerIsEmailValid = false;
+    e.preventDefault();
     return
   } else {
     markerIsEmailValid = true;
@@ -47,67 +48,78 @@ $('#submitBtn').click(function() {
 
   // валідація назви компанії
   if ( $('#companyName').val().length < 2 ) {
-    showValidationMessage('#companyName');
+      showValidationMessage('#companyName');
+      e.preventDefault();
     return
   }
 
   // валідація прізвища/імені власника
   if ( $('#ownerName').val().length < 2 ) {
-    showValidationMessage('#ownerName');
+      showValidationMessage('#ownerName');
+      e.preventDefault();
     return
   }
 
   // валідація обраного файлу лого
   if ( $('#logo').val().length == 0 ) {
-    showValidationMessage('#logo');
+      showValidationMessage('#logo');
+      e.preventDefault();
     return
   }
 
   // валідація обраного файлу фото
   if ( $('#ownerFoto').val().length == 0 ) {
-    showValidationMessage('#ownerFoto');
+      showValidationMessage('#ownerFoto');
+      e.preventDefault();
     return
   }
 
   // валідація інформації про власника
   if ( $('#ownerBiography').val().length < 10 ) {
-    showValidationMessage('#ownerBiography');
+      showValidationMessage('#ownerBiography');
+      e.preventDefault();
     return
   }
 
   // валідація інформації про історію виникнення бізнесу
   if ( $('#businessHistory').val().length < 40 ) {
-    showValidationMessage('#businessHistory');
+      showValidationMessage('#businessHistory');
+      e.preventDefault();
     return
   }
 
   // валідація інформації про суть бізнесу
   if ( $('#businessCore').val().length < 40 ) {
-    showValidationMessage('#businessCore');
+      showValidationMessage('#businessCore');
+      e.preventDefault();
     return
   }
 
   // валідація назви міста
   if ( $('#city').val().length < 2 ) {
-    showValidationMessage('#city');
-    return
+      showValidationMessage('#city');
+      e.preventDefault();
+      return;
   }
 
   // валідація довжини телефону
   if ( $('#contactPhone').val().length < 11 ) {
-    showValidationMessage('#contactPhone');
+      showValidationMessage('#contactPhone');
+      e.preventDefault();
     return
   }
 
   // валідація наявності посилання на сторінку власника в соцмережі
   if ( $('#linkToOwnerSocialNetworkingWebsite').val().length < 11 ) {
-    showValidationMessage('#linkToOwnerSocialNetworkingWebsite');
+      showValidationMessage('#linkToOwnerSocialNetworkingWebsite');
+      e.preventDefault();
     return
   }
 
   // валідація на поставлену пташку
   if ( $('#loveToUkraine:checked').length != 1 ) {
-    showValidationMessage('#loveToUkraine');
+      showValidationMessage('#loveToUkraine');
+      e.preventDefault();
     return
   }
 

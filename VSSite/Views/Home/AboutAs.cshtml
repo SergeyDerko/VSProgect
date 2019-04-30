@@ -18,53 +18,75 @@ else
         @Html.Raw(Model.AboutUs.DescriptionEn)
     </p>
 }
+
+<div class="our-contacts">
+    <p style="font-weight: 900">Наші номери телефонів:</p>
+    <div>
+        @if (!string.IsNullOrEmpty(Model.AboutUs.Phone1))
+        {
+            <p><a style="color: dodgerblue; cursor: pointer" href="tel:@Model.AboutUs.Phone1">@Model.AboutUs.Phone1</a></p>
+        }
+        @if (!string.IsNullOrEmpty(Model.AboutUs.Phone2))
+        {
+            <p><a style="color: dodgerblue; cursor: pointer" href="tel:@Model.AboutUs.Phone2">@Model.AboutUs.Phone2</a></p>
+        }
+        @if (!string.IsNullOrEmpty(Model.AboutUs.Phone3))
+        {
+            <p><a style="color: dodgerblue; cursor: pointer" href="tel:@Model.AboutUs.Phone3">@Model.AboutUs.Phone3</a></p>
+        }
+       
+    </div>
+    <p style="font-weight: 900">Наш e-mail:</p>
+    <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@Model.AboutUs.Email">@Model.AboutUs.Email</a></p>
+</div>
+
 @{
     foreach (var i in Model.TeamMembers)
     {
-    <div class="infoblock">
-        @if (Translator.language == "ru")
-        {
-            <h3 class="infoblock__header">@i.Name</h3>
-        }
-        else
-        {
-            <h3 class="infoblock__header">@i.NameEn</h3>
-        }
+        <div class="infoblock">
+            @if (Translator.language == "ru")
+            {
+                <h3 class="infoblock__header">@i.Name</h3>
+            }
+            else
+            {
+                <h3 class="infoblock__header">@i.NameEn</h3>
+            }
 
-        <div class="infoblock__img-holder">
-            <img class="infoblock__img-marker" src="/Content/img/marker-team.png" alt="">
-            <div class="infoblock__main-img-wrapper">
-                <img class="infoblock__main-img" src="/Images/Photo/@i.Photo" alt="">
+            <div class="infoblock__img-holder">
+                <img class="infoblock__img-marker" src="/Content/img/marker-team.png" alt="">
+                <div class="infoblock__main-img-wrapper">
+                    <img class="infoblock__main-img" src="/Images/Photo/@i.Photo" alt="">
+                </div>
+            </div>
+            <div class="infoblock__content-holder">
+                <div class="infoblock__text">
+                    @if (Translator.language == "ru")
+                    {
+                        <p>
+                            @Html.Raw(i.Description)
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            @Html.Raw(i.DescriptionEn)
+                        </p>
+                    }
+                </div>
+                <div class="infoblock__social-btns-area">
+                    @if (!string.IsNullOrEmpty(i.Fb))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Email))
+                    {
+                        <a class="infoblock__social-btn" href="mailto:@i.Email" target="_blank"><img class="infoblock__social-img" src="/Content/img/email.png" title="@i.Email"></a>
+                    }
+
+                </div>
             </div>
         </div>
-        <div class="infoblock__content-holder">
-            <div class="infoblock__text">
-                @if (Translator.language == "ru")
-                {
-                    <p>
-                        @Html.Raw(i.Description)
-                    </p>
-                }
-                else
-                {
-                    <p>
-                        @Html.Raw(i.DescriptionEn)
-                    </p>
-                }
-            </div>
-            <div class="infoblock__social-btns-area">
-                @if (!string.IsNullOrEmpty(i.Fb))
-                {
-                    <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
-                }
-                @if (!string.IsNullOrEmpty(i.Email))
-                {
-                    <a class="infoblock__social-btn" href="mailto:@i.Email" target="_blank"><img class="infoblock__social-img" src="/Content/img/email.png" title="@i.Email"></a>
-                }
-
-            </div>
-        </div>
-    </div>
     }
 }
 

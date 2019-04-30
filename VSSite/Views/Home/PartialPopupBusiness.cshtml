@@ -1,6 +1,5 @@
 ﻿@{
     Layout = null;
-
 }
 @using VSSite.Resources
 @model  VSCore.Entity.Business
@@ -52,19 +51,25 @@
             <div class="popup-business__item">@Model.AddressEn</div>
         }
 
+
         <div class="popup-business__item">@Translator.phone:</div>
-        @if (!string.IsNullOrEmpty(Model.Phone1))
-        {
-            <a class="popup-business__item_link" href="tel:@Model.Phone1">@Model.Phone1 &nbsp;</a>
-        }
-        @if (!string.IsNullOrEmpty(Model.Phone2))
-        {
-            <a class="popup-business__item_link" href="tel:@Model.Phone2">@Model.Phone2 &nbsp;</a>
-        }
-        @if (!string.IsNullOrEmpty(Model.Phone3))
-        {
-            <a class="popup-business__item_link" href="tel:@Model.Phone3">@Model.Phone3 &nbsp;</a>
-        }
+        <div>
+            @if (!string.IsNullOrEmpty(Model.Phone1))
+            {
+                <a class="popup-business__item_link" href="tel:@Model.Phone1">@Model.Phone1 &nbsp;</a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Phone2))
+            {
+                <a class="popup-business__item_link" href="tel:@Model.Phone2">@Model.Phone2 &nbsp;</a>
+            }
+            @if (!string.IsNullOrEmpty(Model.Phone3))
+            {
+                <a class="popup-business__item_link" href="tel:@Model.Phone3">@Model.Phone3 &nbsp;</a>
+            }
+        </div>
+
+
+
         @if (!string.IsNullOrEmpty(Model.Site))
         {
             <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" href="@Model.Site">@Model.Site</a>
@@ -73,12 +78,16 @@
         {
             <div class="popup-business__item">@Translator.on_the_map:</div>
             <button class="popup-business__item_btn"><img src="/Content/img/marker-map.png" alt="place-marker.png"></button>
-            <div class="popup-business__gmaps">
-                <iframe @*src="@Model.Map"*@ allowfullscreen id="mapId" style="display: none;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023"></iframe>
-            </div>
         }
-
     </div>
+    @if (!string.IsNullOrEmpty(Model.Map))
+    {
+
+        <div class="popup-business__gmaps">
+            <iframe @*src="@Model.Map"*@ allowfullscreen id="mapId" style="display: none; width: 100%; height: 100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.5025461416963!2d30.494894316049503!3d50.450365879475456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce6019df9639%3A0xd3f258aca9f61da6!2z0LLRg9C70LjRhtGPINCR0YPQu9GM0LLQsNGA0L3Qvi3QmtGD0LTRgNGP0LLRgdGM0LrQsCwgMzcsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490967199995"></iframe>
+        </div>
+    }
+
     @{
         if (Model.Branches.Count != 0)
         {
@@ -136,18 +145,20 @@
                     }
 
                     <div class="popup-business__item">@Translator.phone:</div>
-                    @if (!string.IsNullOrEmpty(i.Phone1))
-                    {
-                        <a class="popup-business__item_link" href="tel:@i.Phone1">@i.Phone1 &nbsp;</a>
-                    }
-                    @if (!string.IsNullOrEmpty(i.Phone2))
-                    {
-                        <a class="popup-business__item_link" href="tel:@i.Phone2">@i.Phone2 &nbsp;</a>
-                    }
-                    @if (!string.IsNullOrEmpty(i.Phone3))
-                    {
-                        <a class="popup-business__item_link" href="tel:@i.Phone3">@i.Phone3 &nbsp;</a>
-                    }
+                    <div>
+                        @if (!string.IsNullOrEmpty(i.Phone1))
+                        {
+                            <a class="popup-business__item_link" href="tel:@i.Phone1">@i.Phone1 &nbsp;</a>
+                        }
+                        @if (!string.IsNullOrEmpty(i.Phone2))
+                        {
+                            <a class="popup-business__item_link" href="tel:@i.Phone2">@i.Phone2 &nbsp;</a>
+                        }
+                        @if (!string.IsNullOrEmpty(i.Phone3))
+                        {
+                            <a class="popup-business__item_link" href="tel:@i.Phone3">@i.Phone3 &nbsp;</a>
+                        }
+                    </div>
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
                         <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" href="@i.Site">@i.Site</a>
@@ -156,13 +167,16 @@
                     {
                         <div class="popup-business__item">@Translator.on_the_map:</div>
                         <button class="popup-business__item_btn"><img src="/Content/img/marker-map.png" alt="place-marker.png"></button>
-                        <div class="popup-business__gmaps">
-                            <iframe @*src="@i.Map"*@ allowfullscreen id="mapId" style="display: none;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023"></iframe>
-                        </div>
                     }
 
                 </div>
-
+                if (!string.IsNullOrEmpty(i.Map))
+                 {
+                    
+                     <div class="popup-business__gmaps">
+                         <iframe @*src="@i.Map"*@ allowfullscreen id="mapId" style="display: none;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023"></iframe>
+                     </div>
+                 }
 
             }
         }
@@ -170,17 +184,25 @@
 
 </div>
 <script>
-
+    var isMapOpen = false;
     $('.popup-business__close').click(function () {
         $(this).parent().css('display', 'block');
-        $('.popups-section').css('display', 'none');
-        $('.popup-business__gmaps').css({ 'border': '1px solid transparent', 'height': '0px' });
+        $('.popups-section, .popup-business').css('display', 'none');
+        $('.popup-business__gmaps').css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+        isMapOpen = false;
     });
 
     $('.popup-business__item_btn').click(function () {
+        if (!isMapOpen) {
+            $('.popup-business__gmaps').css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            $('#mapId').css("display", 'block');
+            isMapOpen = true;
+        } else {
+            $('.popup-business__gmaps').css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            $('#mapId').css("display", 'none');
+            isMapOpen = false;
+        }
 
-        $('.popup-business__gmaps').css({ 'border': '1px solid grey', 'height': '300px' });
-        $('#mapId').css("display", 'block');
     });
 
 </script>
