@@ -41,15 +41,67 @@ else
                     <p>@Html.Raw(i.DescriptionEn)</p>
                 }
             </div>
+            <div class="our-contacts">
+                <p style="font-weight: 900">Наші номери телефонів:</p>
+                <div>
+                    @if (!string.IsNullOrEmpty(i.Phone1))
+                    {
+                        <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Phone2))
+                    {
+                        <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Phone3))
+                    {
+                        <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                    }
+
+                </div>
+                <p style="font-weight: 900">Наш e-mail:</p>
+                <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.Email">@i.Email</a></p>
+
+                @if (!string.IsNullOrEmpty(i.Site))
+                {
+                    <p style="font-weight: 900"> @Translator.site:</p>
+                    <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
+                }
+
+                <p style="font-weight: 900">Мiсто</p>
+                @if (Translator.language == "ru")
+                {
+                    <p>@i.City</p>
+                }
+                else
+                {
+                    <p>@i.CityEn</p>
+                }
+                <p style="font-weight: 900">Адреса</p>
+                @if (Translator.language == "ru")
+                {
+                    <p>@i.Address</p>
+                }
+                else
+                {
+                    <p>@i.AddressEn</p>
+                }
+
+
+            </div>
             <div class="infoblock__social-btns-area">
-                @*<a class="infoblock__social-btn" href="#" target="_blank"><img class="infoblock__social-img" src="assets/img/youtube.png" alt="youtube.png"></a>*@
                 @if (!string.IsNullOrEmpty(i.Fb))
                 {
-                    <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
+                    <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook"></a>
                 }
+
+                @if (!string.IsNullOrEmpty(i.Inst))
+                {
+                    <a class="infoblock__social-btn" href="@i.Inst" target="_blank"><img class="infoblock__social-img" src="/Content/img/instagram.png" alt="instagram"></a>
+                }
+
                 @if (!string.IsNullOrEmpty(i.Tw))
                 {
-                    <a class="infoblock__social-btn" href="@i.Tw" target="_blank"><img class="infoblock__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a>
+                    <a class="infoblock__social-btn" href="@i.Tw" target="_blank"><img class="infoblock__social-img" src="/Content/img/twitter.png" alt="twitter"></a>
                 }
 
             </div>

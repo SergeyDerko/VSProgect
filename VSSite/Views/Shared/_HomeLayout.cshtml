@@ -35,27 +35,37 @@
             line-height: 28px;
             position: relative;
         }
-        .selected span:after,
-        .selected span:before{
-            display: block;
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%);
-            height: 1px;
-            width: 60%;
-            background-color: green;
-        }
 
-        .selected span:after {
-            bottom: -10px;
-        }
+            .selected span:after,
+            .selected span:before {
+                display: block;
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
+                height: 1px;
+                width: 60%;
+                background-color: green;
+            }
 
-        .selected span:before {
-            top: -10px;
-        }
+            .selected span:after {
+                bottom: -10px;
+            }
 
+            .selected span:before {
+                top: -10px;
+            }
+
+        .our-contacts {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-column-gap: 15px;
+            grid-row-gap: 6px;
+            font: 18px spec;
+            margin: 20px 0;
+        }
     </style>
+
 </head>
 <body>
     <!-- HEADER-->
@@ -90,17 +100,19 @@
     <!-- ↑↑↑ BEM-blocks: header (end) ↑↑↑-->
     <!-- /HEADER-->
     <!-- MAIN SECTION-->
-<main class="main">
-    <!-- SECTION 1-->
-    <section class="main-section">
-        @RenderBody()
-        <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
-        <div class="banners-holder"><a class="place" href="/Home/PostingOnSite"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a>
-            <a class="help" id="helpProject" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span >Допомога проекту</span></a></div>
-        <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
-    </section>
-    <!-- /SECTION 1-->
-</main>
+    <main class="main">
+        <!-- SECTION 1-->
+        <section class="main-section">
+            @RenderBody()
+            <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
+            <div class="banners-holder">
+                <a class="place" href="/Home/PostingOnSite"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a>
+                <a class="help" id="helpProject" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a>
+            </div>
+            <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
+        </section>
+        <!-- /SECTION 1-->
+    </main>
 
     <section class="popups-section">
 
@@ -109,13 +121,26 @@
         <div class="popup-business-1">
             <img class="popup-business__close-1" src="/Content/img/close.png" alt="close">
             <h3 class="popup-business__header">Допомога проекту</h3>
-          <div class="popup-business__contacts">
-                <div class="popup-business__item">місто:</div>
-                <div class="popup-business__item">Київ</div>
-                <div class="popup-business__item">адреса:</div>
-                <div class="popup-business__item">вул. Вбитого Сепаратиста, 13</div>
-                <div class="popup-business__item">тел.:</div><a class="popup-business__item_link" href="tel:+380971234567">+380 97 123 45 67</a>
-                <div class="popup-business__item">сайт:</div><a class="popup-business__item_link" href="someSite.com">someSite.com</a>
+            <div style="margin-left: 30px; margin-right: 30px; text-align: justify">
+                <br /><br />
+                <p style="font-size: 20px">З дня створення нашого проекту, він фінансувався за наш рахунок. Доречно буде сказати, що ми навіть і не думали, що він перетвориться в щось більше ніж просто інформативний сайт)). За час існування проекту Veterano Service, ми організовували ярмарки і форуми, які сприяли знайомству ветеранів та розвитку їх бізнесу. Але саме головне наше досягнення - це співпраця наших учасників з території всієї країни! Це щастя - об'єднувати найкращих людей)) </p>
+                <br />  <br /><br />
+
+                <p style="font-size: 20px">Тож для того, щоб рости і розвиватись, нашому проекту потрібна ваша допомога. Тепер і ви зможете стати частиною нашого проекту, профінансувавши появу нового сайту. Навзаєм ми обіцяємо вам рости та сприяти ще більшому і якіснішому зростанню бізнесу ветеранів. При перерахуванні коштів, вказуйте будь ласка "благодійна допомога".</p>
+                <br /><br />
+                <h3 class="popup-business__header" style="font-size: 25px">Карта Проекту в Приватбанку 5169 3305 1527 4105</h3>
+                <br />
+                <h3 class="popup-business__header" style="font-size: 25px">З повагою команда Veterano Service.</h3>
+                <br />
+                <div class="popup-business__contacts">
+                    <div class="popup-business__item">Реквiзити:</div>
+                    <div class="popup-business__item">
+                        <br />
+                        ЄДРПОУ/ДРФО 41837995 &nbsp; в ПАТ КБ "ПРИВАТБАНК"
+                        <br />
+                        (ЄДРПОУ 14360570, код банку 321842) &nbsp; Рахунок: № 26004053023122
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -140,7 +165,7 @@
             $("#helpProject").click(function () {
                 $('.popup-business-1, .popups-section').css('display', 'block');
             });
-            $('.popup-business__close-1').click(function() {
+            $('.popup-business__close-1').click(function () {
                 $('.popup-business-1, .popups-section').css('display', 'none');
             });
 

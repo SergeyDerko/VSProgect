@@ -13,6 +13,7 @@ using VSCore.Entity;
 
 namespace VSSite.Controllers
 {
+    
     public class BranchController : Controller
     {
         Context db = new Context();

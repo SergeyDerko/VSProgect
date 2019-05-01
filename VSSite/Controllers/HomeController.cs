@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -230,6 +231,44 @@ namespace VSSite.Controllers
             string businessHistory, string businessCore, string city, string adress, string contactPhone, string linkToSite, string linkToOwnerSocialNetworkingWebsite, string linkToBusinessSocialNetworkingWebsite,
             string infoPhone)
         {
+            var name = Guid.NewGuid().ToString();
+            string logo = "";
+            string photo = "";
+            foreach (var file in upload)
+            {
+                if (file != null)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var ext = Path.GetExtension(file.FileName);
+                    var physicalPath = Path.Combine(Server.MapPath("~/Images/Temp"), $"{name}{ext}");
+                    if (string.IsNullOrEmpty(logo))
+                        logo = $"{name}{ext}";
+                    else
+                        photo = $"{name}{ext}";
+                    file.SaveAs(physicalPath);
+                }
+            }
+            Context context = new Context();
+            context.PlacementOnSites.Add(new PlacementOnSite
+            {
+                Email = email,
+                NameBrand = companyName,
+                NameDirector = ownerName,
+                Logo = logo,
+                Photo = photo,
+                OwnerBiography = ownerBiography,
+                HistoryOfBrand = businessHistory,
+                BrandSens = businessCore,
+                City = city,
+                Address = adress,
+                Phone = contactPhone,
+                Site = linkToSite,
+                Fb = linkToOwnerSocialNetworkingWebsite,
+                FbBusiness = linkToBusinessSocialNetworkingWebsite,
+                ContactToAnsver = infoPhone,
+                Date = DateTime.Now
+            });
+            context.SaveChanges();
             return View();
         }
 

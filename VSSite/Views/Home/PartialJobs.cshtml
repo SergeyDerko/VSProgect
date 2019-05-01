@@ -38,6 +38,53 @@ else
                     }
 
                 </div>
+                <div class="our-contacts">
+                    <p style="font-weight: 900">Наші номери телефонів:</p>
+                    <div>
+                        @if (!string.IsNullOrEmpty(i.Phone1))
+                        {
+                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                        }
+                        @if (!string.IsNullOrEmpty(i.Phone2))
+                        {
+                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                        }
+                        @if (!string.IsNullOrEmpty(i.Phone3))
+                        {
+                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                        }
+
+                    </div>
+                    <p style="font-weight: 900">Наш e-mail:</p>
+                    <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.EmailJobs">@i.EmailJobs</a></p>
+
+                    @if (!string.IsNullOrEmpty(i.Site))
+                    {
+                        <p style="font-weight: 900"> @Translator.site:</p>
+                        <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
+                    }
+
+                    <p style="font-weight: 900">Мiсто</p>
+                    @if (Translator.language == "ru")
+                    {
+                        <p>@i.City</p>
+                    }
+                    else
+                    {
+                        <p>@i.CityEn</p>
+                    }
+                    <p style="font-weight: 900">Адреса</p>
+                    @if (Translator.language == "ru")
+                    {
+                        <p>@i.Address</p>
+                    }
+                    else
+                    {
+                        <p>@i.AddressEn</p>
+                    }
+
+                   
+                </div>
                 <div class="infoblock__social-btns-area">
                     @if (!string.IsNullOrEmpty(i.Fb))
                     {
