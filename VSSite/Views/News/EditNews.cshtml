@@ -134,8 +134,11 @@
         };
         $.ajax({
             type: "POST",
-            url: "/News/Save",
-            data: data
+            url: "/News/SaveEdit",
+            data: data,
+            success: function() {
+                location.href = '/News/Index';
+            }
         });
     }
 </script>

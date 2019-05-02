@@ -16,11 +16,15 @@
           columns.Bound(c => c.City);
           columns.Bound(c => c.Phone1).Visible(false);
           columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
-          columns.Command(com => com.Custom("Delete").Click("openToDelete")).Width(100);
+          columns.Command(com =>
+          {
+              com.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редактор");
+              com.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Удалить");
+          }).Width(300);
       })
       .ToolBar(tb =>
       {
-          tb.Template(@<text>
+      tb.Template(@<text>
                           <div class="refreshBtnContainer">
                               <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh" id="refreshPage"><span class="k-icon k-i-reload"></span></a>
                           </div>
@@ -114,7 +118,15 @@
             }
         });
     }
-
+    function openToEdit(e) {
+        e.preventDefault();
+        var tr = $(e.target).closest("tr");
+        var data = this.dataItem(tr);
+        window.open(
+            '/Business/Edit/' + data.BusinessId,
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    }
 </script>
 <style>
     #grid .k-grid-toolbar

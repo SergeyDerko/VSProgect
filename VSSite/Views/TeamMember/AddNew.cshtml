@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Добавить отделение";
+    ViewBag.Title = "Добавить в тимму";
 }
 
+<h2>Добавить в тимму</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,28 +40,6 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>LOGO</td>
-                                    <td>
-                                        <div id="logo"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        @(Html.Kendo().Upload().Name("logoUpload")
-                                                      .Validation(validation =>
-                                                      {
-                                                          validation.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" });
-                                                          validation.MinFileSize(500);
-                                                      })
-                                                      .Events(e => e.Success("onSuccessLogo").Remove("onSuccessLogo"))
-                                                      .Async(a => a
-                                                          .Save("Async_Save", "Branch")
-                                                          .Remove("Async_Remove", "Branch")
-                                                          .AutoUpload(true)))
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>PHOTO</td>
                                     <td>
                                         <div id="photo"></div>
@@ -70,16 +49,16 @@
                                     <td></td>
                                     <td>
                                         @(Html.Kendo().Upload().Name("photoUpload")
-                                                      .Validation(validation =>
-                                                      {
-                                                          validation.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" });
-                                                          validation.MinFileSize(500);
-                                                      })
-                                                      .Events(e => e.Success("onSuccessPhoto").Remove("onSuccessPhoto"))
-                                                      .Async(a => a
-                                                          .Save("Async_Save2", "Branch")
-                                                          .Remove("Async_Remove2", "Branch")
-                                                          .AutoUpload(true)))
+                                                              .Validation(validation =>
+                                                              {
+                                                                  validation.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" });
+                                                                  validation.MinFileSize(500);
+                                                              })
+                                                              .Events(e => e.Success("onSuccessPhoto").Remove("onSuccessPhoto"))
+                                                              .Async(a => a
+                                                                  .Save("Async_Save", "TeamMember")
+                                                                  .Remove("Async_Remove", "TeamMember")
+                                                                  .AutoUpload(true)))
                                     </td>
                                 </tr>
                                 <tr>
@@ -112,13 +91,13 @@
                                     <td>Добавить в бизнес</td>
                                     <td>
                                         @(Html.Kendo().DropDownList()
-                                                      .Name("category")
-                                                      .DataTextField("BuisnesName")
-                                                      .DataValueField("BuisnesId")
-                                                      .DataSource(s =>
-                                                      {
-                                                          s.Read(rd => rd.Action("GetBuisnesList", "Branch"));
-                                                      })
+                                                              .Name("category")
+                                                              .DataTextField("BuisnesName")
+                                                              .DataValueField("BuisnesId")
+                                                              .DataSource(s =>
+                                                              {
+                                                                  s.Read(rd => rd.Action("GetBuisnesList", "Branch"));
+                                                              })
                                         )
                                     </td>
                                 </tr>
@@ -173,24 +152,24 @@
                     <div class="panel-heading">Body</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                      .Name("bodyUa")
-                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                      .Tools(tools => tools
-                                          .Clear()
-                                          .Bold().Italic().Underline().Strikethrough()
-                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                          .InsertUnorderedList().InsertOrderedList()
-                                          .Outdent().Indent()
-                                          .CreateLink().Unlink()
-                                          .SubScript()
-                                          .SuperScript()
-                                          .TableEditing()
-                                          .ViewHtml()
-                                          .CleanFormatting()
-                                          .FontName()
-                                          .FontSize()
-                                          .FontColor().BackColor()
-                                      )
+                                              .Name("bodyUa")
+                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                              .Tools(tools => tools
+                                                  .Clear()
+                                                  .Bold().Italic().Underline().Strikethrough()
+                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                  .InsertUnorderedList().InsertOrderedList()
+                                                  .Outdent().Indent()
+                                                  .CreateLink().Unlink()
+                                                  .SubScript()
+                                                  .SuperScript()
+                                                  .TableEditing()
+                                                  .ViewHtml()
+                                                  .CleanFormatting()
+                                                  .FontName()
+                                                  .FontSize()
+                                                  .FontColor().BackColor()
+                                              )
                         )
                     </div>
                 </div>
@@ -198,24 +177,24 @@
                     <div class="panel-heading">Body EN</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
-                                      .Name("bodyEn")
-                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                                      .Tools(tools => tools
-                                          .Clear()
-                                          .Bold().Italic().Underline().Strikethrough()
-                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                                          .InsertUnorderedList().InsertOrderedList()
-                                          .Outdent().Indent()
-                                          .CreateLink().Unlink()
-                                          .SubScript()
-                                          .SuperScript()
-                                          .TableEditing()
-                                          .ViewHtml()
-                                          .CleanFormatting()
-                                          .FontName()
-                                          .FontSize()
-                                          .FontColor().BackColor()
-                                      )
+                                              .Name("bodyEn")
+                                              .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                              .Tools(tools => tools
+                                                  .Clear()
+                                                  .Bold().Italic().Underline().Strikethrough()
+                                                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                                  .InsertUnorderedList().InsertOrderedList()
+                                                  .Outdent().Indent()
+                                                  .CreateLink().Unlink()
+                                                  .SubScript()
+                                                  .SuperScript()
+                                                  .TableEditing()
+                                                  .ViewHtml()
+                                                  .CleanFormatting()
+                                                  .FontName()
+                                                  .FontSize()
+                                                  .FontColor().BackColor()
+                                              )
                         )
                     </div>
                 </div>
@@ -273,10 +252,10 @@
         };
         $.ajax({
             type: "POST",
-            url: "/Branch/SaveNew",
+            url: "/TeamMember/SaveNew",
             data: data,
             success: function() {
-                location.href = '/Branch/Index';
+                location.href = '/TeamMember/Index';
             }
         });
 
@@ -327,4 +306,3 @@
     </script>
 </body>
 </html>
-

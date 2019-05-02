@@ -263,6 +263,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\PlacementController.cs" />
+    <Compile Include="Controllers\TeamMemberController.cs" />
     <Compile Include="Controllers\UsefulController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -372,6 +373,7 @@
     <Content Include="Images\Photo\fsack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Team\passport.jpg" />
     <Content Include="Images\Temp\fsack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -493,6 +495,8 @@
     <Content Include="Views\Home\PartialPopupBusiness.cshtml" />
     <Content Include="Views\Home\PostingOnSite.cshtml" />
     <Content Include="Views\Home\PostingOnSiteComplite.cshtml" />
+    <Content Include="Views\TeamMember\Index.cshtml" />
+    <Content Include="Views\TeamMember\AddNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

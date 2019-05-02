@@ -124,7 +124,7 @@
         var tr = $(e.target).closest("tr"); // get the current table row (tr)
         // get the data bound to the current table row
         var data = this.dataItem(tr);
-        $("#idToDel").val(data.BusinessId);
+        $("#idToDel").val(data.PartnerId);
         var dialog = $("#confirm");
         dialog.data("kendoDialog").open();
     }
