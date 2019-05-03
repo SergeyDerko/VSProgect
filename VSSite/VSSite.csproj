@@ -497,6 +497,7 @@
     <Content Include="Views\Home\PostingOnSiteComplite.cshtml" />
     <Content Include="Views\TeamMember\Index.cshtml" />
     <Content Include="Views\TeamMember\AddNew.cshtml" />
+    <Content Include="Views\TeamMember\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

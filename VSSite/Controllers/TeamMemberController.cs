@@ -118,8 +118,7 @@ namespace VSSite.Controllers
             var model = context.TeamMembers.FirstOrDefault(x => x.Id == id);
             if (model != null)
             {
-                return null;
-                //return View(model);
+                return View(model);
             }
             return RedirectToAction("Index");
         }
@@ -139,11 +138,11 @@ namespace VSSite.Controllers
             return null;
         }
 
-        public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> logoUpload)
+        public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> photoUpload)
         {
             var name = Guid.NewGuid().ToString();
             string fullFile = "";
-            foreach (var file in logoUpload)
+            foreach (var file in photoUpload)
             {
 
                 if (file != null)
@@ -181,7 +180,7 @@ namespace VSSite.Controllers
             }
 
             // Return an empty string to signify success
-            return Content("");
+            return Content("OK");
         }
     }
 }
