@@ -1,19 +1,20 @@
-﻿
+﻿@{
+    ViewBag.Title = "Категорії бізнесу";
+}
+
+<h1>Категорії бізнесу</h1>
 @(Html.Kendo().Grid<VSCore.Entity.CategoryBusness>()
       .Name("grid")
       .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
       .Columns(columns =>
       {
-          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Logo#' alt='#: data.Name #' height='62' width='auto'/>");
-          columns.Bound(c => c.Name).Title("NAME UA");
-          columns.Bound(c => c.NameEn).Title("NAME EN");
-          columns.Bound(c => c.Meta1).Visible(false);
-          columns.Bound(c => c.Meta2).Visible(false);
-          columns.Bound(c => c.Meta3).Visible(false);
+          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Logo#' alt='#: data.Name #' height='62' width='auto'/>").Title("Лого");
+          columns.Bound(c => c.Name).Title("Назва українською");
+          columns.Bound(c => c.NameEn).Title("Назва англійскою");
           columns.Command(command => { command.Edit(); }).Width(180);
       })
       .ToolBar(toolbar => {
-          toolbar.Create();
+          toolbar.Create().Text("Додати категорію");
       })
       .ClientDetailTemplateId("template")
       .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("CatEdit"))

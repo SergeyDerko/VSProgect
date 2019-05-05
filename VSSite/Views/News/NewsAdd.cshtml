@@ -80,11 +80,11 @@
                     <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
-                            <td>SAVE</td>
-                            <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveNews")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
+                            <td>ЗБЕРІГТИ</td>
+                            <td>@(Html.Kendo().Button().Name("save").Content("ЗБЕРІГТИ").Events(e => e.Click("SaveNews")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                         </tr>
                         <tr>
-                            <td>PHOTO</td>
+                            <td>Фото</td>
                             <td>
                                 <div id="products"></div>
                             </td>
@@ -106,19 +106,19 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>TitleUA</td>
+                            <td>Назва українською</td>
                             <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                         </tr>
                         <tr>
-                            <td>TitleEn</td>
+                            <td>Назва англійською</td>
                             <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                         </tr>
                         <tr>
-                            <td>DetailUrl</td>
+                            <td>Посилання</td>
                             <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                         </tr>
                         <tr>
-                            <td>VideoUrl</td>
+                            <td>Відео</td>
                             <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                         </tr>
                         </tbody>
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="panel">
-                <div class="panel-heading">Body</div>
+                <div class="panel-heading">Опис новини українською</div>
                 <div class="panel-body">
                     @(Html.Kendo().Editor()
                           .Name("bodyUa")
@@ -154,7 +154,7 @@
                 </div>
             </div>
             <div class="panel">
-                <div class="panel-heading">Body EN</div>
+                <div class="panel-heading">Опис новини англійською</div>
                 <div class="panel-body">
                     @(Html.Kendo().Editor()
                           .Name("bodyEn")

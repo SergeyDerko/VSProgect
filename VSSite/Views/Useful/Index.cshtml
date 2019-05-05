@@ -4,10 +4,10 @@
       .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
       .Columns(columns =>
       {
-        columns.Bound(c => c.Picture).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Picture#' alt='#: data.RubName #' height='62' width='auto'/>").Title("LOGO");
-        columns.Bound(c => c.RubName).Title("RubName");
-        columns.Bound(c => c.RubNameEu).Title("RubNameEu");
-        columns.Command(command => { command.Edit().Text("Редактировать"); command.Destroy().Text("Удалить"); }).Width(300).Title("Действия");
+        columns.Bound(c => c.Picture).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Picture#' alt='#: data.RubName #' height='62' width='auto'/>").Title("ЛОГО");
+        columns.Bound(c => c.RubName).Title("НАЗВА УКРАЇНСЬКОЮ");
+        columns.Bound(c => c.RubNameEu).Title("НАЗВА АНГЛІЙСЬКОЮ");
+        columns.Command(command => { command.Edit().Text("Редагувати"); command.Destroy().Text("Видалити"); }).Width(300).Title("ДІЇ");
       })
       .ToolBar(toolbar => {
             toolbar.Create();

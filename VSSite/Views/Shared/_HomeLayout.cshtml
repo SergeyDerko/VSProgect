@@ -106,8 +106,17 @@
             @RenderBody()
             <!-- ↓↓↓ BEM-blocks: banners-holder (start) ↓↓↓-->
             <div class="banners-holder">
-                <a class="place" href="/Home/PostingOnSite"><img src="/Content/img/place.png" alt="place.png"><span>Розміщення на сайті</span></a>
-                <a class="help" id="helpProject" href="#"><img src="/Content/img/kozak.png" alt="kozak.png"><span>Допомога проекту</span></a>
+                @if (Translator.language == "ru")
+                {
+                    <a class="place" href="/Home/PostingOnSite"><img src="/Content/img/розміщення_укр.png" alt="place.png"><span>@Translator.Placing_on_the_site</span></a>
+                    <a class="help" id="helpProject" href="#"><img src="/Content/img/допомога_укр.png" alt="kozak.png"><span>@Translator.Project_assistance</span></a>
+                }
+                else
+                {
+                    <a class="place" href="/Home/PostingOnSite"><img src="/Content/img/розміщення_англ.png" alt="place.png"><span>@Translator.Placing_on_the_site</span></a>
+                    <a class="help" id="helpProject" href="#"><img src="/Content/img/допомога_англ.png" alt="kozak.png"><span>@Translator.Project_assistance</span></a>
+                }
+
             </div>
             <!-- ↑↑↑ BEM-blocks: banners-holder (end) ↑↑↑-->
         </section>
@@ -120,25 +129,25 @@
 
         <div class="popup-business-1">
             <img class="popup-business__close-1" src="/Content/img/close.png" alt="close">
-            <h3 class="popup-business__header">Допомога проекту</h3>
+            <h3 class="popup-business__header">@Translator.Project_assistance</h3>
             <div style="margin-left: 30px; margin-right: 30px; text-align: justify">
                 <br /><br />
-                <p style="font-size: 20px">З дня створення нашого проекту, він фінансувався за наш рахунок. Доречно буде сказати, що ми навіть і не думали, що він перетвориться в щось більше ніж просто інформативний сайт)). За час існування проекту Veterano Service, ми організовували ярмарки і форуми, які сприяли знайомству ветеранів та розвитку їх бізнесу. Але саме головне наше досягнення - це співпраця наших учасників з території всієї країни! Це щастя - об'єднувати найкращих людей)) </p>
+                      <p style="font-size: 20px">@Translator.Since_the_creation </p>
                 <br />  <br /><br />
 
-                <p style="font-size: 20px">Тож для того, щоб рости і розвиватись, нашому проекту потрібна ваша допомога. Тепер і ви зможете стати частиною нашого проекту, профінансувавши появу нового сайту. Навзаєм ми обіцяємо вам рости та сприяти ще більшому і якіснішому зростанню бізнесу ветеранів. При перерахуванні коштів, вказуйте будь ласка "благодійна допомога".</p>
+                              <p style="font-size: 20px">@Translator.So_in_order</p>
                 <br /><br />
-                <h3 class="popup-business__header" style="font-size: 25px">Карта Проекту в Приватбанку 5169 3305 1527 4105</h3>
+                      <h3 class="popup-business__header" style="font-size: 25px">@Translator.BANKING_CARD</h3>
                 <br />
-                <h3 class="popup-business__header" style="font-size: 25px">З повагою команда Veterano Service.</h3>
+                <h3 class="popup-business__header" style="font-size: 25px">@Translator.KIND_REGARDS.</h3>
                 <br />
                 <div class="popup-business__contacts">
-                    <div class="popup-business__item">Реквiзити:</div>
+                    <div class="popup-business__item">@Translator.Requisites:</div>
                     <div class="popup-business__item">
                         <br />
-                        ЄДРПОУ/ДРФО 41837995 &nbsp; в ПАТ КБ "ПРИВАТБАНК"
+                        @Translator.USREOU
                         <br />
-                        (ЄДРПОУ 14360570, код банку 321842) &nbsp; Рахунок: № 26004053023122
+                        @Translator.Account
                     </div>
                 </div>
             </div>

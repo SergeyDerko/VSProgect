@@ -157,36 +157,72 @@
     <value>ПАРТНЕРИ</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>пошук</value>
+    <value>Пошук</value>
   </data>
   <data name="search_by_city" xml:space="preserve">
-    <value>пошук по містах</value>
+    <value>Пошук по містах</value>
   </data>
   <data name="search_by_type" xml:space="preserve">
-    <value>пошук по видах</value>
+    <value>Пошук по видах</value>
   </data>
   <data name="select_search_type" xml:space="preserve">
-    <value>вибрати тип пошуку</value>
+    <value>Вибрати тип пошуку</value>
   </data>
   <data name="address" xml:space="preserve">
-    <value>адреса</value>
+    <value>Адреса</value>
   </data>
   <data name="city" xml:space="preserve">
-    <value>місто</value>
+    <value>Місто</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>Відділення</value>
   </data>
   <data name="on_the_map" xml:space="preserve">
-    <value>ми на мапі</value>
+    <value>Ми на мапі</value>
   </data>
   <data name="phone" xml:space="preserve">
-    <value>телефон</value>
+    <value>Телефон</value>
   </data>
   <data name="site" xml:space="preserve">
-    <value>сайт</value>
+    <value>Сайт</value>
   </data>
   <data name="vacancies" xml:space="preserve">
-    <value>вакансії</value>
+    <value>Вакансії</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>(ЄДРПОУ 14360570, код банку 321842)  Рахунок: № 26004053023122</value>
+  </data>
+  <data name="BANKING_CARD" xml:space="preserve">
+    <value>БАНКІВСЬКА КАРТА ПРОЕКТУ В ПРИВАТБАНКУ 5169 3305 1527 4105</value>
+  </data>
+  <data name="go_over" xml:space="preserve">
+    <value>Перейти</value>
+  </data>
+  <data name="KIND_REGARDS" xml:space="preserve">
+    <value>З повагою команда Veterano Service</value>
+  </data>
+  <data name="Our_email" xml:space="preserve">
+    <value>Наш e-mail</value>
+  </data>
+  <data name="Our_phone_numbers" xml:space="preserve">
+    <value>Наші номери телефонів</value>
+  </data>
+  <data name="Placing_on_the_site" xml:space="preserve">
+    <value>Розміщення на сайті</value>
+  </data>
+  <data name="Project_assistance" xml:space="preserve">
+    <value>Допомога проекту</value>
+  </data>
+  <data name="Requisites" xml:space="preserve">
+    <value>Реквізити</value>
+  </data>
+  <data name="Since_the_creation" xml:space="preserve">
+    <value>З дня створення нашого проекту, він фінансувався за наш рахунок. Доречно буде сказати, що ми навіть і не думали, що він перетвориться в щось більше ніж просто інформативний сайт)). За час існування проекту Veterano Service, ми організовували ярмарки і форуми, які сприяли знайомству ветеранів та розвитку їх бізнесу. Але саме головне наше досягнення - це співпраця наших учасників з території всієї країни! Це щастя - об'єднувати найкращих людей))</value>
+  </data>
+  <data name="So_in_order" xml:space="preserve">
+    <value>Тож для того, щоб рости і розвиватись, нашому проекту потрібна ваша допомога. Тепер і ви зможете стати частиною нашого проекту, профінансувавши появу нового сайту. Навзаєм ми обіцяємо вам рости та сприяти ще більшому і якіснішому зростанню бізнесу ветеранів. При перерахуванні коштів, вказуйте будь ласка "благодійна допомога".</value>
+  </data>
+  <data name="USREOU" xml:space="preserve">
+    <value>ЄДРПОУ/ДРФО 41837995 в ПАТ КБ "ПРИВАТБАНК"</value>
   </data>
 </root>

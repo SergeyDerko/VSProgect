@@ -39,7 +39,7 @@ else
 
                 </div>
                 <div class="our-contacts">
-                    <p style="font-weight: 900">Наші номери телефонів:</p>
+                    <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
                     <div>
                         @if (!string.IsNullOrEmpty(i.Phone1))
                         {
@@ -55,7 +55,7 @@ else
                         }
 
                     </div>
-                    <p style="font-weight: 900">Наш e-mail:</p>
+                    <p style="font-weight: 900">@Translator.Our_email:</p>
                     <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.EmailJobs">@i.EmailJobs</a></p>
 
                     @if (!string.IsNullOrEmpty(i.Site))
@@ -64,7 +64,7 @@ else
                         <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
                     }
 
-                    <p style="font-weight: 900">Мiсто</p>
+                        <p style="font-weight: 900">@Translator.city</p>
                     @if (Translator.language == "ru")
                     {
                         <p>@i.City</p>
@@ -73,7 +73,7 @@ else
                     {
                         <p>@i.CityEn</p>
                     }
-                    <p style="font-weight: 900">Адреса</p>
+                        <p style="font-weight: 900">@Translator.address</p>
                     @if (Translator.language == "ru")
                     {
                         <p>@i.Address</p>

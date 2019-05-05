@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Добавить в тимму";
+    ViewBag.Title = "Додати в команду";
 }
 
-<h2>Добавить в тимму</h2>
+<h2>Додати в команду</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +24,8 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>SAVE</td>
-                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveTeam")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
+                                    <td>ЗБЕРЕГТИ</td>
+                                    <td>@(Html.Kendo().Button().Name("save").Content("ЗБЕРЕГТИ").Events(e => e.Click("SaveTeam")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -39,7 +39,7 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>PHOTO</td>
+                                    <td>Фото</td>
                                     <td>
                                         <div id="photo"></div>
                                     </td>
@@ -61,15 +61,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>MainNameUA</td>
+                                    <td>Ім'я українською</td>
                                     <td>@(Html.Kendo().TextBox().Name("mainName").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td>MainNameEn</td>
+                                    <td>Ім'я англійською</td>
                                     <td>@(Html.Kendo().TextBox().Name("mainNameEn").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td>City</td>
+                                    <td>Місто українською</td>
                                     <td>@(Html.Kendo().TextBox().Name("city").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td>CityEn</td>
+                                    <td>Місто англійською</td>
                                     <td>@(Html.Kendo().TextBox().Name("cityEn").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                             </tbody>
@@ -78,23 +78,23 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4>INFO</h4>
+                        <h4>Інформація</h4>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td class="">PHONE1</td>
+                                    <td class="">Телефон 1</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone1").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td class="">Email</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("email").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td class="">PHONE2</td>
+                                    <td class="">Телефон 2</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone2").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td class="">PHONE3</td>
+                                    <td class="">Телефон 3</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone3").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td class="">Facebook</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("fbUrl").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="panel">
-                    <div class="panel-heading">Body</div>
+                    <div class="panel-heading">Опис українською</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
                                               .Name("bodyUa")
@@ -141,7 +141,7 @@
                     </div>
                 </div>
                 <div class="panel">
-                    <div class="panel-heading">Body EN</div>
+                    <div class="panel-heading">Опис англійською</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
                                               .Name("bodyEn")

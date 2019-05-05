@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Бизнесы";
+    ViewBag.Title = "Бізнеси";
 }
-<h2>Бизнесы</h2>
+<h2>Бізнеси</h2>
 <input type="hidden" id="idToDel" value=""/>
 
 @(Html.Kendo().Grid<VSCore.Entity.Business>()
@@ -10,16 +10,16 @@
       .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
       .Columns(columns =>
       {
-          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.MainName #' height='62' width='auto'/>");
-          columns.Bound(c => c.MainName).Title("NAME UA");
-          columns.Bound(c => c.Email);
-          columns.Bound(c => c.City);
+          columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.MainName #' height='62' width='auto'/>").Title("ЛОГО");
+          columns.Bound(c => c.MainName).Title("НАЗВА");
+          columns.Bound(c => c.Email).Title("EMAIL");
+          columns.Bound(c => c.City).Title("МІСТО");
           columns.Bound(c => c.Phone1).Visible(false);
-          columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+          columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("ДАТА СТВОРЕННЯ");
           columns.Command(com =>
           {
-              com.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редактор");
-              com.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Удалить");
+              com.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редагувати");
+              com.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Видалити");
           }).Width(300);
       })
       .ToolBar(tb =>
@@ -49,11 +49,11 @@
           .Name("grid_#=BusinessId#")
           .Columns(col =>
           {
-              col.Bound(c => c.BMainName).Title("Название");
+              col.Bound(c => c.BMainName).Title("Назва");
               col.Bound(c => c.BPhone1).Title("Телефон");
               col.Bound(c => c.BEmail).Title("Email");
-              col.Bound(c => c.BCity).Title("Город");
-              col.Bound(c => c.BDateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+              col.Bound(c => c.BCity).Title("Місто");
+              col.Bound(c => c.BDateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата створення");
           })
           .DataSource(ds => ds
               .Ajax()
@@ -67,14 +67,14 @@
 @(Html.Kendo().Dialog()
       .Name("confirm")
       .Visible(false)
-      .Title("Удаление бизнеса")
-      .Content("<p>Жалаете удалить данный бизнес</p>")
+      .Title("Видалення бізнесу")
+      .Content("<p>Бажаєте видалити цей бізнес</p>")
       .Width(300)
       .Modal(true)
       .Actions(act =>
       {
-          act.Add().Text("Отмена").Primary(true);
-          act.Add().Text("Удалить").Action("onOK");
+          act.Add().Text("Відміна").Primary(true);
+          act.Add().Text("Видалити").Action("onOK");
       })
       )
 <script>

@@ -70,11 +70,29 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на address.
+        ///   Ищет локализованную строку, похожую на (USREOU 14360570, bank code 321842) Account No. 26004053023122.
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Address.
         /// </summary>
         public static string address {
             get {
                 return ResourceManager.GetString("address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на BANKING CARD OF THE PROJECT IN PRIVATBANK 5169 3305 1527 4105.
+        /// </summary>
+        public static string BANKING_CARD {
+            get {
+                return ResourceManager.GetString("BANKING_CARD", resourceCulture);
             }
         }
         
@@ -106,7 +124,7 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на city.
+        ///   Ищет локализованную строку, похожую на City.
         /// </summary>
         public static string city {
             get {
@@ -120,6 +138,15 @@ namespace VSSite.Resources {
         public static string department {
             get {
                 return ResourceManager.GetString("department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Go over.
+        /// </summary>
+        public static string go_over {
+            get {
+                return ResourceManager.GetString("go_over", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace VSSite.Resources {
         public static string jobs {
             get {
                 return ResourceManager.GetString("jobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на KIND REGARDS, VETERANO SERVICE.
+        /// </summary>
+        public static string KIND_REGARDS {
+            get {
+                return ResourceManager.GetString("KIND_REGARDS", resourceCulture);
             }
         }
         
@@ -178,11 +214,29 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на we are on the map.
+        ///   Ищет локализованную строку, похожую на We are on the map.
         /// </summary>
         public static string on_the_map {
             get {
                 return ResourceManager.GetString("on_the_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Our e-mail.
+        /// </summary>
+        public static string Our_email {
+            get {
+                return ResourceManager.GetString("Our_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Our phone numbers.
+        /// </summary>
+        public static string Our_phone_numbers {
+            get {
+                return ResourceManager.GetString("Our_phone_numbers", resourceCulture);
             }
         }
         
@@ -205,7 +259,7 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на phone.
+        ///   Ищет локализованную строку, похожую на Phone.
         /// </summary>
         public static string phone {
             get {
@@ -214,7 +268,34 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на search.
+        ///   Ищет локализованную строку, похожую на Placing on the site.
+        /// </summary>
+        public static string Placing_on_the_site {
+            get {
+                return ResourceManager.GetString("Placing_on_the_site", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Project assistance.
+        /// </summary>
+        public static string Project_assistance {
+            get {
+                return ResourceManager.GetString("Project_assistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Requisites.
+        /// </summary>
+        public static string Requisites {
+            get {
+                return ResourceManager.GetString("Requisites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Search.
         /// </summary>
         public static string search {
             get {
@@ -223,7 +304,7 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на search by city.
+        ///   Ищет локализованную строку, похожую на Search by city.
         /// </summary>
         public static string search_by_city {
             get {
@@ -232,7 +313,7 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на search by type.
+        ///   Ищет локализованную строку, похожую на Search by type.
         /// </summary>
         public static string search_by_type {
             get {
@@ -241,7 +322,7 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на select search type.
+        ///   Ищет локализованную строку, похожую на Select search type.
         /// </summary>
         public static string select_search_type {
             get {
@@ -250,11 +331,29 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на site.
+        ///   Ищет локализованную строку, похожую на Since the creation of our project, it has been funded at our expense. It would be appropriate to say that we did not even think that it would turn into something more than just an informative site)). During the existence of the Veterano Service project, we organized fairs and forums that fostered the familiarity of the veterans and the development of their business. But the most important achievement is the cooperation of our participants from the whole country! It&apos;s a happiness - to bring together the best [остаток строки не уместился]&quot;;.
+        /// </summary>
+        public static string Since_the_creation {
+            get {
+                return ResourceManager.GetString("Since_the_creation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Site.
         /// </summary>
         public static string site {
             get {
                 return ResourceManager.GetString("site", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на So, in order to grow and develop, our project needs your help. Now you can become part of our project by financing the emergence of a new site. We invite you to grow and promote even more and better growth of the business of veterans. When transferring funds, please indicate &quot;charity&quot;..
+        /// </summary>
+        public static string So_in_order {
+            get {
+                return ResourceManager.GetString("So_in_order", resourceCulture);
             }
         }
         
@@ -268,7 +367,16 @@ namespace VSSite.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на vacancies.
+        ///   Ищет локализованную строку, похожую на USREOU DRFO 41837995 USREOU/SRNOU in PJSC CB &quot;PRIVATBANK&quot;.
+        /// </summary>
+        public static string USREOU {
+            get {
+                return ResourceManager.GetString("USREOU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Vacancies.
         /// </summary>
         public static string vacancies {
             get {

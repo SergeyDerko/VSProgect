@@ -1,24 +1,24 @@
 ﻿
 @{
-    ViewBag.Title = "Тима";
+    ViewBag.Title = "Команда";
 }
 
-<h2>Тима</h2>
+<h2>Команда</h2>
 <input type="hidden" id="idToDel" value="" />
 @(Html.Kendo().Grid<VSCore.Entity.TeamMember>()
       .Name("grid")
       .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
       .Columns(columns =>
       {
-          columns.Bound(c => c.Photo).ClientTemplate("<img src='" + Url.Content("~/Images/Team/") + "#:data.Photo#' alt='#: data.Name #' height='62' width='auto'/>");
-          columns.Bound(c => c.Name).Title("NAME UA");
-          columns.Bound(c => c.Email);
-          columns.Bound(c => c.City);
-          columns.Bound(c => c.Phone1);
+          columns.Bound(c => c.Photo).ClientTemplate("<img src='" + Url.Content("~/Images/Team/") + "#:data.Photo#' alt='#: data.Name #' height='62' width='auto'/>").Title("ФОТО");
+          columns.Bound(c => c.Name).Title("ІМ'Я");
+          columns.Bound(c => c.Email).Title("EMAIL");
+          columns.Bound(c => c.City).Title("МІСТО");
+          columns.Bound(c => c.Phone1).Title("ТЕЛЕФОН");
           columns.Command(command =>
           {
-              command.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редактор"); 
-              command.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Удалить");
+              command.Custom("Edit").Click("openToEdit").Text("<span class='k-icon k-i-edit'></span>Редагувати"); 
+              command.Custom("Delete").Click("openToDelete").Text("<span class='k-icon k-i-close-circle'></span>Видалити");
 
           }).Width(250);
       })
@@ -45,14 +45,14 @@
 @(Html.Kendo().Dialog()
       .Name("confirm")
       .Visible(false)
-      .Title("Удаление участиника")
-      .Content("<p>Жалаете удалить данного участиника</p>")
+      .Title("Видалення учасника")
+      .Content("<p>Бажаєте видалити цього учасника</p>")
       .Width(300)
       .Modal(true)
       .Actions(act =>
       {
-          act.Add().Text("Отмена").Primary(true);
-          act.Add().Text("Удалить").Action("onOK");
+          act.Add().Text("Відміна").Primary(true);
+          act.Add().Text("Видалити").Action("onOK");
       })
       )
 

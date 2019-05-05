@@ -157,36 +157,72 @@
     <value>PARTNERS</value>
   </data>
   <data name="search" xml:space="preserve">
-    <value>search</value>
+    <value>Search</value>
   </data>
   <data name="search_by_city" xml:space="preserve">
-    <value>search by city</value>
+    <value>Search by city</value>
   </data>
   <data name="search_by_type" xml:space="preserve">
-    <value>search by type</value>
+    <value>Search by type</value>
   </data>
   <data name="select_search_type" xml:space="preserve">
-    <value>select search type</value>
+    <value>Select search type</value>
   </data>
   <data name="address" xml:space="preserve">
-    <value>address</value>
+    <value>Address</value>
   </data>
   <data name="city" xml:space="preserve">
-    <value>city</value>
+    <value>City</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>Department</value>
   </data>
   <data name="on_the_map" xml:space="preserve">
-    <value>we are on the map</value>
+    <value>We are on the map</value>
   </data>
   <data name="phone" xml:space="preserve">
-    <value>phone</value>
+    <value>Phone</value>
   </data>
   <data name="site" xml:space="preserve">
-    <value>site</value>
+    <value>Site</value>
   </data>
   <data name="vacancies" xml:space="preserve">
-    <value>vacancies</value>
+    <value>Vacancies</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>(USREOU 14360570, bank code 321842) Account No. 26004053023122</value>
+  </data>
+  <data name="BANKING_CARD" xml:space="preserve">
+    <value>BANKING CARD OF THE PROJECT IN PRIVATBANK 5169 3305 1527 4105</value>
+  </data>
+  <data name="go_over" xml:space="preserve">
+    <value>Go over</value>
+  </data>
+  <data name="KIND_REGARDS" xml:space="preserve">
+    <value>KIND REGARDS, VETERANO SERVICE</value>
+  </data>
+  <data name="Our_email" xml:space="preserve">
+    <value>Our e-mail</value>
+  </data>
+  <data name="Our_phone_numbers" xml:space="preserve">
+    <value>Our phone numbers</value>
+  </data>
+  <data name="Placing_on_the_site" xml:space="preserve">
+    <value>Placing on the site</value>
+  </data>
+  <data name="Project_assistance" xml:space="preserve">
+    <value>Project assistance</value>
+  </data>
+  <data name="Requisites" xml:space="preserve">
+    <value>Requisites</value>
+  </data>
+  <data name="Since_the_creation" xml:space="preserve">
+    <value>Since the creation of our project, it has been funded at our expense. It would be appropriate to say that we did not even think that it would turn into something more than just an informative site)). During the existence of the Veterano Service project, we organized fairs and forums that fostered the familiarity of the veterans and the development of their business. But the most important achievement is the cooperation of our participants from the whole country! It's a happiness - to bring together the best people))</value>
+  </data>
+  <data name="So_in_order" xml:space="preserve">
+    <value>So, in order to grow and develop, our project needs your help. Now you can become part of our project by financing the emergence of a new site. We invite you to grow and promote even more and better growth of the business of veterans. When transferring funds, please indicate "charity".</value>
+  </data>
+  <data name="USREOU" xml:space="preserve">
+    <value>USREOU DRFO 41837995 USREOU/SRNOU in PJSC CB "PRIVATBANK"</value>
   </data>
 </root>

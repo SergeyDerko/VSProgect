@@ -15,16 +15,16 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading header" style="display: flex; justify-content: space-between">
-                <strong style="flex-grow: 1">ID: @i.Id - @i.NameBrand - @i.NameDirector</strong> @Html.ActionLink("Delete", "Delete", "Placement", new { id = i.Id }, new { @class = "btn btn-danger" })
+                <strong style="flex-grow: 1">ID: @i.Id - @i.NameBrand - @i.NameDirector</strong> @Html.ActionLink("Видалити", "Delete", "Placement", new { id = i.Id }, new { @class = "btn btn-danger" })
             </div>
 
             <div class="panel-body content">
                 <table class="table table-striped table-bordered">
                     <tbody>
                     <tr>
-                        <td>Logo</td>
+                        <td>Лого</td>
                         <td style="text-align: center"><img src="~/Images/Temp/@i.Logo" height="100" width="auto" /></td>
-                        <td>Photo</td>
+                        <td>Фото</td>
                         <td style="text-align: center"><img src="~/Images/Temp/@i.Photo" height="100" width="auto" /></td>
                     </tr>
                     </tbody>
@@ -34,13 +34,13 @@
                     <tr>
                         <td>Email</td>
                         <td>@i.Email</td>
-                        <td>Phone1</td>
+                        <td>Телефон 1</td>
                         <td>@i.Phone</td>
                     </tr>
                     <tr>
-                        <td>City</td>
+                        <td>Місто</td>
                         <td>@i.City</td>
-                        <td>ContactToAnsver</td>
+                        <td>Ім’я та телефон контактної особи з питань надання інформації для проекту «ВЕТЕРАНО СЕРВІС»</td>
                         <td>@i.ContactToAnsver</td>
                     </tr>
                     </tbody>
@@ -58,15 +58,15 @@
                     </tbody>
                 </table>
                 <div class="panel panel-info">
-                    <div class="panel-heading">BrandSens</div>
+                    <div class="panel-heading">Суть бізнесу</div>
                     <div class="panel-body">@i.BrandSens</div>
                 </div>
                 <div class="panel panel-info">
-                    <div class="panel-heading">HistoryOfBrand</div>
+                    <div class="panel-heading">Історія виникнення біснесу</div>
                     <div class="panel-body">@i.HistoryOfBrand</div>
                 </div>
                 <div class="panel panel-info">
-                    <div class="panel-heading">OwnerBiography</div>
+                    <div class="panel-heading">Інформація про власника ветерана</div>
                     <div class="panel-body">@i.OwnerBiography</div>
                 </div>
             </div>

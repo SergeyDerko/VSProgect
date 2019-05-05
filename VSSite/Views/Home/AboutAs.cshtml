@@ -20,7 +20,7 @@ else
 }
 
 <div class="our-contacts">
-    <p style="font-weight: 900">Наші номери телефонів:</p>
+    <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
     <div>
         @if (!string.IsNullOrEmpty(Model.AboutUs.Phone1))
         {
@@ -36,7 +36,7 @@ else
         }
        
     </div>
-    <p style="font-weight: 900">Наш e-mail:</p>
+    <p style="font-weight: 900">@Translator.Our_email:</p>
     <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@Model.AboutUs.Email">@Model.AboutUs.Email</a></p>
 </div>
 

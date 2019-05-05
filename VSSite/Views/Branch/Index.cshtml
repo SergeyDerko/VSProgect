@@ -1,26 +1,26 @@
 ﻿
 @{
-    ViewBag.Title = "Подразделения бизнес";
+    ViewBag.Title = "Віделення бізнесів";
 }
 
-<h2>Подразделения бизнеса</h2>
+<h2>Віделення бізнесів</h2>
 <input type="hidden" id="idToDel" value="" />
 @(Html.Kendo().Grid<VSCore.Entity.Branch>()
               .Name("grid")
               .HtmlAttributes(new { style = "height: calc(100vh - 30px)" })
               .Columns(columns =>
               {
-                  columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.MainName #' height='62' width='auto'/>");
-                  columns.Bound(c => c.MainName).Title("NAME UA");
-                  columns.Bound(c => c.Email);
-                  columns.Bound(c => c.City);
+                  columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Logo/") + "#:data.Logo#' alt='#: data.MainName #' height='62' width='auto'/>").Title("ЛОГО");
+                  columns.Bound(c => c.MainName).Title("НАЗВА");
+                  columns.Bound(c => c.Email).Title("EMAIL");
+                  columns.Bound(c => c.City).Title("МІСТО");
                   columns.Bound(c => c.Phone1).Visible(false);
-                  columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("Дата регистрации");
+                  columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("ДАТА СТВОРЕННЯ");
                   columns.Command(com => com.Custom("Delete").Click("openToDelete")).Width(100);
               })
               .ToolBar(tb =>
               {
-                  tb.Template(@<text>
+              tb.Template(@<text>
                     <div class="refreshBtnContainer">
                         <a href="\\#" class="k-pager-refresh k-link k-button k-button-icon" title="Refresh" id="refreshPage"><span class="k-icon k-i-reload"></span></a>
                     </div>
@@ -41,14 +41,14 @@
 @(Html.Kendo().Dialog()
               .Name("confirm")
               .Visible(false)
-              .Title("Удаление подразделения")
-              .Content("<p>Жалаете удалить данное подразделения</p>")
+              .Title("Видалення відділення")
+              .Content("<p>Бажаєте видалити це відділення</p>")
               .Width(300)
               .Modal(true)
               .Actions(act =>
               {
-                  act.Add().Text("Отмена").Primary(true);
-                  act.Add().Text("Удалить").Action("onOK");
+                  act.Add().Text("Відміна").Primary(true);
+                  act.Add().Text("Видалити").Action("onOK");
               })
 )
 

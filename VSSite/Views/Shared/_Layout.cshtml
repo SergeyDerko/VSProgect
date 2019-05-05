@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -27,46 +27,46 @@
                                                 items.Add().Text("Бизнес")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Бизнесы").Action("Index","Business");
-                                                        inner.Add().Text("Отделения бизнеса").Action("Index","Branch");;
-                                                        inner.Add().Text("Категории бизнеса").Action("Index","Category");
-                                                        inner.Add().Text("Помощь бизнесу").Action("IndexHelpers","Business");
+                                                        inner.Add().Text("Бізнеси").Action("Index","Business");
+                                                        inner.Add().Text("Відділення бізнесу").Action("Index","Branch");;
+                                                        inner.Add().Text("Категорії бізнесу").Action("Index","Category");
+                                                        inner.Add().Text("Допомога бізнесу").Action("IndexHelpers","Business");
                                                     });
-                                                items.Add().Text("Новости")
+                                                items.Add().Text("Новини")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Все новости").Action("Index","News");
-                                                        inner.Add().Text("Добавить новость").Action("NewsAdd","News");
+                                                        inner.Add().Text("Всі новини").Action("Index","News");
+                                                        inner.Add().Text("Додати новину").Action("NewsAdd","News");
                                                     });
-                                                items.Add().Text("Полезное")
+                                                items.Add().Text("Корисно")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Списко полезного").Action("UsefulList","Useful");
+                                                        inner.Add().Text("Список корисного").Action("UsefulList","Useful");
                                                         inner.Add().Text("Рубрики").Action("Index","Useful");
 
                                                     });
-                                                items.Add().Text("Партнеры")
+                                                items.Add().Text("Партнери")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Список партнеров").Action("Index","Partner");
+                                                        inner.Add().Text("Список партнерів").Action("Index","Partner");
                                                     });
-                                                items.Add().Text("Работа")
+                                                items.Add().Text("Робота")
                                                     .Items(inner =>
                                                     {
-                                                        inner.Add().Text("Список работ").Action("Index","Jobs");
+                                                        inner.Add().Text("Список робіт").Action("Index","Jobs");
                                                     });
-                                                items.Add().Text("Здравствуйте," + User.Identity.GetUserName())
+                                                items.Add().Text("Заявки-команда" + User.Identity.GetUserName())
                                                     .Items(inner =>
                                                     {
                                                         inner.Add().Text("Заявки").Action("Index","Placement");
                                                         inner.Add().Text("Про нас").Action("Index","AboutUs");
-                                                        inner.Add().Text("Наша тима").Action("Index", "TeamMember");
-                                                        inner.Add().Text("Настройка").Action("Index", "Manage");
-                                                        inner.Add().Text("Выход").Content(@<text>
+                                                        inner.Add().Text("Наша команда").Action("Index", "TeamMember");
+                                                        inner.Add().Text("Настройки").Action("Index", "Manage");
+                                                        inner.Add().Text("Вихід").Content(@<text>
                                                             @(Html.Kendo().Button()
                                                               .Name("primaryTextButton")
                                                               .HtmlAttributes(new { type = "button", @class = "k-primary" })
-                                                              .Content("Выход")
+                                                              .Content("Вихід")
                                                               .Events(ev => ev.Click("logout")))
                                                         </text>);
 
@@ -75,10 +75,8 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
+      
+
     </div>
 
 <script>

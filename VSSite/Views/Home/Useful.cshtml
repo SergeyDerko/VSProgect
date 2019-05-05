@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Useful";
+    ViewBag.Title = Translator.useful;
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 @using VSSite.Resources
 @model VSSite.Models.ForViews.UsefulsHelpersPageModel
 
-<h1 class="main-section__header">КОРИСНО</h1>
+<h1 class="main-section__header">@Translator.useful</h1>
 <div class="filters-wrapper">
     <input type="hidden" id="filterId" value="0"/>
     @foreach (var i in Model.UsefulRubricses)

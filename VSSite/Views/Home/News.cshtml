@@ -1,10 +1,11 @@
-﻿
+﻿@using VSSite.Resources
+
 @{
-    ViewBag.Title = "News";
+    ViewBag.Title = Translator.News;
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h1 class="main-section__header">Новини</h1>
+<h1 class="main-section__header">@Translator.News</h1>
 <div id="newsContent"></div>
 <script>
     $(document).ready(function () {

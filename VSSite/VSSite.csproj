@@ -291,6 +291,10 @@
     <Content Include="Content\about-us.css" />
     <Content Include="Content\img\gear.png" />
     <Content Include="Content\img\success-icon.png" />
+    <Content Include="Content\img\допомога_англ.png" />
+    <Content Include="Content\img\допомога_укр.png" />
+    <Content Include="Content\img\розміщення_англ.png" />
+    <Content Include="Content\img\розміщення_укр.png" />
     <Content Include="Content\libs-css\bootstrap.css" />
     <Content Include="Content\libs-css\bootstrap.min.css" />
     <Content Include="Content\business.css" />
