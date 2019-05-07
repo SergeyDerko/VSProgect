@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +24,11 @@ namespace VSSite.Controllers
         }
 
         public ActionResult UsefulList()
+        {
+            return View();
+        }
+
+        public ActionResult UsefulAddNew()
         {
             return View();
         }
@@ -182,31 +188,31 @@ namespace VSSite.Controllers
             HtmlFormatProvider htmlProvider = new HtmlFormatProvider();
             RadFlowDocument document = htmlProvider.Import(bodyHtml);
             RadFlowDocument documentEn = htmlProvider.Import(bodyHtmlEn);
-            var curBuisnes = db.Usefuls.FirstOrDefault(x => x.UsefulId == id);
-            if (curBuisnes != null)
+            var curUseful = db.Usefuls.FirstOrDefault(x => x.UsefulId == id);
+            if (curUseful != null)
             {
                 var cat = db.UsefulRubricses.FirstOrDefault(x => x.RubricsId == category);
-                curBuisnes.Address = address;
-                curBuisnes.AddressEn = addressEn;
-                curBuisnes.City = city;
-                curBuisnes.CityEn = cityEn;
-                curBuisnes.Description = htmlProvider.Export(document);
-                curBuisnes.DescriptionEn = htmlProvider.Export(documentEn);
-                curBuisnes.Email = email;
-                curBuisnes.Fb = fbUrl;
-                curBuisnes.Inst = instUrl;
-                curBuisnes.Google = googleUrl;
-                curBuisnes.Title = mainName;
-                curBuisnes.TitleEu = mainNameEn;
-                curBuisnes.Phone1 = phone1;
-                curBuisnes.Phone2 = phone2;
-                curBuisnes.Phone3 = phone3;
-                curBuisnes.Site = siteUrl;
-                curBuisnes.Map = mapUrl;
-                curBuisnes.Tw = twUrl;
-                curBuisnes.Video = videoUrl;
-                curBuisnes.Logo = fileNameBLogo;
-                curBuisnes.UsefulRubrics = cat;
+                curUseful.Address = address;
+                curUseful.AddressEn = addressEn;
+                curUseful.City = city;
+                curUseful.CityEn = cityEn;
+                curUseful.Description = htmlProvider.Export(document);
+                curUseful.DescriptionEn = htmlProvider.Export(documentEn);
+                curUseful.Email = email;
+                curUseful.Fb = fbUrl;
+                curUseful.Inst = instUrl;
+                curUseful.Google = googleUrl;
+                curUseful.Title = mainName;
+                curUseful.TitleEu = mainNameEn;
+                curUseful.Phone1 = phone1;
+                curUseful.Phone2 = phone2;
+                curUseful.Phone3 = phone3;
+                curUseful.Site = siteUrl;
+                curUseful.Map = mapUrl;
+                curUseful.Tw = twUrl;
+                curUseful.Video = videoUrl;
+                curUseful.Logo = fileNameBLogo;
+                curUseful.UsefulRubrics = cat;
 
                 db.SaveChanges();
             }
@@ -239,6 +245,51 @@ namespace VSSite.Controllers
                 });
             }
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> files)
+        {
+            var name = Guid.NewGuid().ToString();
+            string fullFile = "";
+            foreach (var file in files)
+            {
+
+                if (file != null)
+                {
+                    //var fileName = Path.GetFileName(file.FileName);
+
+                    var ext = Path.GetExtension(file.FileName);
+                    var physicalPath = Path.Combine(Server.MapPath("~/Images/Logo"), $"{name}{ext}");
+                    fullFile = $"{name}{ext}";
+                    file.SaveAs(physicalPath);
+                }
+            }
+
+            return Json(new { fileName = fullFile });
+        }
+
+        public ActionResult Async_Remove(string[] fileNames)
+        {
+            // The parameter of the Remove action must be called "fileNames"
+
+            if (fileNames != null)
+            {
+                foreach (var fullName in fileNames)
+                {
+                    var fileName = Path.GetFileName(fullName);
+                    var physicalPath = Path.Combine(Server.MapPath("~/Images/Logo"), fileName);
+
+                    // TODO: Verify user permissions
+
+                    if (System.IO.File.Exists(physicalPath))
+                    {
+                        System.IO.File.Delete(physicalPath);
+                    }
+                }
+            }
+
+            // Return an empty string to signify success
+            return Content("");
         }
 
         protected override void Dispose(bool disposing)

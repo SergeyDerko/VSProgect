@@ -502,6 +502,7 @@
     <Content Include="Views\TeamMember\Index.cshtml" />
     <Content Include="Views\TeamMember\AddNew.cshtml" />
     <Content Include="Views\TeamMember\Edit.cshtml" />
+    <Content Include="Views\Useful\UsefulAddNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

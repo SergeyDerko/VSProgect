@@ -133,10 +133,7 @@
         e.preventDefault();
         var tr = $(e.target).closest("tr");
         var data = this.dataItem(tr);
-        window.open(
-            '/Partner/Edit/' + data.PartnerId,
-            '_blank' // <- This is what makes it open in a new window.
-        );
+        location.href = '/Partner/Edit' + data.PartnerId;
     }
 
     function onOK() {

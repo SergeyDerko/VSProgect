@@ -122,10 +122,7 @@
         e.preventDefault();
         var tr = $(e.target).closest("tr");
         var data = this.dataItem(tr);
-        window.open(
-            '/Business/Edit/' + data.BusinessId,
-            '_blank' // <- This is what makes it open in a new window.
-        );
+        location.href = '/Business/Edit' + data.BusinessId;
     }
 </script>
 <style>

@@ -70,11 +70,8 @@
             });
         grid.find(".k-grid-toolbar").on("click",
             "#addNew",
-            function() {
-                window.open(
-                    '/Useful/AddNew',
-                    '_blank' // <- This is what makes it open in a new window.
-                );
+            function () {
+                location.href = '/Useful/UsefulAddNew';
             });
 
     });
