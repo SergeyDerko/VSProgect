@@ -16,7 +16,6 @@
     <br />
     <div class="container-fluid">
         <input type="hidden" id="fileNameBLogo" value="" />
-        <input type="hidden" id="fileNamePhoto" value="" />
         <div class="row">
             <div class="col-md-12">
                 <div class="panel">
@@ -211,7 +210,6 @@
         var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
         var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
         var _fileNameBLogo = $("#fileNameBLogo").val();
-        var _fileNamePhoto = $("#fileNamePhoto").val();
         var _mainName = $("#mainName").val();
         var _mainNameEn = $("#mainNameEn").val();
         var _address = $("#address").val();
@@ -235,7 +233,6 @@
             bodyContentUA: _bodyContentUA,
             bodyContentEN: _bodyContentEN,
             fileNameBLogo:_fileNameBLogo,
-            fileNamePhoto:_fileNamePhoto,
             mainName:_mainName,
             mainNameEn:_mainNameEn,
             address:_address,

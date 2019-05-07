@@ -65,7 +65,7 @@
                                                         inner.Add().Text("Вихід").Content(@<text>
                                                             @(Html.Kendo().Button()
                                                               .Name("primaryTextButton")
-                                                              .HtmlAttributes(new { type = "button", @class = "k-primary" })
+                                                              //.HtmlAttributes(new { type = "button", @class = "k-primary" })
                                                               .Content("Вихід")
                                                               .Events(ev => ev.Click("logout")))
                                                         </text>);

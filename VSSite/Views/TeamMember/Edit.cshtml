@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Редактор";
+    ViewBag.Title = "Редагування";
 }
 @model VSCore.Entity.TeamMember
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <br />
     <br />
     <br />
-    <h2>Редактирование</h2>
+    <h2>Редагування участника команди</h2>
     <div class="container-fluid">
         <input type="hidden" id="fileNamePhoto" value="@Model.Photo" />
         <input type="hidden" id="memberId" value="@Model.Id" />
@@ -26,7 +26,7 @@
                             <tbody>
                                 <tr>
                                     <td>SAVE</td>
-                                    <td>@(Html.Kendo().Button().Name("save").Content("SAVE").Events(e => e.Click("SaveBuisnes")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
+                                    <td>@(Html.Kendo().Button().Name("save").Content("Зберегти").Events(e => e.Click("SaveBuisnes")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -40,9 +40,9 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>PHOTO</td>
+                                    <td>Фото</td>
                                     <td>
-                                        @(Html.Kendo().Button().Name("removePhoto").Content("Удалить фото").HtmlAttributes(new {@class = "btn btn-danger"}).Events(e=>e.Click("removePhotoClick")))
+                                        @(Html.Kendo().Button().Name("removePhoto").Content("Видалити фото").HtmlAttributes(new {@class = "btn btn-danger"}).Events(e=>e.Click("removePhotoClick")))
                                     </td>
                                 </tr>
                                 <tr>
@@ -69,15 +69,15 @@
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td>MainNameUA</td>
+                                    <td>Им'я україноською</td>
                                     <td>@(Html.Kendo().TextBox().Name("mainName").Value(@Model.Name).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td>MainNameEn</td>
+                                    <td>Им'я английською</td>
                                     <td>@(Html.Kendo().TextBox().Name("mainNameEn").Value(@Model.NameEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td>City</td>
+                                    <td>Місто україноською</td>
                                     <td>@(Html.Kendo().TextBox().Name("city").Value(@Model.City).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
-                                    <td>CityEn</td>
+                                    <td>Місто английською</td>
                                     <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                             </tbody>
@@ -86,23 +86,23 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
-                        <h4>INFO</h4>
+                        <h4>ІНФОРМАЦИЯ</h4>
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <td class="">PHONE1</td>
+                                    <td class="">Телефон 1</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone1").Value(@Model.Phone1).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td class="">Email</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("email").Value(@Model.Email).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td class="">PHONE2</td>
+                                    <td class="">Телефон 2</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone2").Value(@Model.Phone2).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td class="">PHONE3</td>
+                                    <td class="">Телефон 3</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("phone3").Value(@Model.Phone3).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                     <td class="">Facebook</td>
                                     <td class="">@(Html.Kendo().TextBox().Name("fbUrl").Value(@Model.Fb).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="panel">
-                    <div class="panel-heading">Body</div>
+                    <div class="panel-heading">Опис україноською</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
                                                                       .Name("bodyUa")
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 <div class="panel">
-                    <div class="panel-heading">Body EN</div>
+                    <div class="panel-heading">Опис англійською</div>
                     <div class="panel-body">
                         @(Html.Kendo().Editor()
                                                                       .Name("bodyEn")

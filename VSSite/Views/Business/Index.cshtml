@@ -88,11 +88,8 @@
             });
         grid.find(".k-grid-toolbar").on("click",
             "#addNew",
-            function() {
-                window.open(
-                    '/Business/AddNew',
-                    '_blank' // <- This is what makes it open in a new window.
-                );
+            function () {
+                location.href = '/Business/AddNew/';
             });
 
     });
@@ -122,7 +119,7 @@
         e.preventDefault();
         var tr = $(e.target).closest("tr");
         var data = this.dataItem(tr);
-        location.href = '/Business/Edit' + data.BusinessId;
+        location.href = '/Business/Edit/' + data.BusinessId;
     }
 </script>
 <style>
