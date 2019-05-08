@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Add News";
+    ViewBag.Title = "Додати новину";
 }
 
-<h2>NewsAdd</h2>
+<h2>Додати новину</h2>
 <!DOCTYPE html>
 <html>
 
@@ -80,7 +80,7 @@
                     <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
-                            <td>ЗБЕРІГТИ</td>
+                            <td>Зберегти</td>
                             <td>@(Html.Kendo().Button().Name("save").Content("ЗБЕРІГТИ").Events(e => e.Click("SaveNews")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
                         </tr>
                         <tr>
@@ -142,13 +142,10 @@
                               .SuperScript()
                               .TableEditing()
                               .ViewHtml()
-                              //.Formatting()
                               .CleanFormatting()
                               .FontName()
                               .FontSize()
                               .FontColor().BackColor()
-                          //.ExportAs()
-                          //.Import()
                           )
                           )
                 </div>
@@ -170,13 +167,10 @@
                               .SuperScript()
                               .TableEditing()
                               .ViewHtml()
-                              //.Formatting()
                               .CleanFormatting()
                               .FontName()
                               .FontSize()
                               .FontColor().BackColor()
-                          //.ExportAs()
-                          //.Import()
                           )
                           )
                 </div>
@@ -215,7 +209,7 @@
                     $("#videoUrl").val('');
                     $("#fileNameFull").val();
                     var popupNotification = $("#newsActionNoty").data("kendoNotification");
-                    popupNotification.show("New is Saved");
+                    popupNotification.show("Новина бережена");
                 }
             });
         };

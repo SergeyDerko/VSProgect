@@ -67,11 +67,8 @@
             });
         grid.find(".k-grid-toolbar").on("click",
             "#addNew",
-            function() {
-                window.open(
-                    '/Business/AddNewHelpers',
-                    '_blank' // <- This is what makes it open in a new window.
-                );
+            function () {
+                location.href = "/Business/AddNewHelpers";
             });
 
     });
@@ -80,10 +77,7 @@
         e.preventDefault();
         var tr = $(e.target).closest("tr");
         var data = this.dataItem(tr);
-        window.open(
-            '/Business/EditHelper/' + data.BusinessHelperslId,
-            '_blank' // <- This is what makes it open in a new window.
-        );
+        location.href = '/Business/EditHelper/' + data.BusinessHelperslId;
     }
 
     function openToDelete(e) {
