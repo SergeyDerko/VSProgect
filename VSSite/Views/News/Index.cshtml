@@ -2,40 +2,94 @@
 @{
     ViewBag.Title = "Новини";
 }
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<h2>Новини</h2>
+<input type="hidden" id="idToDel" value="" />
 
-@model IEnumerable<VSCore.Entity.News>
-<br/>
-<br />
-<br />
+@(Html.Kendo().ListView<VSCore.Entity.News>()
+          .Name("listView")
+          .TagName("div")
+          .ClientTemplateId("template")
+          .DataSource(ds => ds
+              .ServerOperation(false)
+              .PageSize(5)
+              .Model(model => model.Id(p => p.NewsId))
+              .Read(rd => rd.Action("News_Read", "News")))
+          .Pageable()
+          .Selectable(select => select.Mode(ListViewSelectionMode.Single))
+          .Events(events => events.Change("onChange")))
 
-    @foreach (var i in Model)
-    {
-        <div class="panel panel-default">
-            <div class="panel-heading" style="display: flex; justify-content: space-between">
-                <strong style="flex-grow: 1">@i.Title</strong>  @Html.ActionLink("Редагувати", "EditNews", "News", new { id = i.NewsId }, new { @class = "btn btn-success" })
-               &nbsp; @Html.ActionLink("Видалити", "Delete", "News", new { id = i.NewsId }, new { @class = "btn btn-danger" })
-            </div>
-            <div class="panel-body">@Html.Raw(i.Body)</div>
-            @*<div style="max-width: 644px;">
-                @if (!string.IsNullOrEmpty(i.Video))
-                {
-                    @(Html.Kendo().MediaPlayer()
-                                  .
-                (false)
-                                  .Navigatable(true)
-                                  .Media(m => m
-                                      .Title(i.Title)
-                                      .Source(i.Video)
-                                  )
-                                  .Name("mediaPlayer")
-                                  .HtmlAttributes(new { style = "height:360px" })
-                    )
-                }
-            </div>*@
-            <div class="panel-footer">@i.DateNews.Date.ToShortDateString()</div>
+@(Html.Kendo().Dialog()
+          .Name("confirm")
+          .Visible(false)
+          .Title("Видалення новини")
+          .Content("<p>Бажаєте видалити цю новину</p>")
+          .Width(300)
+          .Modal(true)
+          .Actions(act =>
+          {
+              act.Add().Text("Відміна").Primary(true);
+              act.Add().Text("Видалити").Action("onOK");
+          })
+)
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="news">
+        <h3>#:Title#</h3>
+        <table>
+            <tr>
+                <td><img src="@Url.Content("~/Images/")#:Picture#" alt="#:Title# image" /></td>
+                <td></td>
+                <td>#= Body #</td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <a class="k-button my-edit" onclick="EditNews('#:NewsId#')" href="\\#"><span class="k-icon k-i-edit"></span></a>
+            <a class="k-button my-delete" onclick="DeleteNews('#:NewsId#')" href="\\#"><span class="k-icon k-i-delete"></span></a>
         </div>
+    </div>
+
+</script>
+
+<style>
+    .news img {
+        width: 110px;
+        height: auto;
+    }
+</style>
+<script>
+
+    function onOK() {
+        var a = { id: $("#idToDel").val() };
+        $.ajax({
+            type: "POST",
+            url: "/News/Delete",
+            data: a,
+            success: function() {
+                location.reload();
+            }
+        });
     }
 
+    function DeleteNews(e) {
+        var dialog = $("#confirm");
+        dialog.data("kendoDialog").open();
+        $("#idToDel").val(e);
+    }
+    function EditNews(e) {
+        location.href = "/News/EditNews/" + e;
+    }
+
+    function onChange(e) {
+        var $listView = e.sender;
+        var data = $listView.dataSource.view();
+        var $selectedElements = $listView.select();
+        var selected = $.map($selectedElements, function (item) {
+            var index = $(item).index();
+            return data[index];
+        });
+
+        // Log the selected products to the console.
+        console.log(selected[0].NewsId);
+    }
+</script>
 

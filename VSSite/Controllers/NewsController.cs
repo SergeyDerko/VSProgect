@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Telerik.Windows.Documents.Flow.FormatProviders.Html;
 using Telerik.Windows.Documents.Flow.Model;
 using VSCore.Concrete;
@@ -13,11 +15,12 @@ namespace VSSite.Controllers
 {
     public class NewsController : Controller
     {
+        Context db = new Context();
         // GET: News
         public ActionResult Index()
         {
-            Context db = new Context();
-            return View(db.Newses.OrderByDescending(x=>x.DateNews));
+
+            return View();
         }
 
 
@@ -25,6 +28,21 @@ namespace VSSite.Controllers
         {
             return View();
         }
+
+        public ActionResult News_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            IQueryable<News> queryable = db.Newses;
+            DataSourceResult result = queryable.ToDataSourceResult(request, news => new
+            {
+                NewsId = news.NewsId,
+                Title = news.Title,
+                Body = news.Body,
+                Picture = news.Picture,
+            });
+
+            return Json(result);
+        }
+
 
         [HttpPost]
         public ActionResult Save(string titleUa, string titleEn, string body, string bodyEn, string detailUrl, string videoUrl, string pic)
@@ -99,6 +117,7 @@ namespace VSSite.Controllers
             }
             return RedirectToAction("Index");
         }
+
 
         public ActionResult EditNews(int id)
         {
