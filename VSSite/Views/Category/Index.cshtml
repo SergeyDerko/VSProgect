@@ -11,7 +11,7 @@
           columns.Bound(c => c.Logo).ClientTemplate("<img src='" + Url.Content("~/Images/Category/") + "#:data.Logo#' alt='#: data.Name #' height='62' width='auto'/>").Title("Лого");
           columns.Bound(c => c.Name).Title("Назва українською");
           columns.Bound(c => c.NameEn).Title("Назва англійскою");
-          columns.Command(command => { command.Edit(); }).Width(180);
+          columns.Command(command => { command.Edit(); }).Width(180).Title("ДІЇ");
       })
       .ToolBar(toolbar => {
           toolbar.Create().Text("Додати категорію");

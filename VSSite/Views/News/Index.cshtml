@@ -4,7 +4,7 @@
 }
 <h2>Новини</h2>
 <input type="hidden" id="idToDel" value="" />
-
+<a class="k-button k-button-icontext k-add-button" onclick="AddNew()" href="#"><span class="k-icon k-i-add"></span>Додати новини</a>
 @(Html.Kendo().ListView<VSCore.Entity.News>()
           .Name("listView")
           .TagName("div")
@@ -77,6 +77,10 @@
     }
     function EditNews(e) {
         location.href = "/News/EditNews/" + e;
+    }
+
+    function AddNew() {
+        location.href = "/News/NewsAdd";
     }
 
     function onChange(e) {

@@ -16,7 +16,7 @@
                   columns.Bound(c => c.City).Title("МІСТО");
                   columns.Bound(c => c.Phone1).Visible(false);
                   columns.Bound(c => c.DateAdd).Format("{0: dd-MM-yyyy HH:mm}").Title("ДАТА СТВОРЕННЯ");
-                  columns.Command(com => com.Custom("Видалити").Click("openToDelete")).Width(180);
+                  columns.Command(com => com.Custom("Видалити").Click("openToDelete")).Width(180).Title("ДІЇ");
               })
               .ToolBar(tb =>
               {
