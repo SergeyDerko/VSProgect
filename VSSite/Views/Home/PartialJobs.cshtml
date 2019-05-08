@@ -23,8 +23,8 @@ else
             }
 
             <div class="infoblock__img-holder">
-                <img class="infoblock__img-marker" src="/Content/img/gear.png" alt="">
-                <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="~/Images/Logo/@i.LogoJobs" alt=""></div>
+                <img class="infoblock__img-marker" src="/Content/img/vakan.png" alt="">
+                <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="~/Images/Logo/@i.LogoJobs" alt="@i.TitleJobs" title="@i.TitleJobs"></div>
             </div>
             <div class="infoblock__content-holder">
                 <div class="infoblock__text">
@@ -39,52 +39,71 @@ else
 
                 </div>
                 <div class="our-contacts">
-                    <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
-                    <div>
-                        @if (!string.IsNullOrEmpty(i.Phone1))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone2))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone3))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-
-                    </div>
-                    <p style="font-weight: 900">@Translator.Our_email:</p>
-                    <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.EmailJobs">@i.EmailJobs</a></p>
-
+                    @if (!string.IsNullOrEmpty(i.Phone1) || !string.IsNullOrEmpty(i.Phone2) || !string.IsNullOrEmpty(i.Phone3))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
+                        <div>
+                            @if (!string.IsNullOrEmpty(i.Phone1))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone2))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone3))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(i.EmailJobs))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_email:</p>
+                        <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.EmailJobs">@i.EmailJobs</a></p>
+                    }
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
                         <p style="font-weight: 900"> @Translator.site:</p>
                         <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
                     }
-
+                    @if (!string.IsNullOrEmpty(i.City) || !string.IsNullOrEmpty(i.CityEn))
+                    {
                         <p style="font-weight: 900">@Translator.city</p>
-                    @if (Translator.language == "ru")
-                    {
-                        <p>@i.City</p>
+                        if (Translator.language == "ru")
+                        {
+                            <p>@i.City</p>
+                        }
+                        else
+                        {
+                            <p>@i.CityEn</p>
+                        }
                     }
-                    else
+                    @if (!string.IsNullOrEmpty(i.Address) || !string.IsNullOrEmpty(i.AddressEn))
                     {
-                        <p>@i.CityEn</p>
-                    }
                         <p style="font-weight: 900">@Translator.address</p>
-                    @if (Translator.language == "ru")
-                    {
-                        <p>@i.Address</p>
-                    }
-                    else
-                    {
-                        <p>@i.AddressEn</p>
+                        if (Translator.language == "ru")
+                        {
+                            <p>@i.Address</p>
+                        }
+                        else
+                        {
+                            <p>@i.AddressEn</p>
+                        }
                     }
 
-                   
+                    @if (!string.IsNullOrEmpty(i.Map))
+                    {
+                        <div class="popup-business__item" style="font-weight: 900">@Translator.on_the_map:</div>
+                        <button class="popup-business__item_btn" onclick="shouBranchMap(@i.JobsId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
+                    }
                 </div>
+                @if (!string.IsNullOrEmpty(i.Map))
+                {
+                    <div class="popup-business__gmaps" id="@("divmapBranchId"+i.JobsId)">
+                        <iframe src="@i.Map" allowfullscreen id="@("mapBranchId"+i.JobsId)" style="display: none; width: 100%; height: 100%"></iframe>
+                    </div>
+                }
                 <div class="infoblock__social-btns-area">
                     @if (!string.IsNullOrEmpty(i.Fb))
                     {
@@ -102,7 +121,9 @@ else
                     }
 
                 </div>
+
             </div>
+
         </div>
     }
 
@@ -112,6 +133,16 @@ else
 }
 <input type="hidden" id="lang" value="@Translator.language" />
 <script>
+    function shouBranchMap(id) {
+        var div = $("#mapBranchId" + id);
+        if (div.css("display") == "none") {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            div.css("display", "block");
+        } else {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            div.css("display", "none");
+        }
+    }
     var textElemStartHeight = 105;
     var arrOfTextElemsStatus = [];
 
@@ -130,13 +161,13 @@ else
     }
 
 
-        for (var i = 0; i < arrOfTextElems.length; i++) {
-            arrOfTextElemsStatus.push(false);
-            if ($(arrOfTextElems[i]).outerHeight() > textElemStartHeight) {
-                $(arrOfTextElems[i]).append(html);
-                $(arrOfTextElems[i]).css('height', textElemStartHeight);
-            }
+    for (var i = 0; i < arrOfTextElems.length; i++) {
+        arrOfTextElemsStatus.push(false);
+        if ($(arrOfTextElems[i]).outerHeight() > textElemStartHeight) {
+            $(arrOfTextElems[i]).append(html);
+            $(arrOfTextElems[i]).css('height', textElemStartHeight);
         }
+    }
 
 
 

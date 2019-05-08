@@ -23,8 +23,8 @@ else
             }
 
             <div class="infoblock__img-holder">
-                <img class="infoblock__img-marker" src="/Content/img/marker-partners.png" alt="">
-                <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="~/Images/Logo/@i.Logo" alt=""></div>
+                <img class="infoblock__img-marker" src="/Content/img/marker-partners.png">
+                <div class="infoblock__main-img-wrapper"><img class="infoblock__main-img" src="~/Images/Logo/@i.Logo" alt="@i.Name" title="@i.Name"></div>
             </div>
             <div class="infoblock__content-holder">
                 <div class="infoblock__text">
@@ -39,50 +39,81 @@ else
 
                 </div>
                 <div class="our-contacts">
-                    <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
-                    <div>
-                        @if (!string.IsNullOrEmpty(i.Phone1))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone2))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone3))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
+                    @if (!string.IsNullOrEmpty(i.Phone1) || !string.IsNullOrEmpty(i.Phone2) || !string.IsNullOrEmpty(i.Phone3))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
+                        <div>
+                            @if (!string.IsNullOrEmpty(i.Phone1))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone2))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone3))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
 
-                    </div>
-
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Google))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_email:</p>
+                        <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.Google">@i.Google</a></p>
+                    }
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
                         <p style="font-weight: 900"> @Translator.site:</p>
                         <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
                     }
 
-                        <p style="font-weight: 900">@Translator.city</p>
                     @if (Translator.language == "ru")
                     {
-                        <p>@i.City</p>
+                        if (!string.IsNullOrEmpty(i.City))
+                        {
+                            <p style="font-weight: 900">@Translator.city:</p>
+                            <p>@i.City</p>
+                        }
                     }
                     else
                     {
-                        <p>@i.CityEn</p>
+                        if (!string.IsNullOrEmpty(i.CityEn))
+                        {
+                            <p style="font-weight: 900">@Translator.city:</p>
+                            <p>@i.CityEn</p>
+                        }
                     }
-                        <p style="font-weight: 900">@Translator.address</p>
                     @if (Translator.language == "ru")
                     {
-                        <p>@i.Address</p>
+                        if (!string.IsNullOrEmpty(i.Address))
+                        {
+                            <p style="font-weight: 900">@Translator.address</p>
+                            <p>@i.Address</p>
+                        }
                     }
                     else
                     {
-                        <p>@i.AddressEn</p>
+                        if (!string.IsNullOrEmpty(i.Address))
+                        {
+                            <p style="font-weight: 900">@Translator.address</p>
+                            <p>@i.AddressEn</p>
+                        }
                     }
-
+                    @if (!string.IsNullOrEmpty(i.Map))
+                    {
+                        <div class="popup-business__item" style="font-weight: 900">@Translator.on_the_map:</div>
+                        <button class="popup-business__item_btn" onclick="shouBranchMap(@i.PartnerId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
+                    }
 
                 </div>
+                @if (!string.IsNullOrEmpty(i.Map))
+                {
+                    <div class="popup-business__gmaps" id="@("divmapBranchId"+i.PartnerId)">
+                        <iframe src="@i.Map" allowfullscreen id="@("mapBranchId"+i.PartnerId)" style="display: none; width: 100%; height: 100%"></iframe>
+                    </div>
+                }
                 <div class="infoblock__social-btns-area">
                     @if (!string.IsNullOrEmpty(i.Fb))
                     {
@@ -108,11 +139,21 @@ else
         @Html.PageLinks(Model.PageInfo, x => Url.Action("PartnersSort", new { page = x }))
     </div>
 }
-<input type="hidden" id="lang" value="@Translator.language"/>
+<input type="hidden" id="lang" value="@Translator.language" />
 <script>
+    function shouBranchMap(id) {
+        var div = $("#mapBranchId" + id);
+        if (div.css("display") == "none") {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            div.css("display", "block");
+        } else {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            div.css("display", "none");
+        }
+    }
     var textElemStartHeight = 105;
     var arrOfTextElemsStatus = [];
-    
+
     var arrOfTextElems = $('.infoblock__text');
     var lang = $('#lang').val();
     if (lang == 'ru') {
@@ -126,17 +167,17 @@ else
                 <button class="infoblock__text-btn" onclick="toggleInfoBlock(this)" data-close="">... read more</button>\
               </div>';
     }
-        
 
-        for (var i = 0; i < arrOfTextElems.length; i++) {
-            arrOfTextElemsStatus.push(false);
-            if ($(arrOfTextElems[i]).outerHeight() > textElemStartHeight) {
-                $(arrOfTextElems[i]).append(html);
-                $(arrOfTextElems[i]).css('height', textElemStartHeight);
-            }
+
+    for (var i = 0; i < arrOfTextElems.length; i++) {
+        arrOfTextElemsStatus.push(false);
+        if ($(arrOfTextElems[i]).outerHeight() > textElemStartHeight) {
+            $(arrOfTextElems[i]).append(html);
+            $(arrOfTextElems[i]).css('height', textElemStartHeight);
         }
+    }
 
-    
+
 
     function toggleInfoBlock(_this) {
         var THIS = _this;
@@ -159,8 +200,8 @@ else
                         $(THIS).text('згорнути');
                     } else {
                         $(THIS).text('collapse');
-                    } 
-                  
+                    }
+
                     // прибрати засвітлення
                     $(THIS).parent().siblings('.infoblock__text-cover').css('display', 'none');
                     // змінити прапор
@@ -183,8 +224,8 @@ else
                                         } else {
                                             $(arrOfTextElems[j]).children('.infoblock__text-btns-wrapper')
                                                 .append('<button class="infoblock__text-btn" onclick="closeAllInfoBlocks()" data-closeall="">collapse all</button>');
-                                        } 
-                                      
+                                        }
+
                                     }
                                 }
                             }
@@ -204,8 +245,8 @@ else
                         $(THIS).text('... читати далі');
                     } else {
                         $(THIS).text('... read more');
-                    } 
-                    
+                    }
+
                     // змінити прапор
                     arrOfTextElemsStatus[i] = false;
                     // якщо поруч є кнопка "згорнути все" - прибрати її
@@ -227,8 +268,8 @@ else
             $(arrOfClosebtns).text('... читати далі');
         } else {
             $(arrOfClosebtns).text('... read more');
-        } 
-       
+        }
+
         // повернути блокам початкову висоту
         $(arrOfTextElems).css('height', textElemStartHeight);
         // показати засвітлення

@@ -16,9 +16,26 @@
         }
     }
 
-    <div class="popup-business__social"><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" alt="instagram.png"></a></div>
+    <div class="popup-business__social">
+        @if (!string.IsNullOrEmpty(Model.Video))
+        {
+            <a class="popup-business__social-link" href="@Model.Video" target="_blank"><img class="popup-business__social-img" src="/Content/img/youtube.png" title="youtube" alt="youtube"></a>
+        }
+        @if (!string.IsNullOrEmpty(Model.Fb))
+        {
+            <a class="popup-business__social-link" href="@Model.Fb" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" title="facebook" alt="facebook"></a>
+        }
+        @if (!string.IsNullOrEmpty(Model.Tw))
+        {
+            <a class="popup-business__social-link" href="@Model.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" title="facebook" alt="twitter"></a>
+        }
+        @if (!string.IsNullOrEmpty(Model.Tw))
+        {
+            <a class="popup-business__social-link" href="@Model.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" title="instagram" alt="instagram"></a>
+        }
+    </div>
     <div class="popup-business__description-wrapper">
-        <div class="popup-business__img-wrapper"><img class="popup-business__small-img" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="popup-business__big-img" src="/Images/Photo/@Model.Photo" alt=""></div>
+        <div class="popup-business__img-wrapper"><img class="popup-business__small-img" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="popup-business__big-img" src="/Images/Photo/@Model.Photo" title="@Model.MainName" alt="@Model.MainName"></div>
         @{
             if (Translator.language == "ru")
             {
@@ -31,24 +48,44 @@
         }
     </div>
     <div class="popup-business__contacts">
-        <div class="popup-business__item">@Translator.city:</div>
+
         @if (Translator.language == "ru")
         {
-            <div class="popup-business__item">@Model.City</div>
+            if (!string.IsNullOrEmpty(Model.City))
+            {
+                <div class="popup-business__item">@Translator.city:</div>
+                <div class="popup-business__item">@Model.City</div>
+            }
+
         }
         else
         {
-            <div class="popup-business__item">@Model.CityEn</div>
+            if (!string.IsNullOrEmpty(Model.CityEn))
+            {
+                <div class="popup-business__item">@Translator.city:</div>
+                <div class="popup-business__item">@Model.CityEn</div>
+            }
+
         }
 
-        <div class="popup-business__item">@Translator.address:</div>
+
         @if (Translator.language == "ru")
         {
-            <div class="popup-business__item">@Model.Address</div>
+            if (!string.IsNullOrEmpty(Model.Address))
+            {
+                <div class="popup-business__item">@Translator.address:</div>
+                <div class="popup-business__item">@Model.Address</div>
+            }
+
         }
         else
         {
-            <div class="popup-business__item">@Model.AddressEn</div>
+            if (!string.IsNullOrEmpty(Model.AddressEn))
+            {
+                <div class="popup-business__item">@Translator.address:</div>
+                <div class="popup-business__item">@Model.AddressEn</div>
+            }
+
         }
 
 
@@ -77,15 +114,14 @@
         @if (!string.IsNullOrEmpty(Model.Map))
         {
             <div class="popup-business__item">@Translator.on_the_map:</div>
-            <button class="popup-business__item_btn"><img src="/Content/img/marker-map.png" alt="place-marker.png"></button>
+            <button class="popup-business__item_btn" onclick="shouMap(@Model.BusinessId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
         }
     </div>
     @if (!string.IsNullOrEmpty(Model.Map))
     {
-
-        <div class="popup-business__gmaps">
-            <iframe @*src="@Model.Map"*@ allowfullscreen id="mapId" style="display: none; width: 100%; height: 100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.5025461416963!2d30.494894316049503!3d50.450365879475456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce6019df9639%3A0xd3f258aca9f61da6!2z0LLRg9C70LjRhtGPINCR0YPQu9GM0LLQsNGA0L3Qvi3QmtGD0LTRgNGP0LLRgdGM0LrQsCwgMzcsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490967199995"></iframe>
-        </div>
+        <div class="popup-business__gmaps" id="@("mainmapDivId"+Model.BusinessId)">
+                <iframe src="@Model.Map" allowfullscreen id="@("mainmapId"+Model.BusinessId)" style="display: none; width: 100%; height: 100%"></iframe>
+            </div>
     }
 
     @{
@@ -101,15 +137,26 @@
 
                 if (Translator.language == "ru")
                 {
-                    <h3 class="popup-business__header">@Model.MainName</h3>
+                    <h3 class="popup-business__header">@i.MainName</h3>
                 }
                 else
                 {
-                    <h3 class="popup-business__header">@Model.MainNameEn</h3>
+                    <h3 class="popup-business__header">@i.MainNameEn</h3>
                 }
 
+                if (!string.IsNullOrEmpty(i.Fb))
+                {
+                    <a class="popup-business__social-link" href="@i.Fb" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" title="facebook" alt="facebook"></a>
+                }
+                if (!string.IsNullOrEmpty(i.Tw))
+                {
+                    <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" title="facebook" alt="twitter"></a>
+                }
+                if (!string.IsNullOrEmpty(i.Tw))
+                {
+                    <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" title="instagram" alt="instagram"></a>
+                }
 
-                <div class="popup-business__social"><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a><a class="popup-business__social-link" href="#" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" alt="instagram.png"></a></div>
                 <div class="popup-business__description-wrapper">
                     <div class="popup-business__img-wrapper"><img class="popup-business__small-img" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="popup-business__big-img" src="/Images/Photo/@i.Photo" alt=""></div>
                     @{
@@ -124,25 +171,46 @@
                     }
                 </div>
                 <div class="popup-business__contacts">
-                    <div class="popup-business__item">@Translator.city:</div>
+
                     @if (Translator.language == "ru")
                     {
-                        <div class="popup-business__item">@i.City</div>
+                        if (!string.IsNullOrEmpty(i.City))
+                        {
+                            <div class="popup-business__item">@Translator.city:</div>
+                            <div class="popup-business__item">@i.City</div>
+                        }
+
                     }
                     else
                     {
-                        <div class="popup-business__item">@i.CityEn</div>
+                        if (!string.IsNullOrEmpty(i.CityEn))
+                        {
+                            <div class="popup-business__item">@Translator.city:</div>
+                            <div class="popup-business__item">@i.CityEn</div>
+                        }
+
                     }
 
-                    <div class="popup-business__item">@Translator.address:</div>
+
                     @if (Translator.language == "ru")
                     {
-                        <div class="popup-business__item">@i.Address</div>
+                        if (!string.IsNullOrEmpty(i.Address))
+                        {
+                            <div class="popup-business__item">@Translator.address:</div>
+                            <div class="popup-business__item">@i.Address</div>
+                        }
+
                     }
                     else
                     {
-                        <div class="popup-business__item">@i.AddressEn</div>
+                        if (!string.IsNullOrEmpty(i.AddressEn))
+                        {
+                            <div class="popup-business__item">@Translator.address:</div>
+                            <div class="popup-business__item">@i.AddressEn</div>
+                        }
+
                     }
+
 
                     <div class="popup-business__item">@Translator.phone:</div>
                     <div>
@@ -159,6 +227,9 @@
                             <a class="popup-business__item_link" href="tel:@i.Phone3">@i.Phone3 &nbsp;</a>
                         }
                     </div>
+
+
+
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
                         <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" href="@i.Site">@i.Site</a>
@@ -166,17 +237,15 @@
                     @if (!string.IsNullOrEmpty(i.Map))
                     {
                         <div class="popup-business__item">@Translator.on_the_map:</div>
-                        <button class="popup-business__item_btn"><img src="/Content/img/marker-map.png" alt="place-marker.png"></button>
+                        <button class="popup-business__item_btn"  onclick="shouBranchMap(@i.BranchId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
                     }
-
                 </div>
                 if (!string.IsNullOrEmpty(i.Map))
-                 {
-                    
-                     <div class="popup-business__gmaps">
-                         <iframe @*src="@i.Map"*@ allowfullscreen id="mapId" style="display: none;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2539.228216895754!2d30.513098316050094!3d50.474094979478714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce1141d71c09%3A0x868442c1d928bb3c!2z0LLRg9C70LjRhtGPINCi0YPRgNGW0LLRgdGM0LrQsCwgMzEsINCa0LjRl9CyLCDQo9C60YDQsNC40L3QsA!5e0!3m2!1sru!2sus!4v1490966426023"></iframe>
-                     </div>
-                 }
+                {
+                    <div class="popup-business__gmaps" id="@("divmapBranchId"+i.BranchId)">
+                        <iframe src="@i.Map" allowfullscreen id="@("mapBranchId"+i.BranchId)" style="display: none; width: 100%; height: 100%"></iframe>
+                    </div>
+                }
 
             }
         }
@@ -184,26 +253,35 @@
 
 </div>
 <script>
-    var isMapOpen = false;
+    function shouBranchMap(id) {
+        var div = $("#mapBranchId" + id);
+        if (div.css("display") == "none") {
+            $('#divmapBranchId'+id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            div.css("display", "block");
+        } else {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            div.css("display", "none");
+        }
+    }
+
+
+    function shouMap(id) {
+        var div = $("#mainmapId" + id);
+        if (div.css("display") == "none") {
+            $('#mainmapDivId'+id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            div.css("display", "block");
+        } else {
+            $('#mainmapDivId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            div.css("display", "none");
+        }
+
+    }
     $('.popup-business__close').click(function () {
         $(this).parent().css('display', 'block');
         $('.popups-section, .popup-business').css('display', 'none');
         $('.popup-business__gmaps').css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
-        isMapOpen = false;
     });
 
-    $('.popup-business__item_btn').click(function () {
-        if (!isMapOpen) {
-            $('.popup-business__gmaps').css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
-            $('#mapId').css("display", 'block');
-            isMapOpen = true;
-        } else {
-            $('.popup-business__gmaps').css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
-            $('#mapId').css("display", 'none');
-            isMapOpen = false;
-        }
-
-    });
 
 </script>
 

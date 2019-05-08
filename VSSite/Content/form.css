@@ -360,8 +360,8 @@ body {
   overflow: hidden;
 }
 
-.coworking-form__info_yellow {
-  border-left-color: yellow;
+.coworking-form__info_#f0db11 {
+  border-left-color: #f0db11;
   background-color: rgba(255, 255, 0, 0.2);
 }
 
@@ -514,7 +514,7 @@ body {
 }
 
 .header__social-btn:hover {
-  background-color: yellow;
+  background-color: #f0db11;
   box-shadow: 0 0 10px green;
 }
 
@@ -534,7 +534,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
-  border-top: 2px solid yellow;
+  border-top: 2px solid #f0db11;
   border-right: 1px solid lightgrey;
   border-bottom: 2px solid green;
   border-left: 1px solid lightgrey;
@@ -569,10 +569,10 @@ body {
   padding: 6px 0px;
   margin: 6px 0;
   border: 1px solid transparent;
-  border-right: yellow;
+  border-right: #f0db11;
   border-radius: 6px;
   text-align: center;
-  background-image: linear-gradient(to right, green, yellow, yellow, yellow);
+  background-image: linear-gradient(to right, green, #f0db11, #f0db11, #f0db11);
   transition: right .2s ease-out;
 }
 
@@ -586,7 +586,7 @@ body {
   z-index: -1;
   top: 0;
   left: 0;
-  background: linear-gradient(to right, green, yellow);
+  background: linear-gradient(to right, green, #f0db11);
   opacity: 0;
   transition: opacity 1s;
 }
@@ -638,7 +638,7 @@ body {
     transition: background-color .5s, box-shadow .5s;
   }
   .header__social-btn:hover {
-    background-color: yellow;
+    background-color: #f0db11;
     box-shadow: 0 0 10px green;
   }
   .header__social-img {
@@ -655,7 +655,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    border-top: 2px solid yellow;
+    border-top: 2px solid #f0db11;
     border-right: 1px solid lightgrey;
     border-bottom: 2px solid green;
     border-left: 1px solid lightgrey;
@@ -686,10 +686,10 @@ body {
     padding: 6px 0px;
     margin: 6px 0;
     border: 1px solid transparent;
-    border-right: yellow;
+    border-right: #f0db11;
     border-radius: 6px;
     text-align: center;
-    background-image: linear-gradient(to right, green, yellow, yellow, yellow);
+    background-image: linear-gradient(to right, green, #f0db11, #f0db11, #f0db11);
     transition: right .2s ease-out;
   }
   .header__menu-link:before {
@@ -702,7 +702,7 @@ body {
     z-index: -1;
     top: 0;
     left: 0;
-    background: linear-gradient(to right, green, yellow);
+    background: linear-gradient(to right, green, #f0db11);
     opacity: 0;
     transition: opacity 1s;
   }
@@ -753,7 +753,7 @@ body {
     transition: background-color .5s, box-shadow .5s;
   }
   .header__social-btn:hover {
-    background-color: yellow;
+    background-color: #f0db11;
     box-shadow: 0 0 10px green;
   }
   .header__social-img {
@@ -770,7 +770,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    border-top: 4px solid yellow;
+    border-top: 4px solid #f0db11;
     border-right: 4px solid lightgrey;
     border-bottom: 4px solid green;
     border-left: 4px solid lightgrey;
@@ -801,10 +801,10 @@ body {
     padding: 6px 0px;
     margin: 6px 0;
     border: 1px solid transparent;
-    border-right: yellow;
+    border-right: #f0db11;
     border-radius: 6px;
     text-align: center;
-    background-image: linear-gradient(to right, green, yellow, yellow, yellow);
+    background-image: linear-gradient(to right, green, #f0db11, #f0db11, #f0db11);
     transition: right .2s ease-out;
   }
   .header__menu-link:before {
@@ -817,7 +817,7 @@ body {
     z-index: -1;
     top: 0;
     left: 0;
-    background: linear-gradient(to right, green, yellow);
+    background: linear-gradient(to right, green, #f0db11);
     opacity: 0;
     transition: opacity 1s;
   }

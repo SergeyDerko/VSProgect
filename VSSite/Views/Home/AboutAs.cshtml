@@ -8,13 +8,13 @@
 <h1 class="main-section__header">@Translator.About_us</h1>
 @if (Translator.language == "ru")
 {
-    <p class="about-us-introduce">
+    <p class="about-us-introduce" style="font-size: 20px">
         @Html.Raw(Model.AboutUs.Description)
     </p>
 }
 else
 {
-    <p class="about-us-introduce">
+    <p class="about-us-introduce" style="font-size: 20px">
         @Html.Raw(Model.AboutUs.DescriptionEn)
     </p>
 }

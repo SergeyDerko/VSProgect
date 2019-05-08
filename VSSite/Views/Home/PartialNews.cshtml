@@ -1,8 +1,8 @@
 ﻿
 @{
-                /**/
+    /**/
 
-                Layout = null;
+    Layout = null;
 }
 @model  NewsPageModel
 @using VSSite.Models.ForViews
@@ -41,12 +41,23 @@ else
                         <p>@Html.Raw(i.BodyEn)</p>
                     }
                 </div>
-                <div class="infoblock__link">
-                    <span>
-                        @Translator.go_over:
-                    </span><a href="@i.DetailUrl" target="_blank">@i.DetailUrl</a>
-                </div>
+                @if (!string.IsNullOrEmpty(i.DetailUrl))
+                {
+                    <br />
+                    <div class="infoblock__link">
+                        <span style="font-weight: 900">
+                            @Translator.go_over:
+                        </span><a href="@i.DetailUrl" target="_blank">@i.DetailUrl</a>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(i.Video))
+                {
+                    <br/>
+                    <iframe width="100%" height="460" src="https://www.youtube.com/watch?v=1qDbi0_fAHg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                }
+               
             </div>
+
         </div>
     }
 

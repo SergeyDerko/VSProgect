@@ -14,8 +14,8 @@ else
         @{
             foreach (var i in Model.Businesses)
             {
-                <a class="business" style="cursor: pointer"  onclick="showBusiness(@i.BusinessId)">
-                    <img class="business__bcg" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="business__img" src="/Images/Logo/@i.Logo" alt="atocarwash.jpg">
+                <a class="business" style="cursor: pointer"  onclick="showBusiness(@i.BusinessId)" alt="@i.MainName" title="@i.MainName">
+                    <img class="business__bcg" src="/Content/img/gear-wheel.png"><img class="business__img" src="/Images/Logo/@i.Logo" alt="@i.MainName" title="@i.MainName">
                     @if (Translator.language == "ru")
                     {
                         <h3 class="business__name">@i.MainName</h3>

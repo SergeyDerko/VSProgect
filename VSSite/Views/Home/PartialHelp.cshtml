@@ -22,9 +22,9 @@
             }
 
             <div class="infoblock__img-holder">
-                <img class="infoblock__img-marker" src="/Content/img/gear-wheel.png" alt="">
+                <img class="infoblock__img-marker" src="/Content/img/gear.png">
                 <div class="infoblock__main-img-wrapper">
-                    <img class="infoblock__main-img" src="/Images/Logo/@i.Logo" alt="">
+                    <img class="infoblock__main-img" src="/Images/Logo/@i.Logo" alt="@i.Title" title="@i.Title">
                 </div>
             </div>
             <div class="infoblock__content-holder">
@@ -42,24 +42,31 @@
                 }
 
                 <div class="our-contacts">
-                    <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
-                    <div>
-                        @if (!string.IsNullOrEmpty(i.Phone1))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone2))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Phone3))
-                        {
-                            <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
-                        }
+                    @if (!string.IsNullOrEmpty(i.Phone1) || !string.IsNullOrEmpty(i.Phone2) || !string.IsNullOrEmpty(i.Phone3))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_phone_numbers:</p>
 
-                    </div>
-                    <p style="font-weight: 900">@Translator.Our_email:</p>
-                    <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.Email">@i.Email</a></p>
+                        <div>
+                            @if (!string.IsNullOrEmpty(i.Phone1))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone2))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+                            @if (!string.IsNullOrEmpty(i.Phone3))
+                            {
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                            }
+
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Email))
+                    {
+                        <p style="font-weight: 900">@Translator.Our_email:</p>
+                        <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.Email">@i.Email</a></p>
+                    }
 
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
@@ -67,42 +74,72 @@
                         <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
                     }
 
-                        <p style="font-weight: 900">@Translator.city:</p>
+
                     @if (Translator.language == "ru")
                     {
-                        <p>@i.City</p>
-                    }
-                    else
-                    {
-                        <p>@i.CityEn</p>
-                    }
-                        <p style="font-weight: 900">@Translator.address:</p>
-                    @if (Translator.language == "ru")
-                    {
-                        <p>@i.Address</p>
-                    }
-                    else
-                    {
-                        <p>@i.AddressEn</p>
-                    }
-                   
-                    <div class="infoblock__social-btns-area">
-                        @*<a class="infoblock__social-btn" href="#" target="_blank"><img class="infoblock__social-img" src="assets/img/youtube.png" alt="youtube.png"></a>*@
-                        @if (!string.IsNullOrEmpty(i.Fb))
+                        if (!string.IsNullOrEmpty(i.City))
                         {
-                            <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
-                        }
-                        @if (!string.IsNullOrEmpty(i.Tw))
-                        {
-                            <a class="infoblock__social-btn" href="@i.Tw" target="_blank"><img class="infoblock__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a>
+                            <p style="font-weight: 900">@Translator.city:</p>
+                            <p>@i.City</p>
                         }
 
-                    </div>
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(i.CityEn))
+                        {
+                            <p style="font-weight: 900">@Translator.city:</p>
+                            <p>@i.CityEn</p>
+                        }
+                    }
+
+                    @if (Translator.language == "ru")
+                    {
+                        if (!string.IsNullOrEmpty(i.Address))
+                        {
+                            <p style="font-weight: 900">@Translator.address:</p>
+                            <p>@i.Address</p>
+                        }
+
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(i.Address))
+                        {
+                            <p style="font-weight: 900">@Translator.address:</p>
+                            <p>@i.AddressEn</p>
+                        }
+
+                    }
+                    @if (!string.IsNullOrEmpty(i.Map))
+                    {
+                        <div class="popup-business__item" style="font-weight: 900">@Translator.on_the_map:</div>
+                        <button class="popup-business__item_btn" onclick="shouBranchMap(@i.BusinessHelperslId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
+                    }
+                  
                 </div>
+                @if (!string.IsNullOrEmpty(i.Map))
+                {
+                    <div class="popup-business__gmaps" id="@("divmapBranchId"+i.BusinessHelperslId)">
+                        <iframe src="@i.Map" allowfullscreen id="@("mapBranchId"+i.BusinessHelperslId)" style="display: none; width: 100%; height: 100%"></iframe>
+                    </div>
+                }
+                <div class="infoblock__social-btns-area">
 
+                    @if (!string.IsNullOrEmpty(i.Fb))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Fb" target="_blank"><img class="infoblock__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Tw))
+                    {
+                        <a class="infoblock__social-btn" href="@i.Tw" target="_blank"><img class="infoblock__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Inst))
+                    {
+                        <a class="popup-business__social-link" href="@i.Inst" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" title="instagram" alt="instagram"></a>
+                    }
 
-
-
+                </div>
             </div>
         </div>
     }
@@ -111,3 +148,15 @@
 <div class="pagination">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("HelpSort", new { page = x }))
 </div>
+<script>
+    function shouBranchMap(id) {
+        var div = $("#mapBranchId" + id);
+        if (div.css("display") == "none") {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            div.css("display", "block");
+        } else {
+            $('#divmapBranchId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
+            div.css("display", "none");
+        }
+    }
+</script>
