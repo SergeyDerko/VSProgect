@@ -9,7 +9,6 @@ using VSCore.Concrete;
 
 namespace VSSite.Controllers
 {
-    [Authorize]
     public class AboutUsController : Controller
     {
         Context db = new Context();

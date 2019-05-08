@@ -27,7 +27,7 @@ else
             <div class="infoblock__img-holder">
                 <div class="infoblock__img-date">@i.DateNews.ToString("dd.MM.yyyy")</div><img class="infoblock__img-marker" src="/Content/img/marker-news.png" alt="">
                 <div class="infoblock__main-img-wrapper">
-                    <img class="infoblock__main-img" src="~/Images/Logo/@i.Picture" alt="">
+                    <img class="infoblock__main-img" src="~/Images/@i.Picture" alt="@i.Title" title="@i.Title">
                 </div>
             </div>
             <div class="infoblock__content-holder">
@@ -53,7 +53,7 @@ else
                 @if (!string.IsNullOrEmpty(i.Video))
                 {
                     <br/>
-                    <iframe width="100%" height="460" src="https://www.youtube.com/watch?v=1qDbi0_fAHg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="100%" height="460" src="@i.Video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 }
                
             </div>
