@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Telerik.Windows.Documents.Flow.Model.Lists;
 using VSCore.Concrete;
@@ -269,7 +274,84 @@ namespace VSSite.Controllers
                 Date = DateTime.Now
             });
             context.SaveChanges();
+            try
+            {
+                Task.Factory.StartNew(() => SendLetter(email, ownerName));
+            }
+            catch (Exception e)
+            {
+                //ignored
+            }
             return View();
+        }
+
+        private void SendLetter(string email, string name)
+        {
+            string mailFrom = WebConfigurationManager.AppSettings["mail"];
+            string pass = WebConfigurationManager.AppSettings["pass"];
+            string mailServerHost = WebConfigurationManager.AppSettings["mailServerHost"];
+            int mailServerPort = Convert.ToInt32(WebConfigurationManager.AppSettings["mailServerPort"]);
+            bool isEnableSsl = Convert.ToBoolean(WebConfigurationManager.AppSettings["isEnableSsl"]);
+            string mentorMail = WebConfigurationManager.AppSettings["mentorMail"];
+            string mantorName = WebConfigurationManager.AppSettings["mentorName"];
+            string domen = WebConfigurationManager.AppSettings["domen"];
+
+            MailHelper helper = new MailHelper
+            {
+                Host = mailServerHost,
+                MailFrom = mailFrom,
+                Pasword = pass,
+                Port = mailServerPort,
+                Ssl = isEnableSsl,
+                MailTo = email
+            };
+            //формируем тело и заголовок для клиента
+            helper.Title = "Повідомлення про реєстрацію на сайті veterano-service.com";
+            helper.Body = "<body style='margin: 50px;'><div align='center'><div align = 'center' style = 'background-color: rgba(237, 237, 26, 0.25); border-radius: 30px; max-width: 60%; height: auto;'>" +
+                          $"<h2 style='color: black'> Добрий день, шановний {name}!</h2> <h3 style = 'color: black'> Ви отримали цей лист, тому що, пройшли реєстрацію на сайті <a href = '{domen}'><strong style ='font-size: 23px; color: rgb(52, 153, 251)'>veterano-service.com</strong></a></h3>" +
+                          "<h3 style ='color: black'>Найближчим часом ваша заявка буде розглянута, і Ваш бізнес буде додано на сайт. Якщо буде потрібно уточнююча інформація, ми з вами зв'яжемося.</h3><hr/>" +
+                          $"<p style = 'float: right; margin-right: 30px;'> З повагою, команда Veterano Servise!</strong></p>" +
+                          "<br/><br/></div></div></body>";
+            Send(helper);
+            //а теперь отсылаем письмо Лорику
+            helper.Body = "<body style='margin: 50px;'><div align='center'><div align = 'center' style = 'background-color: rgba(237, 237, 26, 0.25); border-radius: 30px; max-width: 60%; height: auto;'>" +
+                          $"<h2 style='color: black'> Добрий день, шановна пані {mantorName}!</h2> <h3 style = 'color: black'> Ви отримали цей лист, тому що, з'явилася нова заявка на сайті <a href = '{domen}'><strong style ='font-size: 23px; color: rgb(52, 153, 251)'>veterano-service.com</strong></a></h3>" +
+                          "<h3 style ='color: black'>Не забудьте зазирнути на сайт, щоб переглянути заявки! Може там нетерплячий, бородатий дядько дуже хоче вашої уваги і жіночої ласки!</h3><hr/>" +
+                          $"<p style = 'float: right; margin-right: 30px;'> З повагою, команда Veterano Servise!</strong></p>" +
+                          "<br/><br/></div></div></body>";
+            helper.MailTo = mentorMail;
+            Send(helper);
+
+        }
+
+        private void Send(MailHelper helper )
+        {
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.To.Add(helper.MailTo);
+                mail.From = new MailAddress(helper.MailFrom, "VeteranoServise", Encoding.UTF8);
+                mail.Subject = helper.Title;
+                mail.SubjectEncoding = Encoding.UTF8;
+                mail.Body = helper.Body;
+                mail.BodyEncoding = Encoding.UTF8;
+                mail.IsBodyHtml = true;
+                using (SmtpClient client = new SmtpClient())
+                {
+                    client.Credentials = new NetworkCredential(helper.MailFrom, helper.Pasword);
+                    client.Host = helper.Host;
+                    client.Port = helper.Port;
+                    client.EnableSsl = helper.Ssl;
+                    try
+                    {
+                        client.Send(mail);
+                    }
+                    catch (Exception e)
+                    {
+                        //
+                    }
+
+                }
+            }
         }
 
         public string DataSid()
@@ -604,6 +686,18 @@ namespace VSSite.Controllers
 
             return "Гтово!";
         }
+    }
+
+    public class MailHelper
+    {
+        public string MailFrom { get; set; }
+        public string MailTo { get; set; }
+        public string Pasword { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
+        public string Host { get; set; }
+        public int Port { get; set; }
+        public bool Ssl { get; set; }
     }
     
 }
