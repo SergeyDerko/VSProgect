@@ -10,69 +10,13 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <style>
-        .dropZoneElement {
-            position: relative;
-            display: inline-block;
-            background-color: #f8f8f8;
-            border: 1px solid #c7c7c7;
-            width: 230px;
-            height: 110px;
-            text-align: center;
-        }
-
-        .textWrapper {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            font-size: 24px;
-            line-height: 1.2em;
-            font-family: Arial,Helvetica,sans-serif;
-            color: #000;
-        }
-
-        .dropImageHereText {
-            color: #c7c7c7;
-            text-transform: uppercase;
-            font-size: 12px;
-        }
-
-        .product {
-            float: left;
-            position: relative;
-            margin: 0 10px 10px 0;
-            padding: 0;
-        }
-
-            .product img {
-                width: 110px;
-                height: 110px;
-            }
-
-        .wrapper:after {
-            content: ".";
-            display: block;
-            height: 0;
-            clear: both;
-            visibility: hidden;
-        }
-    </style>
-    <script type="text/x-kendo-template" id="template">
-        <div class="product">
-            <img src="../content/web/foods/#= name #" alt="#: name # image" />
-        </div>
-    </script>
 </head>
 
 <body>
 <div class="container-fluid">
-    @(Html.Kendo().Notification()
-          .Name("newsActionNoty")
-          .Position(p=>p.Top(30).Right(30))
-          .AllowHideAfter(200))
+
     <div class="row">
-        <input type="hidden" id="fileNameFull" value=""/>
+        <input type="hidden" id="fileNamePhoto" value="" />
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading"></div>
@@ -86,23 +30,13 @@
                         <tr>
                             <td>Фото</td>
                             <td>
-                                <div id="products"></div>
+                                <div id="photo"></div>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                @(Html.Kendo().Upload().Name("files")
-                                      .Validation(validation =>
-                                      {
-                                          validation.AllowedExtensions(new string[] {".jpg", ".jpeg", ".png", ".bmp", ".gif"});
-                                          validation.MinFileSize(500);
-                                      })
-                                      .Events(e => e.Success("onSuccess").Remove("onSuccess"))
-                                      .Async(a => a
-                                          .Save("Async_Save", "News")
-                                          .Remove("Async_Remove", "News")
-                                          .AutoUpload(true)))
+                                <input type="file" name="UploadFile" id="UploadFilePhoto" />
                             </td>
                         </tr>
                         <tr>
@@ -186,7 +120,7 @@
             var _titleEn = $("#titleEn").val();
             var _detailUrl = $("#detailUrl").val();
             var _videoUrl = $("#videoUrl").val();
-            var _pic = $("#fileNameFull").val();
+            var _pic = $("#fileNamePhoto").val();
             var data = {
                 titleUa: _titleUa,
                 titleEn: _titleEn,
@@ -201,38 +135,44 @@
                 url: "/News/Save",
                 data: data,
                 success: function() {
-                    $("#bodyUa").data('kendoEditor').value('');
-                    $("#bodyEn").data('kendoEditor').value('');
-                    $("#titleUa").val('');
-                    $("#titleEn").val('');
-                    $("#detailUrl").val('');
-                    $("#videoUrl").val('');
-                    $("#fileNameFull").val();
-                    var popupNotification = $("#newsActionNoty").data("kendoNotification");
-                    popupNotification.show("Новина збережена");
+                   location.reload();
                 }
             });
         };
 
-        function onSuccess(e) {
-            $("#fileNameFull").val(e.response.fileName);
-            if (e.operation == "upload") {
-                for (var i = 0; i < e.files.length; i++) {
-                    var file = e.files[i].rawFile;
-
-                    if (file) {
-                        var reader = new FileReader();
-
-                        reader.onloadend = function() {
-                            $("<div class='product'><img src=" + this.result + " /></div>").appendTo($("#products"));
-                        };
-
-                        reader.readAsDataURL(file);
+        $('#UploadFilePhoto').on('change', function (e) {
+            var files = e.target.files;
+            var myID = "n"; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++){
+                        //alert(files[x].name);
+                        data.append(files[x].name, files[x]);
                     }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Upload/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function(result) {
+                            $("#fileNamePhoto").val(result);
+                            $("<div class='photo'><img src='/Images/" + result + "' style='height:150px;width:auto' id='" + result +"'/></div>").appendTo($("#photo"));
+                        },
+                        error: function (xhr, status, p3, p4){
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
                 }
             }
-            if (e.operation == "remove") {}
-        }
+        });
 
     </script>
 </body>

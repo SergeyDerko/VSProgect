@@ -157,47 +157,5 @@ namespace VSSite.Controllers
             return null;
         }
 
-        public ActionResult Async_Save(IEnumerable<HttpPostedFileBase> logoUpload)
-        {
-            var name = Guid.NewGuid().ToString();
-            string fullFile = "";
-            foreach (var file in logoUpload)
-            {
-
-                if (file != null)
-                {
-                    var ext = Path.GetExtension(file.FileName);
-                    var physicalPath = Path.Combine(Server.MapPath("~/Images/Logo"), $"{name}{ext}");
-                    fullFile = $"{name}{ext}";
-                    file.SaveAs(physicalPath);
-                }
-            }
-
-            return Json(new { fileName = fullFile });
-        }
-
-        public ActionResult Async_Remove(string[] fileNames)
-        {
-            // The parameter of the Remove action must be called "fileNames"
-
-            if (fileNames != null)
-            {
-                foreach (var fullName in fileNames)
-                {
-                    var fileName = Path.GetFileName(fullName);
-                    var physicalPath = Path.Combine(Server.MapPath("~/Images/Logo"), fileName);
-
-                    // TODO: Verify user permissions
-
-                    if (System.IO.File.Exists(physicalPath))
-                    {
-                        System.IO.File.Delete(physicalPath);
-                    }
-                }
-            }
-
-            // Return an empty string to signify success
-            return Content("");
-        }
     }
 }

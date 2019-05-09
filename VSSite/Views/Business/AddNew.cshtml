@@ -47,17 +47,7 @@
             <tr>
                 <td></td>
                 <td>
-                    @(Html.Kendo().Upload().Name("logoUpload")
-                          .Validation(validation =>
-                          {
-                              validation.AllowedExtensions(new string[] {".jpg", ".jpeg", ".png", ".bmp", ".gif"});
-                              validation.MinFileSize(500);
-                          })
-                          .Events(e => e.Success("onSuccessLogo").Remove("onSuccessLogo"))
-                          .Async(a => a
-                              .Save("Async_Save", "Business")
-                              .Remove("Async_Remove", "Business")
-                              .AutoUpload(true)))
+                    <input type="file" name="UploadFile" id="UploadFileLogo"/>
                 </td>
             </tr>
             <tr>
@@ -69,17 +59,7 @@
             <tr>
                 <td></td>
                 <td>
-                    @(Html.Kendo().Upload().Name("photoUpload")
-                          .Validation(validation =>
-                          {
-                              validation.AllowedExtensions(new string[] {".jpg", ".jpeg", ".png", ".bmp", ".gif"});
-                              validation.MinFileSize(500);
-                          })
-                          .Events(e => e.Success("onSuccessPhoto").Remove("onSuccessPhoto"))
-                          .Async(a => a
-                              .Save("Async_Save2", "Business")
-                              .Remove("Async_Remove2", "Business")
-                              .AutoUpload(true)))
+                    <input type="file" name="UploadFile" id="UploadFilePhoto" />
                 </td>
             </tr>
             <tr>
@@ -288,46 +268,72 @@
 
     }
 
-    function onSuccessLogo(e) {
-        $("#fileNameBLogo").val(e.response.fileName);
-        if (e.operation == "upload") {
-            for (var i = 0; i < e.files.length; i++) {
-                var file = e.files[i].rawFile;
-
-                if (file) {
-                    var reader = new FileReader();
-
-                    reader.onloadend = function() {
-                        $("<div class='logo'><img src=" + this.result + " /></div>").appendTo($("#logo"));
-                    };
-
-                    reader.readAsDataURL(file);
+    $('#UploadFileLogo').on('change', function (e) {
+        var files = e.target.files;
+        var myID = "l"; //uncomment this to make sure the ajax URL works
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append(files[x].name, files[x]);
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Upload/UploadFile?id=' + myID,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        $("#fileNameBlogo").val(result);
+                        $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#logo"));
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
             }
         }
-        if (e.operation == "remove") {
-        }
-    }
-    function onSuccessPhoto(e) {
-        $("#fileNamePhoto").val(e.response.fileName);
-        if (e.operation == "upload") {
-            for (var i = 0; i < e.files.length; i++) {
-                var file = e.files[i].rawFile;
+    });
 
-                if (file) {
-                    var reader = new FileReader();
-
-                    reader.onloadend = function() {
-                        $("<div class='photo'><img src=" + this.result + " /></div>").appendTo($("#photo"));
-                    };
-
-                    reader.readAsDataURL(file);
+    $('#UploadFilePhoto').on('change', function (e) {
+        var files = e.target.files;
+        var myID = "p"; //uncomment this to make sure the ajax URL works
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    //alert(files[x].name);
+                    data.append(files[x].name, files[x]);
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Upload/UploadFile?id=' + myID,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        $("#fileNamePhoto").val(result);
+                        $("<div class='photo'><img src='/Images/Photo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#photo"));
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
             }
         }
-        if (e.operation == "remove") {
-        }
-    }
+    });
 </script>
 </body>
 </html>

@@ -85,7 +85,7 @@
     }
 </style>
 <div class="k-edit-form-container">
-    <h3 style="margin-left: 10px">Add new category</h3>
+    <h3 style="margin-left: 10px">Додаті нову категорію</h3>
     <br />
     @Html.HiddenFor(model => model.IdCategory)
     @*<input type="hidden" id="fileNameFull" value=""/>*@
@@ -104,22 +104,21 @@
                   .AutoUpload(true)))
     </div>
     <div class="k-edit-label">
-        @Html.LabelFor(model => model.Name)
+        Найменування українською
     </div>
     <div class="k-edit-field">
-        @*@Html.EditorFor(model => model.Name)*@
         @Html.Kendo().TextBoxFor(model=>model.Name)
         @Html.ValidationMessageFor(model => model.Name)
     </div>
     <div class="k-edit-label">
-        @Html.LabelFor(model => model.NameEn)
+        Найменування аглійською
     </div>
     <div class="k-edit-field">
         @Html.EditorFor(model => model.NameEn)
         @Html.ValidationMessageFor(model => model.NameEn)
     </div>
     <div class="k-edit-label">
-        @Html.LabelFor(model => model.Logo)
+        Логотип
     </div>
     <div class="k-edit-field">
         @Html.Kendo().TextBoxFor(model => model.Logo).Name("Logo")

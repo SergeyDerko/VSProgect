@@ -264,6 +264,7 @@
     <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\PlacementController.cs" />
     <Compile Include="Controllers\TeamMemberController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UsefulController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -510,6 +511,7 @@
     <Folder Include="Views\Busness\" />
     <Folder Include="Views\ImageBrowser\" />
     <Folder Include="Views\Language\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

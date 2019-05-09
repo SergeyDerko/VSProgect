@@ -42,24 +42,26 @@
                             <tbody>
                             <tr>
                                 <td>Логотип</td>
-                                <td>
-                                </td>
+                                <td><input type="button" onclick="removePhotoClick('l')" class="btn btn-danger" value="Видалити логотип" id="bt_delLogo"/></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: center">
-                                    <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" />
+                                    <div id="logo"></div>
+                                    <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" id="logoImg" />
+                                    <input type="file" name="UploadFile" id="UploadFileLogo" style="display: none"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Фото</td>
-                                <td>
-                                </td>
+                                <td><input type="button" onclick="removePhotoClick('p')" class="btn btn-danger" value="Видалити фото" id="bt_delPhoto"/></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: center">
-                                    <img src="~/Images/Photo/@Model.Photo" height="150" width="auto"/>
+                                    <div id="photo"></div>
+                                    <img src="~/Images/Photo/@Model.Photo" height="150" width="auto" id="photoImg" />
+                                    <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none"/>
                                 </td>
                             </tr>
                             </tbody>
@@ -277,6 +279,107 @@
 
     }
 
+        function removePhotoClick(e) {
+            var a = {};
+            
+            if (e == "l")
+            {
+                a = { fileName: $("#fileNameBLogo").val(), type: e };
+            }
+            if (e == "p")
+            {
+                a = { fileName: $("#fileNamePhoto").val(), type: e };
+            }
+            console.log(a);
+            $.ajax({
+                type: "POST",
+                url: "/Upload/RemoveFile/",
+                data: a,
+                success: function (data) {
+                    console.log(data);
+                    if (data == "OK_p") {
+                        $("#photoImg").css("display", "none");
+                        $("#bt_delPhoto").css("display", "none");
+                        $("#UploadFilePhoto").css("display", "block");
+                    }
+                    if (data == "OK_l") {
+                        $("#logoImg").css("display", "none");
+                        $("#bt_delLogo").css("display", "none");
+                        $("#UploadFileLogo").css("display","block");
+                    }
+                }
+            });
+        };
+
+        $('#UploadFileLogo').on('change', function (e) {
+            var files = e.target.files;
+            var myID = "l"; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append(files[x].name, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Upload/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            $("#fileNameBLogo").val(result);
+                            alert(result);
+                            $("#bt_delLogo").css("display", "block");
+                            $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#logo"));
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+
+        $('#UploadFilePhoto').on('change', function (e) {
+            var files = e.target.files;
+            var myID = "p"; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        //alert(files[x].name);
+                        data.append(files[x].name, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Upload/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            $("#fileNamePhoto").val(result);
+                            $("#bt_delPhoto").css("display", "block");
+                            $("<div class='photo'><img src='/Images/Photo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#photo"));
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
     </script>
 </body>
 </html>

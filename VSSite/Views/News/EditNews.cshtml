@@ -23,91 +23,90 @@
                 <div class="panel-body">
                     <table class="table table-striped table-bordered">
                         <tbody>
-                        <tr>
-                            <td>Зберегти</td>
-                            <td>@(Html.Kendo().Button().Name("save").Content("ЗБЕРЕГТИ").Events(e => e.Click("SaveNews")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="~/Images/@Model.Picture" style="width: 150px;height: auto"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Назва українською</td>
-                            <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.Title))</td>
-                        </tr>
-                        <tr>
-                            <td>Назва англійською</td>
-                            <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.TitleEn))</td>
-                        </tr>
-                        <tr>
-                            <td>Першоджерело</td>
-                            <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.DetailUrl))</td>
-                        </tr>
-                        <tr>
-                            <td>Посилання на відео</td>
-                            <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.Video))</td>
-                        </tr>
+                            <tr>
+                                <td>Зберегти</td>
+                                <td>@(Html.Kendo().Button().Name("save").Content("ЗБЕРЕГТИ").Events(e => e.Click("SaveNews")).HtmlAttributes(new { @class = "btn btn-success" }))</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Images/@Model.Picture" style="width: 150px;height: auto" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Назва українською</td>
+                                <td>@(Html.Kendo().TextBox().Name("titleUa").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.Title))</td>
+                            </tr>
+                            <tr>
+                                <td>Назва англійською</td>
+                                <td>@(Html.Kendo().TextBox().Name("titleEn").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.TitleEn))</td>
+                            </tr>
+                            <tr>
+                                <td>Першоджерело</td>
+                                <td>@(Html.Kendo().TextBox().Name("detailUrl").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.DetailUrl))</td>
+                            </tr>
+                            <tr>
+                                <td>Посилання на відео</td>
+                                <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new { style = "display:block; width:100%" }).Value(Model.Video))</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">Опис українською</div>
-                <div class="panel-body">
-                    @(Html.Kendo().Editor()
-                          .Name("bodyUa")
-                          .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                          .Tools(tools => tools
-                              .Clear()
-                              .Bold().Italic().Underline().Strikethrough()
-                              .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                              .InsertUnorderedList().InsertOrderedList()
-                              .Outdent().Indent()
-                              .CreateLink().Unlink()
-                              .SubScript()
-                              .SuperScript()
-                              .TableEditing()
-                              .ViewHtml()
-                              .CleanFormatting()
-                              .FontName()
-                              .FontSize()
-                              .FontColor().BackColor()
-                          )
-                          .Value(Model.Body)
-                          )
+                <div class="panel">
+                    <div class="panel-heading">Опис українською</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyUa")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          .CleanFormatting()
+                                          .FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      )
+                                      .Value(Model.Body)
+                        )
+                    </div>
                 </div>
-            </div>
-            <div class="panel">
-                <div class="panel-heading">Опис англійською</div>
-                <div class="panel-body">
-                    @(Html.Kendo().Editor()
-                          .Name("bodyEn")
-                          .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
-                          .Tools(tools => tools
-                              .Clear()
-                              .Bold().Italic().Underline().Strikethrough()
-                              .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                              .InsertUnorderedList().InsertOrderedList()
-                              .Outdent().Indent()
-                              .CreateLink().Unlink()
-                              .SubScript()
-                              .SuperScript()
-                              .TableEditing()
-                              .ViewHtml()
-                              .CleanFormatting()
-                              .FontName()
-                              .FontSize()
-                              .FontColor().BackColor()
-                          )
-                          .Value(Model.BodyEn)
-                          )
+                <div class="panel">
+                    <div class="panel-heading">Опис англійською</div>
+                    <div class="panel-body">
+                        @(Html.Kendo().Editor()
+                                      .Name("bodyEn")
+                                      .Resizable(resizeble => resizeble.Content(true).Toolbar(true))
+                                      .Tools(tools => tools
+                                          .Clear()
+                                          .Bold().Italic().Underline().Strikethrough()
+                                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                                          .InsertUnorderedList().InsertOrderedList()
+                                          .Outdent().Indent()
+                                          .CreateLink().Unlink()
+                                          .SubScript()
+                                          .SuperScript()
+                                          .TableEditing()
+                                          .ViewHtml()
+                                          .CleanFormatting()
+                                          .FontName()
+                                          .FontSize()
+                                          .FontColor().BackColor()
+                                      )
+                                      .Value(Model.BodyEn)
+                        )
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
     function SaveNews() {
         var newId = $("#newsId").val();
