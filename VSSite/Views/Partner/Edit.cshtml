@@ -43,12 +43,14 @@
                             <tbody>
                                 <tr>
                                     <td>Логтип</td>
-                                    <td></td>
+                                    <td><input type="button" onclick="removePhotoClick('l')" class="btn btn-danger" value="Видалити логотип" id="bt_delLogo"/></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td style="text-align: center">
-                                        <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" />
+                                        <div id="logo"></div>
+                                        <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" id="logoImg" />
+                                        <input type="file" name="UploadFile" id="UploadFileLogo" style="display: none"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -178,59 +180,124 @@
 
     <script>
 
-    function SaveBuisnes() {
-        var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
-        var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
-        var _fileNameBLogo = $("#fileNameBLogo").val();
-        var _mainName = $("#mainName").val();
-        var _mainNameEn = $("#mainNameEn").val();
-        var _address = $("#address").val();
-        var _addressEn = $("#addressEn").val();
-        var _phone1 = $("#phone1").val();
-        var _phone2 = $("#phone2").val();
-        var _siteUrl = $("#siteUrl").val();
-        var _phone3 = $("#phone3").val();
-        var _fbUrl = $("#fbUrl").val();
-        var _googleUrl = $("#googleUrl").val();
-        var _twUrl = $("#twUrl").val();
-        var _instUrl = $("#instUrl").val();
-        var _mapUrl = $("#mapUrl").val();
-        var _cityEn = $("#cityEn").val();
-        var _city = $("#city").val();
-        var _id = $("#buisnesId").val();
+        function SaveBuisnes() {
+            var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
+            var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
+            var _fileNameBLogo = $("#fileNameBLogo").val();
+            var _mainName = $("#mainName").val();
+            var _mainNameEn = $("#mainNameEn").val();
+            var _address = $("#address").val();
+            var _addressEn = $("#addressEn").val();
+            var _phone1 = $("#phone1").val();
+            var _phone2 = $("#phone2").val();
+            var _siteUrl = $("#siteUrl").val();
+            var _phone3 = $("#phone3").val();
+            var _fbUrl = $("#fbUrl").val();
+            var _googleUrl = $("#googleUrl").val();
+            var _twUrl = $("#twUrl").val();
+            var _instUrl = $("#instUrl").val();
+            var _mapUrl = $("#mapUrl").val();
+            var _cityEn = $("#cityEn").val();
+            var _city = $("#city").val();
+            var _id = $("#buisnesId").val();
 
-        var data = {
-            id:_id,
-            bodyContentUA: _bodyContentUA,
-            bodyContentEN: _bodyContentEN,
-            fileNameBLogo:_fileNameBLogo,
-            name:_mainName,
-            nameEn:_mainNameEn,
-            address:_address,
-            addressEn:_addressEn,
-            phone1:_phone1,
-            phone2:_phone2,
-            siteUrl:_siteUrl,
-            phone3:_phone3,
-            fbUrl:_fbUrl,
-            googleUrl:_googleUrl,
-            twUrl:_twUrl,
-            instUrl:_instUrl,
-            mapUrl:_mapUrl,
-            city: _city,
-            cityEn: _cityEn
+            var data = {
+                id:_id,
+                bodyContentUA: _bodyContentUA,
+                bodyContentEN: _bodyContentEN,
+                fileNameBLogo:_fileNameBLogo,
+                name:_mainName,
+                nameEn:_mainNameEn,
+                address:_address,
+                addressEn:_addressEn,
+                phone1:_phone1,
+                phone2:_phone2,
+                siteUrl:_siteUrl,
+                phone3:_phone3,
+                fbUrl:_fbUrl,
+                googleUrl:_googleUrl,
+                twUrl:_twUrl,
+                instUrl:_instUrl,
+                mapUrl:_mapUrl,
+                city: _city,
+                cityEn: _cityEn
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Partner/Save",
+                data: data,
+                success: function () {
+                    location.href = "/Partner/Index";
+                }
+            });
         };
-        $.ajax({
-            type: "POST",
-            url: "/Partner/Save",
-            data: data,
-            success: function () {
-                location.href = "/Partner/Index";
+
+        function removePhotoClick(e) {
+            var a = {};
+                
+            if (e == "l")
+            {
+                a = { fileName: $("#fileNameBLogo").val(), type: e };
+            }
+            if (e == "p")
+            {
+                a = { fileName: $("#fileNamePhoto").val(), type: e };
+            }
+            console.log(a);
+            $.ajax({
+                type: "POST",
+                url: "/Upload/RemoveFile/",
+                data: a,
+                success: function (data) {
+                    console.log(data);
+                    if (data == "OK_p") {
+                        $("#photoImg").css("display", "none");
+                        $("#bt_delPhoto").css("display", "none");
+                        $("#UploadFilePhoto").css("display", "block");
+                    }
+                    if (data == "OK_l") {
+                        $("#logoImg").css("display", "none");
+                        $("#bt_delLogo").css("display", "none");
+                        $("#UploadFileLogo").css("display","block");
+                    }
+                }
+            });
+        };
+
+        $('#UploadFileLogo').on('change', function (e) {
+            var files = e.target.files;
+            var myID = "l"; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append(files[x].name, files[x]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Upload/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            $("#fileNameBLogo").val(result);
+                            alert(result);
+                            $("#bt_delLogo").css("display", "block");
+                            $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#logo"));
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
             }
         });
-
-    }
-
     </script>
 </body>
 </html>
