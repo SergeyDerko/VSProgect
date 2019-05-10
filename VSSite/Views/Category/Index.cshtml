@@ -54,7 +54,6 @@
 
     <script>
         function onSuccess(e) {
-            // alert(e.response.fileName);
             $("#Logo").val(e.response.fileName).trigger("change");
             if (e.operation == "upload") {
                 for (var i = 0; i < e.files.length; i++) {

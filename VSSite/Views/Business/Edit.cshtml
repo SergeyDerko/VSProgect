@@ -329,7 +329,6 @@
                         data: data,
                         success: function (result) {
                             $("#fileNameBLogo").val(result);
-                            alert(result);
                             $("#bt_delLogo").css("display", "block");
                             $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#logo"));
                         },
