@@ -116,6 +116,8 @@
         var _titleEn = $("#titleEn").val();
         var _detailUrl = $("#detailUrl").val();
         var _videoUrl = $("#videoUrl").val();
+        var _pic = $("#fileNameFull").val();
+
         var data = {
             id: newId,
             titleUa: _titleUa,
@@ -123,7 +125,8 @@
             body: bodyContentUA,
             bodyEn: bodyContentEN,
             detailUrl: _detailUrl,
-            videoUrl: _videoUrl
+            videoUrl: _videoUrl,
+            pic: _pic
         };
         $.ajax({
             type: "POST",
