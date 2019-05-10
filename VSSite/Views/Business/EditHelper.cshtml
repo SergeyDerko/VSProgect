@@ -41,13 +41,13 @@
                             <tbody>
                                 <tr>
                                     <td>Логотип</td>
-                                    <td><input type="button" onclick="removePhotoClick('l')" class="btn btn-danger" value="Видалити логотип" id="bt_delLogo" /></td>
+                                    <td><input type="button" onclick="removePhotoClick('l')" class="btn btn-danger" value="Видалити логотип" id="bt_delLogo"/></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td style="text-align: center">
                                         <div id="logo"></div>
-                                        <img src="~/Images/Logo/@Model.Logo" height="150" width="auto"/>
+                                        <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" id="logoImg" />
                                         <input type="file" name="UploadFile" id="UploadFileLogo" style="display: none"/>
                                     </td>
                                 </tr>
