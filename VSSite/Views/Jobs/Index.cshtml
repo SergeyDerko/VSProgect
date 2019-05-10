@@ -132,7 +132,7 @@
         e.preventDefault();
         var tr = $(e.target).closest("tr");
         var data = this.dataItem(tr);
-        location.href = '/Useful/EditUseful/' + data.JobsId;
+        location.href = '/Jobs/Edit/' + data.JobsId;
     }
 
     function onOK() {

@@ -120,10 +120,14 @@
     @if (!string.IsNullOrEmpty(Model.Map))
     {
         <div class="popup-business__gmaps" id="@("mainmapDivId"+Model.BusinessId)">
-                <iframe src="@Model.Map" allowfullscreen id="@("mainmapId"+Model.BusinessId)" style="display: none; width: 100%; height: 100%"></iframe>
-            </div>
+            <iframe src="@Model.Map" allowfullscreen id="@("mainmapId"+Model.BusinessId)" style="display: none; width: 100%; height: 100%"></iframe>
+        </div>
     }
-
+    @if (!string.IsNullOrEmpty(Model.Video))
+    {
+        <br />
+        <iframe width="100%" height="360" src="@Model.Video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    }
     @{
         if (Model.Branches.Count != 0)
         {
@@ -237,7 +241,7 @@
                     @if (!string.IsNullOrEmpty(i.Map))
                     {
                         <div class="popup-business__item">@Translator.on_the_map:</div>
-                        <button class="popup-business__item_btn"  onclick="shouBranchMap(@i.BranchId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
+                        <button class="popup-business__item_btn" onclick="shouBranchMap(@i.BranchId)"><img src="/Content/img/marker-map.png" title="маркер на мапi" alt="place-marker"></button>
                     }
                 </div>
                 if (!string.IsNullOrEmpty(i.Map))
@@ -256,7 +260,7 @@
     function shouBranchMap(id) {
         var div = $("#mapBranchId" + id);
         if (div.css("display") == "none") {
-            $('#divmapBranchId'+id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            $('#divmapBranchId' + id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
             div.css("display", "block");
         } else {
             $('#divmapBranchId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });
@@ -268,7 +272,7 @@
     function shouMap(id) {
         var div = $("#mainmapId" + id);
         if (div.css("display") == "none") {
-            $('#mainmapDivId'+id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
+            $('#mainmapDivId' + id).css({ 'border': '1px solid grey', 'transition': 'height .5s', 'height': '300px' });
             div.css("display", "block");
         } else {
             $('#mainmapDivId' + id).css({ 'border': '1px solid transparent', 'transition': 'height .5s', 'height': '0px' });

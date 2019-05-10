@@ -12,6 +12,7 @@
           .DataSource(ds => ds
               .ServerOperation(false)
               .PageSize(5)
+              .Sort(srot=>srot.Add("NewsId").Descending())
               .Model(model => model.Id(p => p.NewsId))
               .Read(rd => rd.Action("News_Read", "News")))
           .Pageable()
