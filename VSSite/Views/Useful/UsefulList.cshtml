@@ -39,6 +39,7 @@
       .Scrollable()
       .DataSource(dataSource => dataSource
                         .Ajax()
+          .Sort(sort=>sort.Add("DateAdd").Descending())
                         .PageSize(20)
                         .Model(model => model.Id(p => p.UsefulId))
                         .Read(read => read.Action("Useful_Read", "Useful"))

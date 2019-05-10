@@ -57,6 +57,7 @@
           })
           .DataSource(ds => ds
               .Ajax()
+              .Sort(sort=>sort.Add("BDateAdd").Descending())
               .PageSize(5)
               .Read(read => read.Action("HierarchyBinding_Branch", "Business", new { buiId = "#=BusinessId#" })))
           .Pageable()

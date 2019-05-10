@@ -38,6 +38,7 @@
                 .DataSource(dataSource => dataSource
                     .Ajax()
                     .PageSize(20)
+                    .Sort(sort=>sort.Add("DateAdd").Descending())
                     .Model(model => model.Id(p => p.PartnerId))
                     .Read(read => read.Action("Partners_Read", "Partner"))
       ))

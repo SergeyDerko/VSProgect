@@ -17,7 +17,7 @@
 <div>
 </div>
     <div class="container-fluid">
-        <input type="hidden" id="fileNameBlogo" value="" />
+        <input type="hidden" id="fileNameBLogo" value="" />
         <input type="hidden" id="fileNamePhoto" value="" />
         <div class="row">
             <div class="col-md-12">
@@ -210,7 +210,7 @@
     function SaveBranch() {
         var _bodyContentUA = $("#bodyUa").data('kendoEditor').encodedValue();
         var _bodyContentEN = $("#bodyEn").data('kendoEditor').encodedValue();
-        var _fileNameBLogo = $("#fileNameBlogo").val();
+        var _fileNameBLogo = $("#fileNameBLogo").val();
         var _fileNamePhoto = $("#fileNamePhoto").val();
         var _mainName = $("#mainName").val();
         var _mainNameEn = $("#mainNameEn").val();
@@ -282,7 +282,7 @@
                     processData: false,
                     data: data,
                     success: function(result) {
-                        $("#fileNameBlogo").val(result);
+                        $("#fileNameBLogo").val(result);
                         $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result +"'/></div>").appendTo($("#logo"));
                     },
                     error: function (xhr, status, p3, p4){

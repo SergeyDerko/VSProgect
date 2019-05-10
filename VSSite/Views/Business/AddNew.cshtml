@@ -285,7 +285,7 @@
                     processData: false,
                     data: data,
                     success: function (result) {
-                        $("#fileNameBlogo").val(result);
+                        $("#fileNameBLogo").val(result);
                         $("<div class='photo'><img src='/Images/Logo/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#logo"));
                     },
                     error: function (xhr, status, p3, p4) {
