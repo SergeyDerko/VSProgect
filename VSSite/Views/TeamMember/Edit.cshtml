@@ -42,26 +42,15 @@
                                 <tr>
                                     <td>Фото</td>
                                     <td>
-                                        @(Html.Kendo().Button().Name("removePhoto").Content("Видалити фото").HtmlAttributes(new {@class = "btn btn-danger"}).Events(e=>e.Click("removePhotoClick")))
+                                        <input type="button" onclick="removePhotoClick('t')" class="btn btn-danger" value="Видалити фото" id="bt_delPhoto" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td style="text-align: center">
-                                        @(Html.Kendo().Upload().Name("photoUpload")
-                                              .Enable(false)
-                                              .Validation(validation =>
-                                              {
-                                                  validation.AllowedExtensions(new string[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" });
-                                                  validation.MinFileSize(500);
-                                              })
-                                              .Events(e => e.Success("onSuccessPhoto").Remove("onSuccessPhoto"))
-                                              .Async(a => a
-                                                  .Save("Async_Save", "TeamMember")
-                                                  .Remove("Async_Remove", "TeamMember")
-                                                  .AutoUpload(true)))
-                                        <img src="~/Images/Team/@Model.Photo" height="250" width="auto" id="photoImg"/>
                                         <div id="photo"></div>
+                                        <img src="~/Images/Team/@Model.Photo" height="250" width="auto" id="photoImg"/>
+                                        <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none"/>
                                     </td>
                                 </tr>
                             </tbody>
@@ -228,47 +217,81 @@
 
         }
 
-        function removePhotoClick() {
-            a = { fileNames: $("#fileNamePhoto").val() };
+        function removePhotoClick(e) {
+            var a = {};
+            
+            if (e == "l")
+            {
+                a = { fileName: $("#fileNameBLogo").val(), type: e };
+            }
+            if (e == "p")
+            {
+                a = { fileName: $("#fileNamePhoto").val(), type: e };
+            }
+            if (e == "t")
+            {
+                a = { fileName: $("#fileNamePhoto").val(), type: e };
+            }
+            console.log(a);
             $.ajax({
                 type: "POST",
-                url: "/TeamMember/Async_Remove/",
+                url: "/Upload/RemoveFile/",
                 data: a,
                 success: function (data) {
-                    //location.href = '/TeamMember/Index';
-                    if (data == "OK") {
+                    console.log(data);
+                    if (data == "OK_p") {
                         $("#photoImg").css("display", "none");
-                        $("#photoUpload").kendoUpload({
-                            enabled: true
-                        });
-                        $("#removePhoto").kendoButton({
-                            enable: false
-                        });
+                        $("#bt_delPhoto").css("display", "none");
+                        $("#UploadFilePhoto").css("display", "block");
+                    }
+                    if (data == "OK_l") {
+                        $("#logoImg").css("display", "none");
+                        $("#bt_delLogo").css("display", "none");
+                        $("#UploadFileLogo").css("display","block");
+                    }
+                    if (data == "OK_t") {
+                        $("#photoImg").css("display", "none");
+                        $("#bt_delPhoto").css("display", "none");
+                        $("#UploadFilePhoto").css("display", "block");
                     }
                 }
             });
-        }
+        };
 
-        function onSuccessPhoto(e) {
-            $("#fileNamePhoto").val(e.response.fileName);
-            if (e.operation == "upload") {
-                for (var i = 0; i < e.files.length; i++) {
-                    var file = e.files[i].rawFile;
-
-                    if (file) {
-                        var reader = new FileReader();
-
-                        reader.onloadend = function() {
-                            $("<div class='photo'><img src=" + this.result + " /></div>").appendTo($("#photo"));
-                        };
-
-                        reader.readAsDataURL(file);
+        $('#UploadFilePhoto').on('change', function (e) {
+            var files = e.target.files;
+            var myID = "t"; //uncomment this to make sure the ajax URL works
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        //alert(files[x].name);
+                        data.append(files[x].name, files[x]);
                     }
+
+                    $.ajax({
+                        type: "POST",
+                        url: '/Upload/UploadFile?id=' + myID,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            $("#fileNamePhoto").val(result);
+                            $("#bt_delPhoto").css("display", "block");
+                            $("<div class='photo'><img src='/Images/Team/" + result + "' style='height:150px;width:auto' id='" + result + "'/></div>").appendTo($("#photo"));
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
                 }
             }
-            if (e.operation == "remove") {
-            }
-        }
+        });
     </script>
 </body>
 </html>
