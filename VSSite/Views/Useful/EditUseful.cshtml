@@ -96,6 +96,7 @@
                                                               {
                                                                   s.Read(rd => rd.Action("GetUsefulList", "Useful"));
                                                               })
+                                              .Events(ev => ev.DataBound("onDataBound"))
 
                                         )
                                     </td>
@@ -327,7 +328,12 @@
                 alert("This browser doesn't support HTML5 file uploads!");
             }
         }
-    });
+        });
+
+    function onDataBound(e) {
+        var defaultItem = e.sender.dataSource.at(@Model.UsefulRubrics.RubricsId - 1);
+        e.sender.value(defaultItem.CategoryId);
+    }
     </script>
 </body>
 </html>

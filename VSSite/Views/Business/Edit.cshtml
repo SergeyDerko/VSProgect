@@ -109,6 +109,7 @@
                                                       {
                                                           s.Read(rd => rd.Action("GetCategoryList", "Category"));
                                                       })
+                                              .Events(ev=>ev.DataBound("onDataBound"))
                                               
                                         )
                                     </td>
@@ -379,6 +380,11 @@
                 }
             }
         });
+
+    function onDataBound(e) {
+        var defaultItem = e.sender.dataSource.at(@Model.Category.IdCategory - 1);
+        e.sender.value(defaultItem.CategoryId);
+    }
     </script>
 </body>
 </html>

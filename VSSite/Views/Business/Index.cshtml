@@ -39,6 +39,7 @@
       .DataSource(dataSource => dataSource
               .Ajax()
               .PageSize(20)
+          .Sort(srot=>srot.Add("DateAdd").Descending())
               .Model(model => model.Id(p => p.BusinessId))
               .Read(read => read.Action("Busnesses_Read", "Business"))
       ))
