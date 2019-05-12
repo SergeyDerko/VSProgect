@@ -14,6 +14,7 @@ using VSCore.Entity;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class UsefulController : Controller
     {
         private Context db = new Context();

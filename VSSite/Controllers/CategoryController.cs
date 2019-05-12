@@ -14,6 +14,7 @@ using Kendo.Mvc.UI;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private Context db = new Context();

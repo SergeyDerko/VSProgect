@@ -109,7 +109,7 @@
 
         @if (!string.IsNullOrEmpty(Model.Site))
         {
-            <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" href="@Model.Site">@Model.Site</a>
+            <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" target="_blank" href="@Model.Site">@Model.Site</a>
         }
         @if (!string.IsNullOrEmpty(Model.Map))
         {
@@ -147,20 +147,20 @@
                 {
                     <h3 class="popup-business__header">@i.MainNameEn</h3>
                 }
-
-                if (!string.IsNullOrEmpty(i.Fb))
-                {
-                    <a class="popup-business__social-link" href="@i.Fb" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" title="facebook" alt="facebook"></a>
-                }
-                if (!string.IsNullOrEmpty(i.Tw))
-                {
-                    <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" title="facebook" alt="twitter"></a>
-                }
-                if (!string.IsNullOrEmpty(i.Tw))
-                {
-                    <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" title="instagram" alt="instagram"></a>
-                }
-
+                <div class="popup-business__social">
+                    @if (!string.IsNullOrEmpty(i.Fb))
+                    {
+                        <a class="popup-business__social-link" href="@i.Fb" target="_blank"><img class="popup-business__social-img" src="/Content/img/facebook.png" title="facebook" alt="facebook"></a>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Tw))
+                    {
+                        <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/twitter.png" title="facebook" alt="twitter"></a>
+                    }
+                    @if (!string.IsNullOrEmpty(i.Tw))
+                    {
+                        <a class="popup-business__social-link" href="@i.Tw" target="_blank"><img class="popup-business__social-img" src="/Content/img/instagram.png" title="instagram" alt="instagram"></a>
+                    }
+                </div>
                 <div class="popup-business__description-wrapper">
                     <div class="popup-business__img-wrapper"><img class="popup-business__small-img" src="/Content/img/gear-wheel.png" alt="gear-wheel.png"><img class="popup-business__big-img" src="/Images/Photo/@i.Photo" alt=""></div>
                     @{
@@ -236,7 +236,7 @@
 
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
-                        <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" href="@i.Site">@i.Site</a>
+                        <div class="popup-business__item">@Translator.site:</div><a class="popup-business__item_link" target="_blank" href="@i.Site">@i.Site</a>
                     }
                     @if (!string.IsNullOrEmpty(i.Map))
                     {

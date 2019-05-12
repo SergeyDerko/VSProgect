@@ -13,6 +13,7 @@ using VSCore.Entity;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class TeamMemberController : Controller
     {
         Context context = new Context();

@@ -13,6 +13,7 @@ using VSCore.Entity;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class NewsController : Controller
     {
         Context db = new Context();

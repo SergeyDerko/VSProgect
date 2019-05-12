@@ -23,39 +23,39 @@
     <!-- jquery-->
     <script src="~/Scripts/libs/jquery.js"></script>
     <style>
-        .selected span {
-            font-size: 20px;
-            color: black;
-            font-weight: 700;
+         .selected span {
+             font-size: 20px;
+             color: black;
+             font-weight: 700;
+             display: block;
+             width: 30px;
+             height: 30px;
+             border-radius: 50%;
+             background-color: rgba(239, 243, 73, 0.39);
+             text-shadow: 0 0 3px white;
+             line-height: 28px;
+             position: relative;
+         }
+
+        .selected span:after,
+        .selected span:before {
             display: block;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: rgba(239, 243, 73, 0.39);
-            text-shadow: 0 0 3px white;
-            line-height: 28px;
-            position: relative;
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            height: 1px;
+            width: 60%;
+            background-color: green;
         }
 
-            .selected span:after,
-            .selected span:before {
-                display: block;
-                content: '';
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%);
-                height: 1px;
-                width: 60%;
-                background-color: green;
-            }
+        .selected span:after {
+            bottom: -10px;
+        }
 
-            .selected span:after {
-                bottom: -10px;
-            }
-
-            .selected span:before {
-                top: -10px;
-            }
+        .selected span:before {
+            top: -10px;
+        }
 
         .our-contacts {
             display: grid;
@@ -74,7 +74,9 @@
     <div class="header">
         <input type="hidden" id="lang" value="@Translator.language" />
         <a class="header__logo" href="/Home/Index"><img class="header__logo-img" src="/Content/img/logo.png" alt="logo.png"></a>
-        <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a><a class="header__social-btn" href="#"><img class="header__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a></div>
+        <div class="header__social-btns-area"><a class="header__social-btn" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="header__social-img" src="/Content/img/youtube.png" alt="youtube.png"></a>
+            <a class="header__social-btn" target="_blank" href="https://www.facebook.com/veteranoservice/"><img class="header__social-img" src="/Content/img/facebook.png" alt="facebook.png"></a>
+        <a class="header__social-btn" target="_blank" href="https://twitter.com/ServiceVeterano"><img class="header__social-img" src="/Content/img/twitter.png" alt="twitter.png"></a></div>
         <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
         <div class="language-switcher" data-language="ua">
             <img class="language-switcher__img" src="/Content/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="/Content/img/uk.png" alt="en.png"><img class="language-switcher__img" src="/Content/img/ru.png" alt="ru.png">

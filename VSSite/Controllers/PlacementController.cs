@@ -7,6 +7,7 @@ using VSCore.Concrete;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class PlacementController : Controller
     {
         Context db = new Context();

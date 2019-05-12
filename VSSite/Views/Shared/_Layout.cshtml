@@ -2,88 +2,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
-	@Scripts.Render("~/bundles/jquery")
-	<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jquery.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jszip.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.all.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.aspnetmvc.min.js"></script>
-	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+    @Scripts.Render("~/bundles/jquery")
+    @*<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jquery.min.js"></script>*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jszip.min.js"></script>*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.all.min.js"></script>*@
+    @*<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.aspnetmvc.min.js"></script>*@
+
+    <link href="~/Content/Telerik/kendo.common-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Telerik/kendo.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Telerik/kendo.mobile.all.min.css" rel="stylesheet" />
+    <script src="~/Content/Telerik/jquery.min.js"></script>
+    <script src="~/Content/Telerik/jszip.min.js"></script>
+    <script src="~/Content/Telerik/kendo.all.min.js"></script>
+    <script src="~/Content/Telerik/kendo.aspnetmvc.min.js"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         @(Html.Kendo().Menu().Name("MainMenu").Items(items =>
-                                            {
-                                                items.Add().Text("Бизнес")
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Бізнеси").Action("Index","Business");
-                                                        inner.Add().Text("Відділення бізнесу").Action("Index","Branch");;
-                                                        inner.Add().Text("Категорії бізнесу").Action("Index","Category");
-                                                        inner.Add().Text("Допомога бізнесу").Action("IndexHelpers","Business");
-                                                    });
-                                                items.Add().Text("Новини")
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Всі новини").Action("Index","News");
-                                                        inner.Add().Text("Додати новину").Action("NewsAdd","News");
-                                                    });
-                                                items.Add().Text("Корисно")
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Список корисного").Action("UsefulList","Useful");
-                                                        inner.Add().Text("Рубрики").Action("Index","Useful");
+                  {
+                      items.Add().Text("Бизнес")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Бізнеси").Action("Index", "Business");
+                              inner.Add().Text("Відділення бізнесу").Action("Index", "Branch"); ;
+                              inner.Add().Text("Категорії бізнесу").Action("Index", "Category");
+                              inner.Add().Text("Допомога бізнесу").Action("IndexHelpers", "Business");
+                          });
+                      items.Add().Text("Новини")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Всі новини").Action("Index", "News");
+                              inner.Add().Text("Додати новину").Action("NewsAdd", "News");
+                          });
+                      items.Add().Text("Корисно")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Список корисного").Action("UsefulList", "Useful");
+                              inner.Add().Text("Рубрики").Action("Index", "Useful");
 
-                                                    });
-                                                items.Add().Text("Партнери")
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Список партнерів").Action("Index","Partner");
-                                                    });
-                                                items.Add().Text("Робота")
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Список робіт").Action("Index","Jobs");
-                                                    });
-                                                items.Add().Text("Заявки-команда" + User.Identity.GetUserName())
-                                                    .Items(inner =>
-                                                    {
-                                                        inner.Add().Text("Заявки").Action("Index","Placement");
-                                                        inner.Add().Text("Про нас").Action("Index","AboutUs");
-                                                        inner.Add().Text("Наша команда").Action("Index", "TeamMember");
-                                                        inner.Add().Text("Настройки").Action("Index", "Manage");
-                                                        inner.Add().Text("Вихід").Content(@<text>
-                                                            @(Html.Kendo().Button()
-                                                              .Name("primaryTextButton")
-                                                              //.HtmlAttributes(new { type = "button", @class = "k-primary" })
-                                                              .Content("Вихід")
-                                                              .Events(ev => ev.Click("logout")))
-                                                        </text>);
+                          });
+                      items.Add().Text("Партнери")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Список партнерів").Action("Index", "Partner");
+                          });
+                      items.Add().Text("Робота")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Список робіт").Action("Index", "Jobs");
+                          });
+                      items.Add().Text("Заявки-команда")
+                          .Items(inner =>
+                          {
+                              inner.Add().Text("Заявки").Action("Index", "Placement");
+                              inner.Add().Text("Про нас").Action("Index", "AboutUs");
+                              inner.Add().Text("Наша команда").Action("Index", "TeamMember");
+                              inner.Add().Text("Настройки").Action("Index", "Manage");
+                              inner.Add().Text("Вихід").Content(@<text>
+                                @(Html.Kendo().Button()
+                                              .Name("primaryTextButton")
+                                              //.HtmlAttributes(new { type = "button", @class = "k-primary" })
+                                              .Content("Вихід")
+                                              .Events(ev => ev.Click("logout")))
+                            </text>);
 
-                                                });
-                                        }))
+                                });
+                        }))
     </div>
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"}))
+    {
+        @Html.AntiForgeryToken()
+    }
+
     <div class="container body-content">
         @RenderBody()
-      
+
 
     </div>
 
-<script>
-    function logout() {
-        document.getElementById('logoutForm').submit();
-    }
-</script>
+    <script>
+        function logout() {
+            document.getElementById('logoutForm').submit();
+        }
+    </script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

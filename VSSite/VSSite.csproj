@@ -252,6 +252,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -308,32 +309,20 @@
     <Content Include="Content\img\btr4.jpg" />
     <Content Include="Content\img\close.png" />
     <Content Include="Content\img\cross.png" />
-    <Content Include="Content\img\elk.jpg" />
     <Content Include="Content\img\email.png" />
     <Content Include="Content\img\facebook.png" />
     <Content Include="Content\img\gear-wheel.png" />
-    <Content Include="Content\img\goose.jpg" />
-    <Content Include="Content\img\horse.jpg" />
     <Content Include="Content\img\instagram.png" />
     <Content Include="Content\img\kozak.png" />
     <Content Include="Content\img\light-dim.png" />
     <Content Include="Content\img\light-glaring.png" />
     <Content Include="Content\img\lightbulb.png" />
     <Content Include="Content\img\logo.png" />
-    <Content Include="Content\img\marker-centers.png" />
-    <Content Include="Content\img\marker-juralhelp.png" />
     <Content Include="Content\img\marker-map.png" />
     <Content Include="Content\img\marker-news.png" />
     <Content Include="Content\img\marker-partners.png" />
-    <Content Include="Content\img\marker-psyhohelp.png" />
-    <Content Include="Content\img\marker-sport.png" />
-    <Content Include="Content\img\marker-study.png" />
     <Content Include="Content\img\marker-team.png" />
     <Content Include="Content\img\ornament.jpg" />
-    <Content Include="Content\img\photo1.jpg" />
-    <Content Include="Content\img\photo2.jpg" />
-    <Content Include="Content\img\photo3.jpg" />
-    <Content Include="Content\img\photo4.jpg" />
     <Content Include="Content\img\pie-chart.png" />
     <Content Include="Content\img\place-marker.png" />
     <Content Include="Content\img\place.png" />
@@ -352,16 +341,21 @@
     <Content Include="Content\main.css" />
     <Content Include="Content\news.css" />
     <Content Include="Content\partners.css" />
+    <Content Include="Content\Telerik\Bootstrap\loading-image.gif" />
+    <Content Include="Content\Telerik\kendo.aspnetmvc.min.js" />
+    <Content Include="Content\Telerik\kendo.all.min.js" />
+    <Content Include="Content\Telerik\jszip.min.js" />
+    <Content Include="Content\Telerik\jquery.min.js" />
+    <Content Include="Content\Telerik\kendo.common-bootstrap.min.css" />
+    <Content Include="Content\Telerik\kendo.mobile.all.min.css" />
+    <Content Include="Content\Telerik\kendo.bootstrap.min.css" />
     <Content Include="Content\useful.css" />
     <Content Include="Content\vacancy.css" />
-    <Content Include="Content\video\Кожен з нас. Збройні Сили України.mp4" />
+    <Content Include="Content\video\videoVsNew.mp4" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\libs-css\Site.css" />
-    <Content Include="Images\Category\f20fc995-4dc1-4ac6-8444-49f6d590e648.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\Category\marker-centers.png" />
     <Content Include="Images\Category\marker-juralhelp.png" />
     <Content Include="Images\Category\marker-news.png" />
@@ -370,19 +364,11 @@
     <Content Include="Images\Category\marker-sport.png" />
     <Content Include="Images\Category\marker-study.png" />
     <Content Include="Images\Category\marker-team.png" />
-    <Content Include="Images\fsack.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Logo\fsack.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Photo\fsack.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Team\passport.jpg" />
-    <Content Include="Images\Temp\fsack.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Images\Logo\marker-news.png" />
+    <Content Include="Images\Photo\marker-news.png" />
+    <Content Include="Images\Team\marker-news.png" />
+    <Content Include="Images\Temp\marker-news.png" />
+    <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\libs\bootstrap.js" />
     <Content Include="Scripts\libs\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -395,6 +381,11 @@
     <Content Include="fonts\open-sans.bold-italic.ttf" />
     <Content Include="fonts\open-sans.extrabold.ttf" />
     <Content Include="fonts\open-sans.regular.ttf" />
+    <Content Include="Content\Telerik\images\kendoui.ttf" />
+    <Content Include="Content\Telerik\fonts\glyphs\WebComponentsIcons.ttf" />
+    <Content Include="Content\Telerik\fonts\glyphs\WebComponentsIcons.woff" />
+    <Content Include="img\visnyk_40.pdf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\libs\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\business.js" />
     <Content Include="Scripts\form.js" />
@@ -505,6 +496,7 @@
     <Content Include="Views\TeamMember\AddNew.cshtml" />
     <Content Include="Views\TeamMember\Edit.cshtml" />
     <Content Include="Views\Useful\UsefulAddNew.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

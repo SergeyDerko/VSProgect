@@ -48,11 +48,11 @@ else
                         <div>
                             @if (!string.IsNullOrEmpty(i.Phone1))
                             {
-                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone1</a></p>
                             }
                             @if (!string.IsNullOrEmpty(i.Phone2))
                             {
-                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone3</a></p>
+                                <p><a style="color: dodgerblue; cursor: pointer" href="tel:i.Phone3">@i.Phone2</a></p>
                             }
                             @if (!string.IsNullOrEmpty(i.Phone3))
                             {
@@ -64,12 +64,12 @@ else
                     @if (!string.IsNullOrEmpty(i.Email))
                     {
                         <p style="font-weight: 900">@Translator.Our_email:</p>
-                        <p><a style="color: dodgerblue; cursor: pointer" href="mailto:@i.Email">@i.Email</a></p>
+                        <p><a style="color: dodgerblue; cursor: pointer" target="_blank" href="mailto:@i.Email">@i.Email</a></p>
                     }
                     @if (!string.IsNullOrEmpty(i.Site))
                     {
                         <p style="font-weight: 900"> @Translator.site:</p>
-                        <p><a style="color: dodgerblue; cursor: pointer" href="@i.Site">@i.Site</a></p>
+                        <p><a style="color: dodgerblue; cursor: pointer" target="_blank" href="@i.Site">@i.Site</a></p>
                     }
 
                     @if (Translator.language == "ru")

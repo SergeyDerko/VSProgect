@@ -8,6 +8,7 @@ using Kendo.Mvc.UI;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class ImageBrowserController : EditorImageBrowserController
     {
         private const string ContentFolderRoot = "~/Content/";

@@ -14,17 +14,25 @@ else
         @{
             foreach (var i in Model.Businesses)
             {
-                <a class="business" style="cursor: pointer"  onclick="showBusiness(@i.BusinessId)" alt="@i.MainName" title="@i.MainName">
-                    <img class="business__bcg" src="/Content/img/gear-wheel.png"><img class="business__img" src="/Images/Logo/@i.Logo" alt="@i.MainName" title="@i.MainName">
-                    @if (Translator.language == "ru")
-                    {
-                        <h3 class="business__name">@i.MainName</h3>
-                    }
-                    else
-                    {
-                        <h3 class="business__name">@i.MainNameEn</h3>
-                    }
-                </a>
+        <a class="business" style="cursor: pointer" onclick="showBusiness(@i.BusinessId)" alt="@i.MainName" title="@i.MainName">
+            <img class="business__bcg" src="/Content/img/gear-wheel.png"><img class="business__img" src="/Images/Logo/@i.Logo" alt="@i.MainName" title="@i.MainName">
+            @if (Translator.language == "ru")
+            {
+                if (i.MainName.Length > 18)
+                {
+                    <h3 class="business__name" style="font-size: 24px">@i.MainName</h3>
+                }
+                else
+                {
+                    <h3 class="business__name">@i.MainName</h3>
+                }
+
+            }
+            else
+            {
+                <h3 class="business__name">@i.MainNameEn</h3>
+            }
+        </a>
             }
         }
     </div>

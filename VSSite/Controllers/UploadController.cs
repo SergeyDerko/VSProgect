@@ -9,7 +9,7 @@ namespace VSSite.Controllers
     public class UploadController : Controller
     {
         [HttpPost]
-        public async Task<JsonResult> UploadFile(string id)
+        public JsonResult UploadFile(string id)
         {
             string fullFile = "";
             try
@@ -80,7 +80,7 @@ namespace VSSite.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> RemoveFile(string fileName, string type)
+        public JsonResult RemoveFile(string fileName, string type)
         {
 
             if (!string.IsNullOrEmpty(fileName) && !string.IsNullOrEmpty(type))

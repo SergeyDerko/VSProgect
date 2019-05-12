@@ -87,7 +87,7 @@
                                     <td>@(Html.Kendo().TextBox().Name("cityEn").Value(@Model.CityEn).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                                 <tr>
-                                    <td>Відео</td>
+                                    <td>Відео <p style="color: red; font-size: 14px">Замість watch?v= вставити embed/ <br /> Далі повинен йти ключ відео приклад - P6N9782MzFQ <br /> Якщо в кінці є щось таке &t=1778s - видаляемо ці символи <br />Приклад : <br />було - https://www.youtube.com/watch?v=JEMqTNFwErw&t=17s <br /> стало -  https://www.youtube.com/embed/JEMqTNFwErw</p></td>
                                     <td>@(Html.Kendo().TextBox().Name("videoUrl").Value(@Model.Video).HtmlAttributes(new { style = "display:block; width:100%" }))</td>
                                 </tr>
                             </tbody>

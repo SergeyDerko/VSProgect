@@ -18,23 +18,34 @@
     <script src="~/Scripts/libs/jquery.js"></script>
     <!-- own stylesheet-->
     <link rel="stylesheet" type="text/css" href="~/Content/index.css">
+    <style>
+        #form-video {
+            min-width: 100%;
+            min-height: 100%;
+            position: fixed;
+            z-index: 0;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    </style>
 </head>
 <body>
-    <!-- HEADER-->
-    <!-- /HEADER-->
-    <!-- MAIN SECTION-->
     <main class="main">
-        <!-- SECTION 1-->
         <section class="index-section">
             <div class="index-section__bg-content">
                 <div class="index-section__bg-content-cover"></div>
-                <!-- ↓↓↓ BEM-blocks: bg-content (start) ↓↓↓-->
-                <div class="bg-content-simple-image-example"><img src="/Content/img/btr4.jpg" alt="btr4.jpg"></div>
+                <div class="bg-content-simple-image-example">
+                    <video autoplay muted loop id="form-video">
+                        <source src="~/Content/video/videoVsNew.mp4" type="video/mp4">
+                    </video>
+                    @*<img src="/Content/img/btr4.jpg" alt="btr4.jpg">*@
+                </div>
                 <script></script>
-                <!-- ↑↑↑ BEM-blocks: bg-content (end) ↑↑↑-->
             </div>
-            <!-- лампочка-->
-            <div class="index-section__lightbulb-holder"><img class="lightbulb" src="/Content/img/lightbulb.png" alt="lightbulb.png"><img class="logo" src="/Content/img/logo.png" alt="logo.png"><img class="light-dim" src="/Content/img/light-dim.png" alt="light-dim.png"><img class="light-glaring" src="/Content/img/light-glaring.png" alt="light-glaring.png"></div><img class="index-section__footer-inscription" src="/Content/img/veterano_service.png" alt="veterano_service.png">
+            <div class="index-section__lightbulb-holder">
+                <img class="lightbulb" src="/Content/img/lightbulb.png" alt="lightbulb.png"><img class="logo" src="/Content/img/logo.png" alt="logo.png"><img class="light-dim" src="/Content/img/light-dim.png" alt="light-dim.png"><img class="light-glaring" src="/Content/img/light-glaring.png" alt="light-glaring.png">
+            </div><img class="index-section__footer-inscription" src="/Content/img/veterano_service.png" alt="veterano_service.png">
             <nav class="index-section__navigation">
                 <ul class="main-navigation-list">
                     <li class="main-navigation-list-item animated bounceInDown"><a class="main-navigation-link" href="/Home/Business">@Translator.Businesses_of_veterans</a></li>
@@ -47,10 +58,7 @@
                 </ul>
             </nav>
         </section>
-        <!-- /SECTION 1-->
-        <!-- SECTION 2-->
         <section class="popups-section">
-            <!-- ↓↓↓ BEM-blocks: popup-no-russian-language-suppurt (start) ↓↓↓-->
             <div class="small-popup" id="popup-no-russian-language-suppurt">
                 <button class="small-popup__close-button" id="popup-no-russian-language-suppurt__close-button"><img class="small-popup__close-cross" src="/Content/img/cross.png" alt="cross.png"></button>
                 <h5 class="small-popup__header">Помилка 404...</h5>
@@ -61,137 +69,137 @@
                 <div class="small-popup__buttons-area">
                     <button class="small-popup__button">Зрозуміло</button>
                 </div>
-                <div class="small-popup__background"><img class="small-popup__background-image" src="/Content/img/ornament.jpg" alt="ornament.jpg"></div>
+                <div class="small-popup__background">
+                    <img class="small-popup__background-image" src="/Content/img/ornament.jpg" alt="ornament.jpg">
+                </div>
             </div>
             <script>
-                $(document).ready(function () {
+                $(document)
+                    .ready(function () {
 
-                    var bodyWidth;
+                        var bodyWidth;
 
-                    $('.language-switcher__shutter-ru').click(function () {
-
-                        // змінюємо зовнішній вигляд мовної панелі
-                        $('.language-switcher__shutter-ua').css({ 'width': '50%', 'left': '0%' });
-                        $('.language-switcher__shutter-en').css({ 'width': '50%', 'left': '50%' });
-                        $('.language-switcher__shutter-ru').css({ 'display': 'none' });
-
-                        // змінюємо положення московського прапора
-                        var imageTop = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().top;
-                        var imageLeft = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().left;
-                        bodyWidth = $('body').outerWidth();
-
-                        $('img.language-switcher__img[src="/Content/img/ru.png"]').remove();
-                        $('body').append('<img class="language-switcher__img" src="/Content/img/ru.png">');
-                        $('img.language-switcher__img[src="/Content/img/ru.png"]').css({
-                            'position': 'absolute',
-                            'zIndex': 8889,
-                            'top': imageTop - 3,
-                            'left': imageLeft - 88,
-                            'cursor': 'pointer'
-                        });
-                        setTimeout(function () {
-                            // переміщуємо московський прапор на центр екрана зверху
-                            $('img.language-switcher__img[src="/Content/img/ru.png"]').css({
-                                'transition': 'left .5s',
-                                'left': bodyWidth / 2
-                            })
-                                // по кліку - приховуємо прапор та показуємо повідомлення
-                                .bind('click mouseenter', function () {
-                                    $(this).css({
-                                        'transition': 'top .5s',
-                                        'top': '-100%'
+                        $('.language-switcher__shutter-ru')
+                            .click(function () {
+                                $('.language-switcher__shutter-ua').css({ 'width': '50%', 'left': '0%' });
+                                $('.language-switcher__shutter-en').css({ 'width': '50%', 'left': '50%' });
+                                $('.language-switcher__shutter-ru').css({ 'display': 'none' });
+                                var imageTop = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().top;
+                                var imageLeft = $('img.language-switcher__img[src="/Content/img/ru.png"]').offset().left;
+                                bodyWidth = $('body').outerWidth();
+                                $('img.language-switcher__img[src="/Content/img/ru.png"]').remove();
+                                $('body').append('<img class="language-switcher__img" src="/Content/img/ru.png">');
+                                $('img.language-switcher__img[src="/Content/img/ru.png"]')
+                                    .css({
+                                        'position': 'absolute',
+                                        'zIndex': 8889,
+                                        'top': imageTop - 3,
+                                        'left': imageLeft - 88,
+                                        'cursor': 'pointer'
                                     });
-                                    // поява підкладки
-                                    $('.popups-section').css('display', 'block');
+                                setTimeout(function () {
+                                    $('img.language-switcher__img[src="/Content/img/ru.png"]')
+                                        .css({
+                                            'transition': 'left .5s',
+                                            'left': bodyWidth / 2
+                                        })
+                                        .bind('click mouseenter',
+                                            function () {
+                                                $(this)
+                                                    .css({
+                                                        'transition': 'top .5s',
+                                                        'top': '-100%'
+                                                    });
+                                                $('.popups-section').css('display', 'block');
 
-                                    setTimeout(function () {
-                                        // поява спливаючого вікна
-                                        $('#popup-no-russian-language-suppurt').css('top', '20px');
-                                        // відмальовування потрібної кількості орнаментів
-                                        var popupHeight = $('#popup-no-russian-language-suppurt').outerHeight(),
-                                            ornamentHeight = $('.small-popup__background-image').outerHeight(),
-                                            ornamentsAmount = Math.ceil(popupHeight / ornamentHeight);
-                                        for (var i = 0; i < ornamentsAmount - 1; i++) {
-                                            $('#popup-no-russian-language-suppurt .small-popup__background').append('<img class="small-popup__background-image" src="/Content/img/ornament.jpg", alt="ornament.jpg">');
-                                        }
+                                                setTimeout(function () {
+                                                    $('#popup-no-russian-language-suppurt').css('top', '20px');
+                                                    var
+                                                        popupHeight =
+                                                            $('#popup-no-russian-language-suppurt').outerHeight(),
+                                                        ornamentHeight =
+                                                            $('.small-popup__background-image').outerHeight(),
+                                                        ornamentsAmount = Math.ceil(popupHeight / ornamentHeight);
+                                                    for (var i = 0; i < ornamentsAmount - 1; i++) {
+                                                        $('#popup-no-russian-language-suppurt .small-popup__background')
+                                                            .append('<img class="small-popup__background-image" src="/Content/img/ornament.jpg", alt="ornament.jpg">');
+                                                    }
 
-                                    }, 50);
-                                });
-                        }, 100);
+                                                },
+                                                    50);
+                                            });
+                                },
+                                    100);
+                            });
+
+                        $('#popup-no-russian-language-suppurt__close-button, #popup-no-russian-language-suppurt button.small-popup__button').click(function () { closeNoRussianLanguageSuppurtPopup() });
+
+                        function closeNoRussianLanguageSuppurtPopup() {
+                            $('#popup-no-russian-language-suppurt').remove();
+                            $('.popups-section').css('display', 'none');
+                        }
+
                     });
-
-                    // навішування обробників на кнопки закриття
-                    $('#popup-no-russian-language-suppurt__close-button, #popup-no-russian-language-suppurt button.small-popup__button').click(function () { closeNoRussianLanguageSuppurtPopup() });
-
-                    function closeNoRussianLanguageSuppurtPopup() {
-                        $('#popup-no-russian-language-suppurt').remove();
-                        $('.popups-section').css('display', 'none');
-                    }
-
-                });
             </script>
-            <!-- ↑↑↑ BEM-blocks: popup-no-russian-language-suppurt (end) ↑↑↑-->
         </section>
         <!-- /SECTION 2-->
         <div class="language-switcher-wrapper">
-            <!-- ↓↓↓ BEM-blocks: language-switcher (start) ↓↓↓-->
             <div class="language-switcher" data-language="ua">
                 <img class="language-switcher__img" src="~/Content/img/ua.png" alt="ua.png"><img class="language-switcher__img" src="~/Content/img/uk.png" alt="en.png"><img class="language-switcher__img" src="~/Content/img/ru.png" alt="ru.png">
                 <div class="language-switcher__shutter-ua" href="#"></div>
                 <div class="language-switcher__shutter-en" href="#"></div>
                 <div class="language-switcher__shutter-ru" href="#"></div>
             </div>
-            <input type="hidden" id="lang" value="@Translator.language"/>
+            <input type="hidden" id="lang" value="@Translator.language" />
             <script>
-                $(document).ready(function () {
+                $(document)
+                    .ready(function () {
 
-                    var lang = $('#lang').val();
-                    if (lang == "en") {
-                        $('.language-switcher__shutter-ua').css('height', '100%');
-                        $('.language-switcher__shutter-en').css('height', '.1px');
-                        $('.language-switcher').attr('data-language', 'en');
-                    }
+                        var lang = $('#lang').val();
+                        if (lang == "en") {
+                            $('.language-switcher__shutter-ua').css('height', '100%');
+                            $('.language-switcher__shutter-en').css('height', '.1px');
+                            $('.language-switcher').attr('data-language', 'en');
+                        }
 
-                    $('.language-switcher__shutter-ua').click(function () {
-                        $('.language-switcher__shutter-ua').css('height', '.1px');
-                        $('.language-switcher__shutter-en').css('height', '100%');
-                        $('.language-switcher').attr('data-language', 'ua');
-                        $.ajax({
-                            url: "/Language/ChoiceOfLanguage?language=ru",
-                            success: function () {
-                               location.reload();
-                            }
-                        });
+                        $('.language-switcher__shutter-ua')
+                            .click(function () {
+                                $('.language-switcher__shutter-ua').css('height', '.1px');
+                                $('.language-switcher__shutter-en').css('height', '100%');
+                                $('.language-switcher').attr('data-language', 'ua');
+                                $.ajax({
+                                    url: "/Language/ChoiceOfLanguage?language=ru",
+                                    success: function () {
+                                        location.reload();
+                                    }
+                                });
+
+                            });
+
+                        $('.language-switcher__shutter-en')
+                            .click(function () {
+                                $('.language-switcher__shutter-ua').css('height', '100%');
+                                $('.language-switcher__shutter-en').css('height', '.1px');
+                                $('.language-switcher').attr('data-language', 'en');
+                                $.ajax({
+                                    url: "/Language/ChoiceOfLanguage?language=en",
+                                    success: function () {
+                                        location.reload();
+                                    }
+                                });
+                            });
 
                     });
-
-                    $('.language-switcher__shutter-en').click(function () {
-                        $('.language-switcher__shutter-ua').css('height', '100%');
-                        $('.language-switcher__shutter-en').css('height', '.1px');
-                        $('.language-switcher').attr('data-language', 'en');
-                        $.ajax({
-                            url: "/Language/ChoiceOfLanguage?language=en",
-                            success: function () {
-                                location.reload();
-                            }
-                        });
-                    });
-
-                });
             </script>
-            <!-- ↑↑↑ BEM-blocks: language-switcher (end) ↑↑↑-->
         </div>
         <div class="social-btns-main-wrapper">
-            <!-- ↓↓↓ BEM-blocks: social-btns-main (start) ↓↓↓-->
-            <div class="social-btns-main"><a class="social-btns-main__link" href="#" target="_blank"><img class="social-btns-main__img" src="~/Content/img/facebook.png" alt="facebook.png"></a><a class="social-btns-main__link" href="#" target="_blank"><img class="social-btns-main__img" src="~/Content/img/twitter.png" alt="twitter.png"></a><a class="social-btns-main__link" href="#" target="_blank"><img class="social-btns-main__img" src="~/Content/img/youtube.png" alt="youtube.png"></a></div>
-            <!-- ↑↑↑ BEM-blocks: social-btns-main (end) ↑↑↑-->
+            <div class="social-btns-main">
+                <a class="social-btns-main__link" href="https://www.facebook.com/veteranoservice/" target="_blank"><img class="social-btns-main__img" src="~/Content/img/facebook.png" alt="facebook.png"></a>
+                <a class="social-btns-main__link" href="https://twitter.com/ServiceVeterano" target="_blank"><img class="social-btns-main__img" src="~/Content/img/twitter.png" alt="twitter.png"></a>
+                <a class="social-btns-main__link" href="https://www.youtube.com/channel/UC8sz3peAKC-bN0z2MdKgggA" target="_blank"><img class="social-btns-main__img" src="~/Content/img/youtube.png" alt="youtube.png"></a>
+            </div>
         </div>
     </main>
-    <!-- /MAIN SECTION-->
-    <!-- FOOTER-->
-    <!-- /FOOTER-->
-    <!-- scripts-->
-    <!-- own js-->
     <script src="~/Scripts/index.js"></script>
 </body>
 </html>

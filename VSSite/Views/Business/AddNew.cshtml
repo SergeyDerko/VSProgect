@@ -3,14 +3,9 @@
     ViewBag.Title = "Додати бізнес";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</head>
 
-<body>
 <br/>
 <br />
 <br />
@@ -81,7 +76,7 @@
                 <td>@(Html.Kendo().TextBox().Name("cityEn").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
             </tr>
             <tr>
-                <td>Відео</td>
+                <td>Відео <p style="color: red; font-size: 14px">Замість watch?v= вставити embed/ <br /> Далі повинен йти ключ відео приклад - P6N9782MzFQ <br /> Якщо в кінці є щось таке &t=1778s - видаляемо ці символи <br />Приклад : <br/>було - https://www.youtube.com/watch?v=JEMqTNFwErw&t=17s <br /> стало -  https://www.youtube.com/embed/JEMqTNFwErw</p></td>
                 <td>@(Html.Kendo().TextBox().Name("videoUrl").HtmlAttributes(new { style = "display:block; width:100%" }))</td>
             </tr>
             </tbody>
@@ -277,7 +272,6 @@
                 for (var x = 0; x < files.length; x++) {
                     data.append(files[x].name, files[x]);
                 }
-
                 $.ajax({
                     type: "POST",
                     url: '/Upload/UploadFile?id=' + myID,
@@ -335,6 +329,4 @@
         }
     });
 </script>
-</body>
-</html>
 

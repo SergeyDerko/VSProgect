@@ -13,6 +13,7 @@ using VSCore.Entity;
 
 namespace VSSite.Controllers
 {
+    [Authorize]
     public class PartnerController : Controller
     {
         Context db = new Context();
