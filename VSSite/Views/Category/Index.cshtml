@@ -44,7 +44,7 @@
           .DataSource(ds=>ds
               .Ajax()
               .PageSize(5)
-              .Sort(sort=>sort.Add("BDateAdd").Descending())
+              .Sort(sort=>sort.Add("BDate").Descending())
               .Read(read=>read.Action("HierarchyBinding_Buisnes","Category",new {catId= "#=IdCategory#" })))
               .Pageable()
           .Sortable()

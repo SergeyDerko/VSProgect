@@ -49,7 +49,14 @@
                                 <td style="text-align: center">
                                     <div id="logo"></div>
                                     <img src="~/Images/Logo/@Model.Logo" height="150" width="auto" id="logoImg" />
-                                    <input type="file" name="UploadFile" id="UploadFileLogo" style="display: none"/>
+                                    @if (string.IsNullOrEmpty(Model.Logo))
+                                    {
+                                        <input type="file" name="UploadFile" id="UploadFileLogo" style="display: block" />
+                                    }
+                                    else
+                                    {
+                                        <input type="file" name="UploadFile" id="UploadFileLogo" style="display: none" />
+                                    }
                                 </td>
                             </tr>
                             <tr>
@@ -61,7 +68,14 @@
                                 <td style="text-align: center">
                                     <div id="photo"></div>
                                     <img src="~/Images/Photo/@Model.Photo" height="150" width="auto" id="photoImg" />
-                                    <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none"/>
+                                    @if (string.IsNullOrEmpty(Model.Photo))
+                                    {
+                                        <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: block" />
+                                    }
+                                    else
+                                    {
+                                        <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none" />
+                                    }
                                 </td>
                             </tr>
                             </tbody>
@@ -297,16 +311,17 @@
                 url: "/Upload/RemoveFile/",
                 data: a,
                 success: function (data) {
-                    console.log(data);
                     if (data == "OK_p") {
                         $("#photoImg").css("display", "none");
                         $("#bt_delPhoto").css("display", "none");
                         $("#UploadFilePhoto").css("display", "block");
+                        $("#fileNamePhoto").val("");
                     }
                     if (data == "OK_l") {
                         $("#logoImg").css("display", "none");
                         $("#bt_delLogo").css("display", "none");
-                        $("#UploadFileLogo").css("display","block");
+                        $("#UploadFileLogo").css("display", "block");
+                        $("#fileNameBLogo").val("");
                     }
                 }
             });
@@ -382,8 +397,9 @@
         });
 
     function onDataBound(e) {
-        var defaultItem = e.sender.dataSource.at(@Model.Category.IdCategory - 1);
-        e.sender.value(defaultItem.CategoryId);
+        var curName = '@Model.Category.Name';
+        var dropdownlist = $("#category").data("kendoDropDownList");
+        dropdownlist.search(curName);
     }
     </script>
 </body>

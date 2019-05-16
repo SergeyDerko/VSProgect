@@ -50,7 +50,14 @@
                                     <td style="text-align: center">
                                         <div id="photo"></div>
                                         <img src="~/Images/Team/@Model.Photo" height="250" width="auto" id="photoImg"/>
-                                        <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none"/>
+                                        @if (string.IsNullOrEmpty(Model.Photo))
+                                        {
+                                            <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: block" />
+                                        }
+                                        else
+                                        {
+                                            <input type="file" name="UploadFile" id="UploadFilePhoto" style="display: none" />
+                                        }
                                     </td>
                                 </tr>
                             </tbody>
@@ -253,6 +260,7 @@
                         $("#photoImg").css("display", "none");
                         $("#bt_delPhoto").css("display", "none");
                         $("#UploadFilePhoto").css("display", "block");
+                        $("#fileNamePhoto").val("");
                     }
                 }
             });
